@@ -1,0 +1,352 @@
+.mobile-menu {
+  display: none;
+}
+
+/**ヘッダー関連 ******************************************************/
+header {
+  width: 980px;
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+
+}
+
+header .logo-image {
+  text-align: center;
+  padding-top: 25px;
+  margin-bottom: 60px;
+}
+
+header nav {
+  width: 980px;
+  margin: 0;
+  padding: 0;
+
+}
+
+header nav ul {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+header nav ul li {
+  width: 172px;
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+
+header nav ul li:hover {
+  background-color: orange;
+}
+
+header nav ul li svg {
+  width: 41px;
+  height: 38px;
+}
+
+header nav ul li a {
+  display: flex;
+  align-items: center;
+  color: black;
+  font-family: dnp-shuei-4go-std, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0.77;
+  margin-left: 10px;
+  text-decoration: none;
+
+
+}
+/************************************フッター************************************************************************/
+footer {
+  width: 100%;
+  background-color: #522f60;
+  height: 152px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+
+footer .top-jump {
+  border-radius: 50%;
+  background-color: #522f60;
+  content: "top";
+  color: #FFFFFF;
+  display: inline-block;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  position: absolute;
+  padding-top: 8px;
+  text-align: center;
+  left: 50%;
+  top: -32%;
+  width: 220px;
+  height: 150px;
+  transform: translateX(-50%);
+  text-decoration: none;
+  z-index: 1;
+
+}
+
+footer ul {
+  display: flex;
+  list-style: none;
+  margin: 55px auto 0;
+  position: relative;
+  justify-content: space-between;
+  padding: 0;
+  width: 90vw;
+  z-index: 2;
+}
+
+footer ul li a {
+  color: white;
+  font-size: 23.9px;
+  font-family: "DNP ShueiNMinStd";
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-decoration: none;
+}
+
+footer small {
+  color: white;
+  display: block;
+  font-size: 24.05px;
+  font-family: "DNP ShueiNMinStd";
+  position: absolute;
+  text-align: center;
+  letter-spacing: 0.11em;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/*
+*
+*
+/
+/******************************************モバイル*************************************************************************/
+@media  screen and (max-width: 979px) {
+  /****************************モバイル専用********************************************************************************/
+  header{
+    width: 100%;
+  }
+    .logo-image {
+      display: none;
+    }
+  
+    .global-nav {
+      display: none;
+    }
+  
+    .mobile-menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      width: 100vw;
+  
+    }
+    .mobile-menu svg{
+      width: 80px;
+      height: 31px;
+    }
+  
+    .mobile-menu input[type="checkbox"] {
+      display: none;
+    }
+  
+    .drower {
+      display: block;
+      position: fixed;
+      width: 100vw;
+      height: 80vh;
+      top: 0;
+      left: 200%;
+      z-index: 10;
+      background-color: white;
+      border: 1px solid #c0c0c0;
+      transition: .5s;
+    }
+  
+    .drower section {
+      padding-top: 4rem;
+  
+    }
+  
+    .drower section .wrapper {
+      text-align: center;
+    }
+  
+    .drower .menu-title {
+      color: #522f60;
+      display: inline-block;
+      font-size: 22px;
+      font-family: "AB-roman";
+      line-height: 1.2;
+      letter-spacing: 0.15em;
+      transform: matrix(2.72301170426066, 0, 0, 1.42495671296005, 0, 0);
+      position: relative;
+    }
+  
+    .drower .menu-title::before {
+      content: "";
+      display: inline-block;
+      width: 88%;
+      border: 2.5px solid #522f60;
+      ;
+      top: 110%;
+      position: absolute;
+    }
+  
+    .drower ul {
+      list-style: none;
+      margin: 50px 0 0 0;
+      padding: 0;
+    }
+  
+    .drower ul li {
+      display: flex;
+      align-items: center;
+      font-size: 21px;
+      font-family: "DNPShuei4goStd";
+      font-weight: bold;
+      color: rgb(0, 0, 0);
+      line-height: 1.2;
+      transform: matrix(1.01062824695933, 0, 0, 0.9250062731286, 0, 0);
+      margin-bottom: 50px;
+      width: 100%;
+  
+    }
+    .drower ul li a{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: black;
+    }
+  
+    .drower ul li img {
+      width: 30px;
+      height: 30px;
+    }
+  
+    #menu-label span {
+      display: inline-block;
+      width: 23px;
+      height: 5px;
+      background-color: black;
+      position: relative;
+      transition: .5s;
+      z-index: 12;
+    }
+  
+    #menu-label span::before {
+      content: "";
+      display: inline-block;
+      width: 23px;
+      height: 5px;
+      background-color: black;
+      position: absolute;
+      top: -10px;
+      transition: .5s;
+    }
+  
+    #menu-label span::after {
+      content: "";
+      display: inline-block;
+      width: 23px;
+      height: 5px;
+      background-color: black;
+      position: absolute;
+      top: 10px;
+      transition: .5s;
+    }
+  
+    .mobile-menu input[type="checkbox"]:checked~#menu-label span {
+      background-color: transparent;
+    }
+  
+    .mobile-menu input[type="checkbox"]:checked~#menu-label span::before {
+      transform: rotate(45deg);
+      top: 0px;
+    }
+  
+    .mobile-menu input[type="checkbox"]:checked~#menu-label span::after {
+      transform: rotate(-45deg);
+      top: 0px;
+    }
+  
+    .mobile-menu input[type="checkbox"]:checked~.drower {
+      left: 0;
+    }
+    /************************************フッター************************************************************************/
+    footer {
+      width: 100%;
+      height: auto;
+      background-color: #522f60;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+    }
+
+    footer .top-jump {
+      border-radius: 50%;
+      background-color: #522f60;
+      content: "top";
+      color: #FFFFFF;
+      display: inline-block;
+      font-size: 24px;
+      font-family: "DNP ShueiNMinStd";
+      line-height: 1.2;
+      letter-spacing: 0.11em;
+      position: absolute;
+      padding-top: 8px;
+      text-align: center;
+      left: 50%;
+      top: -12%;
+      width: 150px;
+      height: 100px;
+      transform: translateX(-50%);
+      text-decoration: none;
+      z-index: 1;
+
+    }
+
+    footer ul {
+      display: block;
+      list-style: none;
+      text-align: center;
+      position: relative;
+      padding: 0;
+      width: 100vw;
+      z-index: 2;
+      margin-top: 3rem;
+    }
+
+    footer ul li {
+      margin-bottom: 33px;
+    }
+
+    footer ul li a {
+      color: white;
+      font-size: 21.27px;
+      font-family: "DNP ShueiNMinStd";
+      line-height: 1.2;
+      letter-spacing: 0.11em;
+      text-decoration: none;
+    }
+
+    footer small {
+      color: white;
+      display: block;
+      font-size: 11px;
+      font-family: "DNP ShueiNMinStd";
+      text-align: center;
+      letter-spacing: 0.11em;
+    }
+}

@@ -1,0 +1,480 @@
+html{
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: none;
+  /*background-image: linear-gradient(90deg, #c1b4c6 50%, #ecd0d4 50%);*/
+  background-color: white;
+  background-size: 100px 100px;
+}
+.top-body{
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0 auto 152px;
+  background-color: #FFFFFF;
+  position: relative;
+  
+}
+
+/**
+ここからtopページ固有
+**/
+/*******************************コンテンツ*******************************************************/
+.top-content {
+  background-color: white;
+  width: 980px;
+  margin: 0 auto;
+}
+/*************メインビジュアル**************************************************/
+.mainvisual-image{
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 600px;
+  overflow: hidden;
+  
+}
+.mainvisual-image .background_semitransparent{
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+
+}
+.mainvisual-image p{
+  font-size: 33.701px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  position: absolute;
+  left: 17.2%;
+  letter-spacing: 0.1em;
+  top: 50%;
+  transform: translate(-17.2%, -50%);
+  z-index: 2;
+  -moz-transform: matrix( 1.46788990825688,0,0,2.22731107291539,0,0);
+  -webkit-transform: matrix( 1.46788990825688,0,0,2.22731107291539,0,0);
+  -ms-transform: matrix( 1.46788990825688,0,0,2.22731107291539,0,0);
+  
+  
+}
+.mainvisual-image ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.mainvisual-image .main-visual-li{
+  opacity: 0;
+}
+.mainvisual-image .show{
+  opacity: 1;
+}
+.mainvisual-image img{
+  width: 100vw;
+  height: 600px;
+}
+.petal{
+  background-color: pink;
+  border-radius: 150% 0 150% 0;
+  position: absolute;
+  animation: fall 5s;
+  z-index: 5;
+}
+.petal::after{
+  content: "";
+  border-radius: 150% 0 150% 0;
+  background-color: pink;
+  position: absolute;
+  left: -12%;
+  top: -10%;
+}
+@keyframes fall{
+  0%{
+    opacity: 0;
+    top: 0;
+    transform: rotate(0);
+  }
+  30%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+    top: 100vh;
+    opacity: 0;
+    transform: rotate(3000deg);
+  }
+}
+/**********************サイト説明**************************/
+.description{
+  text-align: center;
+  width: 100%;
+}
+.description h2{
+  max-width: 100%;
+  display: inline-block;
+  font-size: 36.713px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  transform: matrix(1, 0, 0, 0.9438920321412, 0, 0);
+  text-align: center;
+  margin: 38px auto 68px;
+  position: relative;
+    
+}
+.description h2::before{
+  content: "";
+  display: block;
+  border: 3px solid #0a1369;
+  position: absolute;
+  bottom: -25px;
+  width: 100%;
+}
+.description h2::after {
+  content: "";
+  display: block;
+  border: 3px solid #9594f9;
+  position: absolute;
+  bottom: -25px;
+  width: 22%;
+}
+.description .image img{
+  width: 100%;
+}
+.description .message{
+    max-width: 100%;
+    font-size: 32px;
+    font-family: "DNP ShueiNMinStd";
+    color: rgb(7, 68, 30);
+    line-height: 1.406;
+    letter-spacing: 0.16em;
+    box-sizing: border-box;
+    text-align: justify;
+    text-justify: inter-ideograph;
+    
+}
+/**********************サイトメリット********************************/
+.site-merit{
+  width: 100%;
+  margin: 0;
+  padding: 0 0 1rem 0;
+  text-align: center;
+}
+.site-merit h2{
+  max-width: 100%;
+  display: inline-block;
+  font-size: 36.713px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  transform: matrix(1, 0, 0, 0.9438920321412, 0, 0);
+  text-align: center;
+  margin: 38px auto 68px;
+  position: relative;
+    
+}
+.site-merit h2::before{
+  content: "";
+  display: block;
+  border: 3px solid #0a1369;
+  position: absolute;
+  bottom: -25px;
+  width: 100%;
+}
+.site-merit h2::after {
+  content: "";
+  display: block;
+  border: 3px solid #9594f9;
+  position: absolute;
+  bottom: -25px;
+  width: 50%;
+}
+.site-merit .image{
+  margin-bottom: -120px;
+  
+}
+.user-merit{
+  width: 76%;
+  margin: 19px auto 87px;
+  border: 5px solid #522f60;
+  border-radius: 10px;
+  position: relative;
+  padding: 74px 0 104px 0;
+}
+.user-merit span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45.1%;
+  text-align: center;
+  background-color: white;
+  color: #522f60;
+  position: absolute;
+  top: -3rem;
+  left: 50%;
+  transform: translate(-50%, -1rem);
+
+  
+}
+.user-merit span h3{
+    font-size: 30px;
+    font-family: "DNP ShueiNMinStd";
+    color: rgb(82, 47, 96);
+}
+.user-merit span svg{
+  width: 52px;
+  height: 52px;
+}
+.user-merit ul{
+  counter-reset: ct;
+  list-style: none;
+  text-align: left;
+  margin: 0;
+  width: 100%;
+}
+.user-merit ul li{
+  font-size: 25px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  text-align: left;
+  margin-bottom: 67px;
+      
+}
+.user-merit ul li:last-child {
+  margin-bottom: 0;
+
+}
+.user-merit ul li::before{
+  counter-increment: ct;
+  content: counter(ct);
+  color: white;
+  display: inline-block;
+  font-size: 25px;
+  text-align: center;
+  line-height: 1.5;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #522f60;
+}
+.shop-merit {
+  width: 76%;
+  margin: 46px auto 0;
+  border: 5px solid #522f60;
+  border-radius: 10px;
+  position: relative;
+  padding: 74px 0 104px 0;
+  
+}
+
+.shop-merit span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45.1%;
+  text-align: center;
+  background-color: white;
+  color: #522f60;
+  position: absolute;
+  top: -3rem;
+  left: 50%;
+  transform: translate(-50%, -1rem);
+
+
+}
+
+.shop-merit span h3 {
+  font-size: 30px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(82, 47, 96);
+}
+.shop-merit span svg {
+  width: 52px;
+  height: 52px;
+}
+
+.shop-merit ul {
+  counter-reset: ct;
+  list-style: none;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  margin-left: 40px;
+  max-width: 100%;
+}
+
+.shop-merit ul li {
+  font-size: 25px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  text-align: left;
+  margin-bottom: 67px;
+  margin-left: 50px;
+  position: relative;
+
+}
+
+.shop-merit ul li:last-child {
+  margin-bottom: 0;
+
+}
+
+.shop-merit ul li::before {
+  counter-increment: ct;
+  content: counter(ct);
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  line-height: 1.5;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #522f60;
+  position: absolute;
+  left: -2.5rem;
+  top: -4px; 
+  margin-right: 20px;
+}
+/**************************おすすめ商品************************************************/
+.items{
+  background-image: url(../../image/center-image.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 150px 0 100px 0;
+  width: 100vw;
+  margin-top: 17px;
+
+}
+.items .item-background{
+  background-color: white;
+  border: 1px solid #f0f0f0;
+  margin: 0 auto;
+  width: 980px;
+}
+.items h2{
+  font-size: 37px;
+  display: inline-block;
+  font-family: "DNP ShueiNMinStd";
+  color: #517c61;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-align: center;
+  padding-top: 36px;
+  position: relative;
+}
+.item-background h2::before{
+   content: "";
+   display: inline-block;
+   width: 100%;
+   border: 3px solid #4c4c4c;
+   position: absolute;
+   top: calc(100% + 15px);
+   left: 0;
+  
+}
+.item-background h2::after {
+  content: "";
+  display: inline-block;
+  width: 50%;
+  border: 3px solid #a2a1fa;
+  position: absolute;
+  top: calc(100% + 15px);
+  left: 0;
+}
+.item-background ul{
+  display: flex;
+  margin: 40px 24px;
+  list-style: none;
+  width: 868px;
+}
+.item-background ul li{
+  background-color: #f6f5de;
+  border-radius: 6px;
+  object-fit: cover;
+  width: 276px;
+  height: 426px;
+  margin-right: 16px;
+  box-shadow: 0 5px 4px 0 rgba(82, 47, 96, 0.53);
+  transition: .3s;
+}
+.item-background ul li:hover{
+  transform: translateY(-10%);
+}
+.item-background ul li img{
+  border-radius: 6px 6px 0 0;
+  width: 100%;
+  height: 200px;
+}
+.item-background ul li .item-name{
+    font-size: 25.48px;
+    font-family: "DNP ShueiNMinStd";
+    font-weight: bold;
+    color: rgb(32, 12, 12);
+    line-height: 1.2;
+    letter-spacing: 0.11em;
+    margin: -2px 0 -1rem 0;
+}
+.item-background ul li .item-price{
+  display: flex;
+  font-size: 25.48px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(32, 12, 12);
+  letter-spacing: 0.11em;
+  align-items: center;
+  margin-top: 28px;
+}
+.item-background ul li .item-price span{
+    font-size: 39px;
+    font-family: "DNP ShueiNMinStd";
+    font-style: italic;
+    font-weight: bold;
+    color: rgb(255, 0, 0);
+    letter-spacing: 0.11em;
+    line-height: 1.66;
+    
+  }
+.item-background ul li .item-shop{
+    font-size: 25.48px;
+    font-family: "DNP ShueiNMinStd";
+    font-weight: bold;
+    color: rgb(32, 12, 12);
+    letter-spacing: 0.11em;
+    margin-top: -23px;
+   
+  }
+  .item-background ul li a{
+    background-color: #21e118;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 209px;
+    height: 43px;
+    margin: -16px 0 9px 5px;
+  }
+  .item-background ul li a img {
+    width: 21px;
+    height: 21px;
+  }
+  .item-background ul li a:hover{
+    background-color: lightgreen;
+   
+  }
+  
