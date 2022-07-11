@@ -1,0 +1,184 @@
+html {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+article {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+コンテンツ
+**/
+/********************************コンテンツ**************************************************************************************/
+article .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 42px;
+}
+article .title h2 {
+  font-size: 28px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.18em;
+  position: relative;
+}
+article .title h2::before{
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0.4px;
+  border-bottom: 4px solid #522f60;
+  position: absolute;
+  top: 100%;
+ 
+ }
+ article .title h2::after {
+   content: "";
+   display: block;
+   width: 50%;
+   height: 0.4px;
+   border-bottom: 4px solid #9b69af;
+   position: absolute;
+   top: 100%;
+ 
+ }
+ /****************************************フォーム**********************************************************************************/ 
+ form form {
+  width: 100%;
+}
+
+.login-table {
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 32px 0 82px 0;
+  padding: 20px 0 38px 0;
+}
+.login-table tr th {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw;
+  font-size: 16px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  padding: 17px 0 0 0;
+}
+.login-table th span {
+  color: red;
+}
+.login-table tr td {
+  display: block;
+  width: 100vw;
+}
+
+.login-table tr td input {
+  width: 99%;
+  height: 50px;
+  border: none;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+
+}
+.login-table th img {
+  width: 30px;
+  height: 30px;
+  margin: 2px 2px 10px 2px;
+}
+#login {
+  display: flex;
+  width: 100%;
+  height: calc(100vw * 0.2);
+  align-items: center;
+  justify-content: center;
+  background-color: #522f60;
+  border: none;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  margin: 38px auto 176px;
+
+}
+
+#login img {
+  width: 30px;
+  height: 30px;
+}
+
+#login:hover {
+  background-color: #845596;
+}
+.new-user-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -9.7rem;
+  margin-bottom: 8rem;
+  font-size: 18px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(82, 47, 96);
+  text-decoration: underline;
+  line-height: 1.2;
+  letter-spacing: 00.16em;
+}
+
+.new-user-link img {
+  width: 30px;
+  height: 30px;
+  color: purple;
+}
+
+.new-user-link:hover {
+  opacity: 0.7;
+}
+/**************************エラー*****************************************/
+.error {
+  background-color: red;
+  border-radius: 3px;
+  color: white;
+  margin: 10px 0;
+  position: relative;
+  line-height: 2;
+  display: none;
+
+}
+
+.error-conf {
+  margin-top: -30px;
+  margin-bottom: 50px;
+}
+
+.error::after {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 0;
+  border-top: 8px solid red;
+  border-left: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid transparent;
+  position: absolute;
+  top: 90%;
+  left: 1%;
+}
+.show {
+  display: block;
+}

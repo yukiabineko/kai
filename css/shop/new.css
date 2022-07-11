@@ -1,0 +1,154 @@
+/**********ヘッダー******************/
+header::after {
+  border-bottom: 1px solid #c0c0c0;
+  content: "";
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+}
+
+article {
+  width: 980px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/**
+**/
+/***********************************************タイトル*********************************************************************************/
+article .title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+}
+article h2{
+  font-size: 50px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  
+}
+article .title  img{
+  width: 60px;
+  height: 60px;
+}
+.back-button{
+  display: flex;
+  width: 185px;
+  height: 53px;
+  border: 1px solid #522f60;
+  background-color: #f0f0f0;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(97, 68, 109);
+  letter-spacing: 0.16em;
+  margin-top: 3px;
+
+}
+.back-button:hover{
+  background-color: #f5e3e3;
+}
+/*****************************************フォーム**********************************************************************************/
+.form, .form form{
+  width: 100%;
+}
+.user-table{
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 20px 0 3rem 0;
+}
+.user-table tr th{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid #fff;
+  width: 400px;
+  height: 99px;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  
+}
+.user-table tr td {
+  border-bottom: 1px solid #fff;
+  width: 580px;
+  height: 95px;
+}
+.user-table tr td input{
+  width: 522px;
+  height: 50px;
+  border: none;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+     
+}
+.user-table tr .last{
+  border:none;
+}
+.user-table th img{
+  width: 40px;
+  height: 40px;
+  margin: 2px 2px 0 0;
+}
+.user-table th span{
+  color: red;
+  font-size: 12px;
+}
+input[type="submit"]{
+  display: block;
+  width: 400px;
+  height: 100px;
+  background-color: #522f60;
+  border: none;
+  font-size: 32px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin: 38px auto 176px;
+  
+}
+input[type="submit"]:hover {
+  background-color: #845596;
+}
+/**************************エラー*****************************************/
+.error {
+  background-color: red;
+  border-radius: 3px;
+  color: white;
+  margin: 10px 0;
+  position: relative;
+  line-height: 2;
+  display: none;
+}
+.error::after {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 0;
+  border-top: 8px solid red;
+  border-left: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid transparent;
+  position: absolute;
+  top: 90%;
+  left: 1%;
+}
+.show {
+  display: block;
+}

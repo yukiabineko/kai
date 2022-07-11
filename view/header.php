@@ -14,7 +14,7 @@
         </div>
         <ul class="mobile-menu-ul">
           <li>
-            <a href="top.html">
+            <a href="./top">
               <?php include('image/top.svg'); ?>
               トップページ
             </a>
@@ -42,7 +42,7 @@
           </li>
 
           <li>
-            <a href="login.html">
+            <a href="./auth?action=new">
               <?php include('image/login.svg'); ?>
               販売店ログイン
             </a>
@@ -57,7 +57,7 @@
 
     <ul>
       <li>
-        <a href="top.html">
+        <a href="./top">
           <?php include('image/top.svg'); ?>
           トップページ
         </a>
@@ -81,7 +81,7 @@
         </a>
       </li>
       <li>
-        <a href="login.html">
+        <a href="./auth?action=new">
           <?php include('image/login.svg'); ?>
           販売店ログイン
         </a>

@@ -10,6 +10,7 @@ $last_uri = end($array_parse_uri);
 //上で取り出した最後の文字列からさらにクエリパラメーターを除外
 $call = substr($last_uri, 0, strcspn($last_uri,'?'));
 
+
 //クエリパラメーターを$_SERVER['QUERY_STRING']から取得加工クエリパラメーターを準備
 $querys = !empty( $_SERVER['QUERY_STRING'])? get_query($_SERVER['QUERY_STRING']) : null;
 
@@ -65,9 +66,13 @@ if(file_exists('./controller/' . $call . 'Controller.php')){
 }
 
 else{
-  // controllerファイルがなければ404エラー
-  header("https/1.0 404 Not Found");
+  include('./controller/emptyController.php');
+  $class = "emptyController";
+  $obj = new $class();
+  $response = $obj->index();
+  echo $response;
   exit;
+
 }
 
 
