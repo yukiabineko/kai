@@ -16,8 +16,8 @@ $querys = !empty( $_SERVER['QUERY_STRING'])? get_query($_SERVER['QUERY_STRING'])
 
 //関連コントローラー読み込み
 if(file_exists('./controller/' . $call . 'Controller.php')){
+  $class = $call . 'Controller';
   include('./controller/' . $call . 'Controller.php');
-  $class = $call. 'Controller';
   $obj   = new $class();
   if( $_SERVER["REQUEST_METHOD"] != "POST" && isset($querys['action']) ){
     switch ($querys['action']) {
@@ -66,8 +66,8 @@ if(file_exists('./controller/' . $call . 'Controller.php')){
 }
 
 else{
-  include('./controller/emptyController.php');
   $class = "emptyController";
+  include('./controller/emptyController.php');
   $obj = new $class();
   $response = $obj->index();
   echo $response;
