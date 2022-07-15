@@ -1,0 +1,517 @@
+/**********ヘッダー******************/
+header::after {
+  border-bottom: 1px solid #c0c0c0;
+  content: "";
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.shop-name {
+  width: 980px;
+  margin: 0 auto;
+  font-size: 18px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  margin-top: 15px;
+}
+
+main {
+  display: flex;
+  width: 980px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.shop {
+  width: 488px;
+  margin-left: 22px;
+}
+
+.shop .info {
+  text-align: center;
+
+}
+
+.shop .info h3 {
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+}
+
+.order-link {
+  display: none !important;
+}
+
+.shop .info .shop-table {
+  width: 440px;
+  background-color: #f0f0f0;
+  border-collapse: collapse;
+}
+
+.shop .info .shop-table th {
+  height: 50px;
+  border-bottom: 1px solid white;
+  font-size: 16px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-align: left;
+}
+
+.shop .info .shop-table td {
+  height: 50px;
+  border-bottom: 1px solid white;
+  font-size: 16px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+
+}
+
+.shop .info .edit {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #522f60;
+  width: 150px;
+  height: 40px;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.shop .info a:hover {
+  background-color: #7c4c8f;
+}
+
+/**********************************商品リスト*****************************************************************/
+/**
+ 商品リスト欄
+**/
+.itemlists h3 {
+  text-align: center;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  padding-top: 24px;
+}
+
+.itemlists .btn {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #522f60;
+  width: 150px;
+  height: 40px;
+  text-decoration: none;
+  margin-top: 49px;
+}
+
+.itemlists .btn:hover {
+  background-color: #7c4c8f;
+}
+
+/******
+リスト
+**/
+.itemlists ul {
+  margin: 10px 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.itemlists ul .list {
+  display: flex;
+  border: 1px solid #522f60;
+  border-radius: 6px;
+  margin-bottom: 28px;
+  position: relative;
+  height: 98px;
+  width: 441px;
+}
+
+/**カード内リンク */
+.itemlists ul .list .link {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.itemlists ul .list .link:hover {
+  background-color: rgba(244, 230, 222, 0.6);
+}
+
+/**画像、価格**/
+.itemlists ul .list .img-price {
+  display: flex;
+  align-items: center;
+  width: 250px;
+  margin-left: 6px;
+}
+
+.itemlists ul .list .img-price img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 3px;
+}
+
+.itemlists ul .list .img-price .price {
+  display: block;
+  margin-left: 10px;
+}
+
+.itemlists ul .list .img-price .price .name {
+  font-size: 18px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-top: -4px;
+  padding-bottom: 10px;
+}
+
+.itemlists ul .list .img-price .price .price {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-top: 2px;
+}
+
+.itemlists ul .list .img-price .price .price img {
+  width: 30px;
+  height: 30px;
+  margin-left: -12px;
+}
+
+.itemlists ul .list .img-price .price .price span {
+  font-size: 36px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  font-style: italic;
+  color: red;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  margin: 0 3px 0 1px;
+
+}
+
+/****
+期限
+**/
+.time-limit {
+  border-left: 1px solid #c0c0c0;
+  height: 76px;
+  margin-top: 13px;
+}
+
+.time-limit::before {
+  content: "";
+  width: 0px;
+  height: 0px;
+
+  margin-right: 12px;
+}
+
+.time-limit img {
+  width: 30px;
+  height: 30px;
+  margin-top: -7px;
+}
+
+.time-limit .date {
+  margin: 9px 0 0 9px;
+  font-size: 16px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(82, 47, 96);
+  line-height: 0.938;
+  letter-spacing: 0.06em;
+}
+
+/**
+編集・削除ボタン
+**/
+.itemlists .li-btns {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  bottom: -1%;
+  z-index: 3;
+
+}
+
+.itemlists .li-btns .edit-button {
+  display: block;
+  margin-right: 12px;
+
+}
+
+.itemlists .li-btns .edit-button img {
+  width: 20px;
+  height: 20px;
+
+}
+
+.itemlists .li-btns .delete-button {
+  border: none;
+  background-color: transparent;
+
+}
+
+.itemlists .li-btns .delete-button img {
+  width: 20px;
+  height: 20px;
+
+}
+
+/*******************注文依頼********************************************************/
+/**
+ **/
+
+.order {
+  width: 492px;
+  margin-bottom: 3rem;
+}
+
+.order .info h3 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+
+}
+
+.order .info .lists {
+  width: 442px;
+  margin: 0 0 6.5rem -18px;
+  list-style: none;
+}
+
+.order .info .lists li {
+  width: 442px;
+  height: 540px;
+  background-color: #f0f0f0;
+  margin-bottom: 3.2rem;
+  position: relative;
+
+}
+
+/***ステータス円 **/
+.order .info .lists .status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background-color: #7b81f4;
+  position: absolute;
+  top: -6.5%;
+  left: -5%;
+  border-radius: 50%;
+  font-size: 16px;
+  font-family: "DNP ShueiNMinStd";
+  font-style: italic;
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+}
+
+.incomplete {
+  background-color: red !important;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  padding-top: 8px;
+}
+
+.user img {
+  width: 40px;
+  height: 40px;
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin: 2.4rem 0 0 9px;
+}
+
+.item img {
+  width: 30px;
+  height: 30px;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0 0 9px;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+}
+
+.price img {
+  width: 30px;
+  height: 30px;
+}
+
+.price span {
+  color: red;
+}
+
+/**単価***/
+.num {
+  margin-left: 8px;
+}
+
+/***合計****/
+.price .total {
+  margin-left: 37px;
+}
+
+/*税*/
+.tax {
+  font-size: 12px;
+  color: #522f60 !important;
+}
+
+/****期限 ***************/
+/***/
+.datetime {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-left: 10px;
+}
+
+.datetime img {
+  width: 30px;
+  height: 30px;
+}
+
+.datetime span {
+  color: red;
+}
+
+/**時計アイコン**/
+.clock {
+  margin-left: 20px;
+}
+
+/**電話番号**/
+.tel {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-top: 32px;
+  margin-left: 10px;
+}
+
+.tel img {
+  width: 30px;
+  height: 30px;
+}
+
+/**メールアドレス**/
+.email {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-top: 32px;
+  margin-left: 10px;
+}
+
+.email img {
+  width: 30px;
+  height: 30px;
+}
+
+/***************ステータス変更ボタン*****************************/
+/**
+**/
+.statusbtn {
+  display: block;
+  font-size: 18px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  width: 296px;
+  height: 79px;
+  background-color: #7b81f4;
+  border: none;
+  color: #ffffff;
+  margin: 51px auto;
+
+}
+
+.statusbtn:hover {
+  opacity: 0.8;
+}

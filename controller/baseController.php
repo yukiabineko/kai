@@ -7,9 +7,17 @@ class baseController{
   {
     
   }
+  /***************************対応viewの表示********************************************************************** */
   public function view($actionName, $params = null): void{
+    
      $class =  get_class($this);
      $controllerName = explode('Controller', $class)[0];
+     //送られてきたモデルのデータ格納
+     
+     ${ $controllerName } =isset($params[$controllerName])? $params[$controllerName] : "";  //モデルのデータ
+     $token = isset($params['token'])? $params['token'] : null;                               //csrfトークン
+
+     
      if($controllerName === "empty"){
       include('./view/404_view.php');
      }
@@ -17,5 +25,21 @@ class baseController{
       include('./view/layout_view.php');
      }
       
+  }
+  /****************************トークンによるcsrf対策********************************************************************************* */
+  public function csrf(string $token) :bool{
+    
+    if($token == $_SESSION['token']){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  public function tokenCreate(): string{
+    $tokenByte = openssl_random_pseudo_bytes(16);
+    $token = bin2hex($tokenByte);
+    $_SESSION['token'] = $token;
+    return $token;
   }
 }

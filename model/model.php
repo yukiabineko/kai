@@ -2,22 +2,23 @@
 
 class Model{
   public $table;
-  public $columns = ['id'=>null];              //=>カラム名によるメンバー変数名
+  public $id;
   protected $pdo = null;
   
-  /**
-   * データベースのカラムをメンバー変数にするため__set, __get呼び出し
-   */
-  public function __set($name, $value){$this->columns[$name] = $value;}
+  
+  /*****************データベースのカラムをメンバー変数にするため__set, __get呼び出し********************/
+
+  public function __set($name, $value){$this->$name = $value;}
   public function __get($name)
   {
-    if(isset($this->columns[$name])){
-      return $this->columns[$name];
+    if(isset($this->$name)){
+      return $this->$name;
     }
     else{
       return null;
     }
   }
+  /***********************************コンストラクタ******************************************************************** */
   public function __construct()
   {
     $this->table = get_class($this);    //モデルクラス名
@@ -43,41 +44,117 @@ class Model{
     $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $this->pdo->exec($sql);
   }
+  /*******************************デストラクタ******************************************************************************** */
   public function __destruct()
   {
     $this->pdo = null;
   }
-  /********************************************************************** */
-  /**
-   * テーブルのレコード作成
-   */
+  /**********************テーブルのレコード作成************************************************ */
+
   public function create(array $params = null){
     //sql文作成
-    $sql = "INSERT INTO shop(";
-    $count = 1;
-    foreach($this->columns as $key => $value){
-      $count != 1? $sql.= $key : "";
-      (count($this->columns) > $count) && $count > 1? $sql.= "," : "";
+    $count = 0;
+    $sql = "INSERT INTO $this->table(";
+    foreach($params as $key => $value){
+      $sql.= $key;
+      count($params) > ($count +1)? $sql.="," : "";
       $count ++;
     }
     $sql .=")VALUES(";
-    for($i=2; $i<$count; $i++){   //idカラムは除くため$i=2からスタート
+    for($i=1; $i<= $count; $i++){   
       $sql .= "?";
-      count($this->columns) > $i? $sql.=",":"";
+      count($params) > $i? $sql.=",":"";
     }
     $sql.=")";
-    echo $sql;
-    /************************INSERT*******************************************/
+    /**
+     * INSERT
+     */
     
     try{
       $smt = $this->pdo->prepare($sql);
       $column_number = 1;
+      echo $sql.'<br>';
+    
       foreach($params as $key=>$value){
         $smt->bindValue($column_number, $value, gettype($value)=="integer"? PDO::PARAM_INT : PDO::PARAM_STR);
         $column_number++;
       }
       $smt->execute();
+      //作成したレコードを呼び出し
+      $this->last();
+      return true;
 
+    }
+    catch(PDOException $e){
+      echo $e->getMessage();
+      exit();
+    }
+  }
+  /***************************************レコードの編集*************************************************************************************/
+  public function update(int $id,array $params){
+
+    //$sql文の作成
+    $sql = "UPDATE $this->table SET ";
+    $count = 0;
+    foreach($params as $key => $value){
+      $sql .= "$key=?";
+      count($params) > ($count + 1 )? $sql.= "," : "";
+      $count ++;
+    }
+    $sql .= " WHERE id=?";
+    echo $sql;
+    /***
+     * update処理
+     */
+    try {
+      $smt = $this->pdo->prepare($sql);
+      $column_number = 1;
+
+      foreach ($params as $key => $value) {
+        $smt->bindValue($column_number, $value, gettype($value) == "integer" ? PDO::PARAM_INT : PDO::PARAM_STR);
+        $column_number++;
+      }
+      $smt->execute();
+      //作成したレコードを呼び出し
+      $this->last();
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      exit();
+    }
+    
+  }
+  /****************************************IDによるレコード検索**************************************************************************** */
+  public function find(int $id){
+    $sql = "SELECT * FROM $this->table WHERE id=?";
+    try{
+     $smt = $this->pdo->prepare($sql);
+     $smt->bindValue(1, (int)$id, PDO::PARAM_INT);
+     $smt->execute();
+     
+
+     $result = $smt->fetch(PDO::FETCH_ASSOC);
+     $this->id = $result['id'];
+     foreach($result as $key=>$value){
+      $this->$key = $value;
+     }
+     return $this;
+    }
+    catch(PDOException $e){
+      echo $e->getMessage();
+      exit();
+    }
+  }
+  /***********************************最後のレコード取り出し************************************************************* */
+  public function last(){
+    $sql = "SELECT * FROM $this->table ORDER BY id DESC LIMIT 1";
+    try{
+     $smt = $this->pdo->query($sql);
+     $result = $smt->fetch(PDO::FETCH_ASSOC);
+     foreach($result as $key=>$value){
+      $this->$key = $value;
+     }
+     return $this;
     }
     catch(PDOException $e){
       echo $e->getMessage();
