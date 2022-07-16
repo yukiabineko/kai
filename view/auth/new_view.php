@@ -7,7 +7,7 @@
 
     <!--フォーム-->
     <section class="form">
-      <form action="#" method="post" id="login-form">
+      <form action="./auth?action=create" method="post" id="login-form">
         <table class="login-table">
          
           <!-- メールアドレス -->
@@ -32,7 +32,7 @@
               <input type="password" name="password" id="password" class="input">
             </td>
           </tr>
-
+        <input type="hidden" name="csrf-token" value="<?= $token; ?>">
         </table>
         <button type="submit" id="login"><img src="image/icons/login.png" alt="ログイン" >ログイン</button>
         <a href="./shop?action=new" class="new-user-link">

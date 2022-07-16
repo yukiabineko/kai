@@ -42,4 +42,12 @@ class baseController{
     $_SESSION['token'] = $token;
     return $token;
   }
+  /******************************************セッションの格納**************************************************************************************** */
+  public function session_store(int $id){
+    $class =  get_class($this);
+    $controllerName = explode('Controller', $class)[0];
+    //セッションの名前
+    $sessin_name = $controllerName."_id";
+    $_SESSION[$sessin_name] = $id;
+  }
 }

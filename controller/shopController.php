@@ -43,7 +43,9 @@
     public function update(int $id, array $params){
       if($this->csrf($params['csrf-token'])){
         $shop = new shop();
-        $shop->update($id, $this->set_parameter($params));
+        if($shop->update($id, $this->set_parameter($params))){
+          header("location: ./shop?action=show&id=$shop->id");
+        }
       }
       
     }

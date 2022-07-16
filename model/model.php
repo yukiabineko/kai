@@ -114,6 +114,7 @@ class Model{
         $smt->bindValue($column_number, $value, gettype($value) == "integer" ? PDO::PARAM_INT : PDO::PARAM_STR);
         $column_number++;
       }
+      $smt->bindValue($column_number, (int)$id, PDO::PARAM_INT);
       $smt->execute();
       //作成したレコードを呼び出し
       $this->last();
@@ -144,6 +145,25 @@ class Model{
       echo $e->getMessage();
       exit();
     }
+  }
+  /***************************************特定のカラムから検索*************************************************************************** */
+  public function find_by(string $column_name, string $param){
+    /*$columSql = "SHOW COLUMNS FROM $this->table WHERE Field='$column_name'";
+    echo $columSql;
+    $columnSmt = $this->pdo->prepare($columSql);
+    $columnSmt->execute();
+    $columnResult = $columnSmt->fetch(PDO::FETCH_ASSOC);
+    echo $columnResult['Type'];*/
+
+    $sql = "SELECT * FROM $this->table WHERE $column_name=?";
+    $smt = $this->pdo->prepare($sql);
+    $smt->bindValue(1, $param, PDO::PARAM_STR);
+    $smt->execute();
+    $results = $smt->fetch(PDO::FETCH_ASSOC);
+    foreach($results as $key=>$value){
+      $this->$key = $value;
+    }
+    return $this;
   }
   /***********************************最後のレコード取り出し************************************************************* */
   public function last(){
