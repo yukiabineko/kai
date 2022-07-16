@@ -1,3 +1,7 @@
+<!-- フラッシュ通知 -->
+ <?php if(isset($_SESSION["error-flash"])): ?>
+   <div class="error-flash"><?= $_SESSION["error-flash"]; ?></div>
+ <?php unset($_SESSION["error-flash"]); endif; ?>
 <!-- コンテンツ -->
 <article>
     <!-- タイトル -->

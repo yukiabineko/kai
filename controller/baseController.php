@@ -16,7 +16,6 @@ class baseController{
      
      ${ $controllerName } =isset($params[$controllerName])? $params[$controllerName] : "";  //モデルのデータ
      $token = isset($params['token'])? $params['token'] : null;                               //csrfトークン
-
      
      if($controllerName === "empty"){
       include('./view/404_view.php');
@@ -43,11 +42,20 @@ class baseController{
     return $token;
   }
   /******************************************セッションの格納**************************************************************************************** */
-  public function session_store(int $id){
+  public function session_store(int $id):void{
     $class =  get_class($this);
     $controllerName = explode('Controller', $class)[0];
     //セッションの名前
     $sessin_name = $controllerName."_id";
     $_SESSION[$sessin_name] = $id;
+  }
+  /********************************ログイン状態かチェック***************************************************************************************************************** */
+  public function login_check(string $session): bool{
+    if(isset($session)){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }

@@ -42,10 +42,16 @@
           </li>
 
           <li>
-            <a href="./auth?action=new">
-              <?php include('image/login.svg'); ?>
-              販売店ログイン
-            </a>
+            <?php if (isset($_SESSION['auth_id'])) : ?>
+              <form action="./auth?action=delete">
+                <button type="submit">ログアウト</button>
+              </form>
+            <?php else : ?>
+              <a href="./auth?action=new">
+                <?php include('image/login.svg'); ?>
+                販売店ログイン
+              </a>
+            <?php endif; ?>
           </li>
         </ul>
       </section>
@@ -64,7 +70,7 @@
       </li>
       <li>
         <a href="lineup.html">
-          <?php include('image/item.svg'); ?>
+          <img src="./image/item.svg" alt="商品" srcset="./image/item.svg">
           出品商品
         </a>
       </li>
@@ -81,10 +87,22 @@
         </a>
       </li>
       <li>
-        <a href="./auth?action=new">
-          <?php include('image/login.svg'); ?>
-          販売店ログイン
-        </a>
+        <?php if (isset($_SESSION['auth_id'])) : ?>
+          <div class="owner">
+            <img src="./image/user.svg" alt="ログアウト" srcset="./image/user.svg">
+            <input type="checkbox" id="ownerbox">
+            <label for="ownerbox">店舗様メニュー</label>
+            <ul class="owner-ul">
+              <li>店舗ページ</li>
+              <li>ログアウト</li>
+            </ul>
+          </div>
+        <?php else : ?>
+          <a href="./auth?action=new">
+            <?php include('image/login.svg'); ?>
+            販売店ログイン
+          </a>
+        <?php endif; ?>
       </li>
     </ul>
   </nav>

@@ -1,5 +1,13 @@
 <p class="shop-name"><?= $shop->name; ?>様</p>
 
+<!----------------------------フラッシュ----------------------------------------------------------------------------->
+<!-- ログインフラッシュ-->
+<?php if(isset($_SESSION["flash"])): ?>
+  <div class="flash"><?= $_SESSION["flash"]; ?></div>
+  <?php unset($_SESSION["flash"]); ?>
+<?php endif; ?>
+
+
 <!-- コンテンツ -->
 <main>
   <!-- 店舗情報 -->
@@ -31,7 +39,7 @@
     <!-- 登録商品覧-->
     <section class="itemlists">
       <h3>ご登録商品一覧</h3>
-      <a href="new-item.html" class="btn">新規登録</a>
+      <a href="./item?action=new" class="btn">新規登録</a>
       <ul class="item-list">
         <!-- 商品1 -->
         <li class="list">

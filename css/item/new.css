@@ -1,0 +1,412 @@
+/**********ヘッダー******************/
+header::after {
+  border-bottom: 1px solid #c0c0c0;
+  content: "";
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+}
+
+article {
+  width: 980px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/**
+**/
+/***********************************************タイトル*********************************************************************************/
+article .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+article h2 {
+  font-size: 50px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-left: 10px;
+
+}
+
+article .title img {
+  width: 57px;
+  height: 57px;
+}
+.back-button {
+  display: flex;
+  width: 185px;
+  height: 53px;
+  background-color: #c0c0c0;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(97, 68, 109);
+  letter-spacing: 0.16em;
+  margin-top: 5px;
+
+}
+.back-button:hover {
+  background-color: #f5e3e3;
+}
+/*****************************************フォーム**********************************************************************************/
+.form,
+.form .item-form {
+  width: 100%;
+}
+.item-table {
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 20px 0 3rem 0;
+}
+.item-table tr th {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid #fff;
+  width: 400px;
+  height: 99px;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+}
+.item-table th img {
+  width: 40px;
+  height: 40px;
+  margin: 2px 10px 0 0;
+}
+.item-table .datetime{
+  height: 167px;
+}
+.item-table .info{
+  border: none;
+  height: 162px;
+  margin-top: 4px;
+}
+
+.item-table th span {
+  color: red;
+  font-size: 12px;
+}
+/**
+td
+**/
+.item-table tr td {
+  border-bottom: 1px solid #fff;
+  width: 580px;
+  height: 100px;
+
+}
+
+.item-table tr td input {
+  display: block;
+  width: 522px;
+  height: 50px;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+
+
+}
+#startDate,#startTime{
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
+.item-table tr td textarea{
+  width: 522px;
+  height: 126px;
+  border: none;
+  border-radius: 6px;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-top: 4px;
+}
+/**************************エラー*****************************************/
+.error {
+  background-color: red;
+  border-radius: 3px;
+  color: white;
+  margin: -20px 0 5px 0;
+  position: relative;
+  line-height: 2;
+  display: none;
+  
+  
+}
+
+.error::after {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 0;
+  border-top: 8px solid red;
+  border-left: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid transparent;
+  position: absolute;
+  top: 90%;
+  left: 1%;
+}
+
+.show {
+  display: block;
+}
+/***************************************画像関連********************************************************************************/
+.img-title {
+  display: block;
+  text-align: center;
+  width: 980px;
+}
+
+.img-title h2 {
+  display: inline-block;
+  font-size: 50px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-top: 27px;
+}
+.img-title h2::before {
+  display: inline-block;
+  content: "";
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  width: 325px;
+  height: 20px;
+  margin-right: 50px;
+  margin-left: -20px;
+}
+.img-title h2::after {
+  display: inline-block;
+  content: "";
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  width: 325px;
+  height: 20px;
+  margin-left: 50px;
+}
+.image p{
+  font-size: 28px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(255, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-top: -16px;
+}
+.image h3{
+  display: flex;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  align-items: center;
+  padding-top: 10px;
+
+}
+.image h3::before{
+  display: inline-block;
+  content: "";
+  width: 7px;
+  height: 32px;
+  background-color: black;
+  margin-right: 8px;
+}
+.form{
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.file-input{
+  display: none;
+}
+.file-view{
+  display: flex;
+  align-items: center;
+  width: 748px;
+  height: 78px;
+  border: 1px solid #c0c0c0;
+  color: #c0c0c0;
+}
+.form label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #522f60;
+  width: 231px;
+  height: 80px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+      
+}
+input[type="submit"]{
+  background-color: #522f60;
+  border: none;
+  display: block;
+  width: 400px;
+  height: 100px;
+  margin: 0 auto 5rem;
+  font-size: 32px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin: 195px auto 200px;
+ 
+}
+input[type="submit"]:hover{
+  background-color: #7f5191;
+}
+/*******************************画像表示エリア***************************************************************/
+.preview{
+  width: 980px;
+  height: 500px;
+  background-color: #f0f0f0;
+  margin: 0 auto;
+  overflow-y: scroll;
+}
+.preview img{
+  width: 100%
+  
+}
+/********************************時間モーダル****************************************************************************/
+#Timemodal{
+  width: calc(100vw * 0.5);
+  position: absolute;
+  top: -150%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: white;
+  box-shadow: 1px 3px 0 0 #c0c0c0;
+  transition: .7s;
+  z-index: 4;
+ 
+}
+#Timemodal .contents{
+  width: 100%;
+  overflow: scroll;
+}
+#Timemodal .contents h3{
+  text-align: center;
+  font-size: 26px;
+}
+#modal .btns{
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+#Timemodal .contents .time-form{
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+}
+#Timemodal .contents .time-form .hour{
+  display: flex;
+  align-items: center;
+  width: 50%;
+  padding: 1rem 0;
+}
+#Timemodal .contents .time-form .hour select{
+  width: 90%;
+  height: 30px;
+  border: 1px solid #c0c0c0;
+}
+#Timemodal .contents .time-form .min{
+  display: flex;
+  align-items: center;
+  width: 50%;
+  padding: 1rem 0;
+}
+#Timemodal .contents .time-form .min span, #Timemodal .contents .time-form .hour span{
+ font-family: "DNP ShueiNMinStd";
+ font-weight: bold;
+ margin-right: 10px;
+ color: black;
+}
+#Timemodal .contents .time-form .min select{
+  width: 90%;
+  height: 30px;
+  border: 1px solid #c0c0c0;
+}
+/**********確定ボタン*******************/
+.modal-time-result-button{
+  display: block;
+  width: 90%;
+  height: calc(100vw * 0.04);
+  background-color: blue;
+  border: none;
+  color: white;
+  margin: .5rem auto 1rem;
+}
+.modal-time-result-button:hover{
+ background-color: skyblue;
+}
+
+
+/**************************************************************************************************************/
+/***************************編集の場合のスタイル******************************************************************/
+/**タイトル
+**/
+article .edit-form-title{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top:64px;
+  padding-bottom: 14px;
+  
+}
+article .edit-form-title h2 {
+  font-size: 32px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-left: 10px;
+}
+
+article .edit-form-title img {
+  width: 40px;
+  height: 40px;
+}
+
+/**
+画像フォームタイトル
+**/
+
+.image .img-title .edit-img-title::before, .image .img-title .edit-img-title::after{
+  width: 286px;
+}
+.image .img-title .edit-img-title::before{
+  margin-right: 29px;
+  margin-left: -10px;
+}
+.image .img-title .edit-img-title::after {
+  margin-left: 24px;
+}

@@ -6,6 +6,7 @@
 
   /****************************表示*****************************************************************/
     public function new(){
+      
       $this->view('new',[
         'token' => $this->tokenCreate(),  //csrf対策のためトークンを作成(セッションに格納)
       ]);
@@ -20,10 +21,12 @@
         if(password_verify($params['password'], $record->password)){
           $this->session_store($record->id);
           $sessinId = $_SESSION['auth_id'];
+          $_SESSION["flash"] = "ログインしました。";
           header("location: ./shop?action=show&id=$sessinId");
         }
         //ログイン失敗
         else{
+          $_SESSION["error-flash"] = "ログインに失敗しました。入力が間違ってます。";
           header('location: ./auth?action=new');
         }
       }

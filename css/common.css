@@ -60,6 +60,59 @@ header nav ul li a {
 
 
 }
+header nav ul li a img {
+  width: 40px;
+  height: 40px;
+}
+/********ログイン時のメニュー*************/
+.owner{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.owner img{
+  width: 40px;
+  height: 40px;
+}
+#ownerbox{
+  display: none;
+}
+.owner-ul{
+  background-color: #f0f0f0;
+  display: block;
+  width: 200px;
+  position: absolute;
+  top: 2.4rem;
+  right: 0;
+  left: 40%;
+  opacity: 0;
+  transition: .5s;
+  z-index: 2;
+}
+.owner-ul::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid #f0f0f0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  top: -15%;
+  left: 5%;
+  z-index: 3;
+}
+.owner-ul li{
+  width: 100%;
+  line-height: 4;
+  color: darkblue;
+  margin:  0 auto;
+  
+}
+#ownerbox:checked ~ .owner-ul{
+  opacity: 1;
+  transform: translateX(-30%);
+}
 /************************************フッター************************************************************************/
 footer {
   width: 100%;

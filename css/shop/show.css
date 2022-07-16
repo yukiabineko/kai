@@ -6,6 +6,17 @@ header::after {
   width: 100%;
   margin-top: 8px;
 }
+/************************************フラッシュ*********************************************************************************************/
+.flash{
+  font-style: italic;
+  width: 980px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  background-color: green;
+  color: white;
+  margin: 1rem auto;
+}
 
 .shop-name {
   width: 980px;

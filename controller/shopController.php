@@ -44,6 +44,7 @@
       if($this->csrf($params['csrf-token'])){
         $shop = new shop();
         if($shop->update($id, $this->set_parameter($params))){
+          $_SESSION["flash"] = "編集しました。";
           header("location: ./shop?action=show&id=$shop->id");
         }
       }
@@ -57,9 +58,13 @@
       $shopModel = new shop();
       $shop = $shopModel->find($id);
       
+      if(!isset($_SESSION['auth_id'])){
+         header('location: ./auth?action=new');
+      }
       $this->view('show', [
         'shop' => $shop
       ]);
+     
     }
 
 
