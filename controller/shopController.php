@@ -7,8 +7,11 @@
      * 新規登録画面
      */
     public function new(){
+      $token = $this->tokenCreate();
+      $_SESSION['token'] = $token;
+
       $this->view('new',[
-      'token' => $this->tokenCreate(),  //csrf対策のためトークンを作成(セッションに格納)
+      'token' => $token,  //csrf対策のためトークンを作成(セッションに格納)
       ]);
     }
 
@@ -20,6 +23,8 @@
         $params = $this->set_parameter($params);
         $shop = new shop();
         if ($shop->create($params)) {
+          $_SESSION['auth_id'] = $shop->id;                  //=>自動ログイン
+          $_SESSION['flash'] = '登録しました。';
           header("location: ./shop?action=show&id=$shop->id");
         }
       }
@@ -29,12 +34,15 @@
     *店舗情報編集ページ
      */
     public function edit(int $id){
+      $token = $this->tokenCreate();
+      $_SESSION['token'] = $token;
+
       $model = new shop();
       $shop = $model->find($id);
     
       $this->view('edit', [
         'shop' => $shop,
-        'token' =>$this->tokenCreate(),  //csrf対策のためトークンを作成(セッションに格納)
+        'token' =>$this->$token,  //csrf対策のためトークンを作成(セッションに格納)
       ]);
     }
     /**
@@ -55,6 +63,8 @@
      * 店舗さん専用ページ
      */
     public function show(int $id){
+      $token = $this->tokenCreate();
+      $_SESSION['token'] = $token;
       $shopModel = new shop();
       $shop = $shopModel->find($id);
       
@@ -62,7 +72,8 @@
          header('location: ./auth?action=new');
       }
       $this->view('show', [
-        'shop' => $shop
+        'shop' => $shop,
+        'token' => $token,
       ]);
      
     }

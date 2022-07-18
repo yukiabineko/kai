@@ -6,13 +6,17 @@
 
   /****************************表示*****************************************************************/
     public function new(){
-      
+      $token = $this->tokenCreate();
+      $_SESSION['token'] = $token;
+
       $this->view('new',[
-        'token' => $this->tokenCreate(),  //csrf対策のためトークンを作成(セッションに格納)
+        'token' => $token,  //csrf対策のためトークンを作成(セッションに格納)
       ]);
     }
   /*************************ログイン処理*************************************************************/
     public function create(array $params){
+      
+
       if($this->csrf($params['csrf-token'])){
         $shop = new  shop();
         $record = $shop->find_by('email', $params['email']);
@@ -30,5 +34,18 @@
           header('location: ./auth?action=new');
         }
       }
+      else{
+        echo 'ERROR';
+      }
     }
+  /*************************ログアウト処理**************************************************************************/
+    public function delete(int $id, $params){
+      if($this->csrf($params['csrf-token'])){
+        unset($_SESSION['auth_id']);
+        $shop = new shop();
+        $record = $shop->find($id);
+        $_SESSION['error-flash'] = $record->name."さんがログアウトしました。";
+        header('location: ./auth?action=new');
+      }
+    }  
   }

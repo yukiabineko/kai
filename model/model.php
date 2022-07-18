@@ -181,4 +181,17 @@ class Model{
       exit();
     }
   }
+  /*************************auto_incrementによる次回のID取得************************************************************* */
+  public function getID(){
+    $sql = "SHOW TABLE STATUS LIKE "."'$this->table'";
+    try {
+      $smt = $this->pdo->query($sql);
+      $result = $smt->fetch(PDO::FETCH_ASSOC);
+      return $result['Auto_increment'];
+      
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      exit();
+    }
+  }
 }

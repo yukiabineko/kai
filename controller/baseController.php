@@ -38,7 +38,6 @@ class baseController{
   public function tokenCreate(): string{
     $tokenByte = openssl_random_pseudo_bytes(16);
     $token = bin2hex($tokenByte);
-    $_SESSION['token'] = $token;
     return $token;
   }
   /******************************************セッションの格納**************************************************************************************** */

@@ -77,6 +77,10 @@ header nav ul li a img {
 #ownerbox{
   display: none;
 }
+.menu-label{
+  display: flex;
+  align-items: center;
+}
 .owner-ul{
   background-color: #f0f0f0;
   display: block;
@@ -88,7 +92,9 @@ header nav ul li a img {
   opacity: 0;
   transition: .5s;
   z-index: 2;
+  padding: 4px 0;
 }
+
 .owner-ul::before {
   content: "";
   width: 0;
@@ -98,20 +104,38 @@ header nav ul li a img {
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   position: absolute;
-  top: -15%;
+  top: -8%;
   left: 5%;
   z-index: 3;
 }
-.owner-ul li{
-  width: 100%;
-  line-height: 4;
-  color: darkblue;
-  margin:  0 auto;
-  
+.owner-ul::before:hover{
+  background-color: orange;
 }
+
 #ownerbox:checked ~ .owner-ul{
   opacity: 1;
   transform: translateX(-30%);
+}
+/**********ログイン時サブメニュー関連************************/
+.sub-menu-list{
+  width: 100%;
+  line-height: 1;
+  color: darkblue;
+  margin:  0 auto;
+  padding: 1rem 0;
+}
+.sub-menu-link{
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+}
+
+.sub-menu-icons{
+  display: block;
+  width: 5px;
+  height: 5px;
+  margin-right: 10px;
 }
 /************************************フッター************************************************************************/
 footer {
@@ -224,6 +248,7 @@ footer small {
       background-color: white;
       border: 1px solid #c0c0c0;
       transition: .5s;
+      overflow: scroll;
     }
   
     .drower section {
@@ -319,6 +344,11 @@ footer small {
       top: 10px;
       transition: .5s;
     }
+    /*****************ログイン時のドロワーメニュー設定***************************************************************************************/
+    .owner-mobile{
+      width: 100%;
+      background-color: beige;
+    }
   
     .mobile-menu input[type="checkbox"]:checked~#menu-label span {
       background-color: transparent;
@@ -336,6 +366,43 @@ footer small {
   
     .mobile-menu input[type="checkbox"]:checked~.drower {
       left: 0;
+    }
+    /*********************ログイン後の表示に関するスタイル***********************************************/
+    .owner-mobile{
+      width: 100%;
+      margin-top: -2rem;
+      box-sizing: border-box;
+    }
+    .owner-mobile dt{
+      border-left:solid 6px #522f60;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 1rem 0;
+    }
+    .owner-mobile dt img{
+      margin-right: 5px;
+      width: 30px !important;
+      height: 30px !important;
+    }
+    .owner-items{
+      display: block;
+      width: 100%;
+      padding: 1rem 0;
+      background-color: white;
+      border-bottom: 1px dotted #c0c0c0;
+      box-sizing: border-box;
+      text-align: left !important;
+      margin: 0;
+    }
+    .owner-items a, .logout-mobile-btn{
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      border: none;
+      background-color: transparent;
+      font-size: 18px;
+      font-weight: bold !important;
     }
     /************************************フッター************************************************************************/
     footer {
