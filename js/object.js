@@ -76,7 +76,9 @@ class Calendar {
     else {
       for (let i = 0; i < this.begin_number; i++) {
         let td = document.createElement('td');
-        td.classList = "emp";
+        td.classList.add("prev-td");
+        td.classList.add("emp");
+       
         td.textContent = this.prevLastDate
         tr.appendChild(td);
         this.prevLastDate++;
@@ -113,7 +115,8 @@ class Calendar {
             td.id = "cal-" + j;
           }
           else {
-            td.classList = "emp";
+            td.classList.add('next-td');
+            td.classList.add("emp");
             td.textContent = nextMonth;
             nextMonth++;
           }
@@ -151,11 +154,31 @@ class Calendar {
       td.classList.remove('cal-td');
       td.classList.add('emp');
     });
-    //範囲のみ表示
-    for (let i = beginDate; i <= this.lastDate; i++) {
-      let cell = document.getElementById('cal-' + i);
-      cell.classList.remove('emp');
-      cell.classList.add('cal-td');
+    
+    if(begin && !last){
+      for (let i = beginDate; i <= this.lastDate; i++) {
+        let cell = document.getElementById('cal-' + i);
+        cell.classList.remove('emp');
+        cell.classList.add('cal-td');
+      }
+      document.querySelectorAll('.next-td').forEach((td)=>{
+         td.classList.remove('emp');
+         td.style.border = "1px solid #c0c0c0";
+         td.addEventListener('mouseover',()=>{
+          td.style.background = 'orange';
+         })
+         td.addEventListener('mouseleave',()=>{
+          td.style.background = 'white';
+         })
+      });
+    }
+    else{
+      //範囲のみ表示
+      for (let i = beginDate; i <= this.lastDate; i++) {
+        let cell = document.getElementById('cal-' + i);
+        cell.classList.remove('emp');
+        cell.classList.add('cal-td');
+      }
     }
   }
   /**

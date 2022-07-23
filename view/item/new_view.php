@@ -152,14 +152,15 @@
   <div id="modal-contents">
     <h3>日付け登録</h3>
     <div class="btns">
-      <button class="prev" onclick="prevMonth(document.getElementById('target-date').textContent, false)">全月</button>
+      <button class="prev" onclick="prevItemMonth(document.getElementById('target-date').textContent, false)">前月</button>
       <div class="year-month">xxx</div>
-      <button class="next" onclick="nextMonth(document.getElementById('target-date').textContent, false)">次月</button>
+      <button class="next" onclick="nextItemMonth(document.getElementById('target-date').textContent, false)">次月</button>
     </div>
     <!-- カレンダー -->
     <table class="calendar"></table>
     <!-- 月パラメータ用 -->
     <div id="target-date"></div>
+    <input type="hidden" name="inputName" id="inputName">
   </div>
 </div>
 

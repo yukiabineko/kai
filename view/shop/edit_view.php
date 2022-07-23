@@ -10,7 +10,7 @@
    <a href="#" class="back-button">戻る</a>
 
    <!--フォーム-->
-  
+   
    <section class="form">
      <form action="./shop?action=update&id=<?= $shop->id; ?>" method="post" id="user-form">
        <table class="user-table">

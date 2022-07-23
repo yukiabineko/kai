@@ -39,23 +39,29 @@
 
       $model = new shop();
       $shop = $model->find($id);
+      
     
       $this->view('edit', [
         'shop' => $shop,
-        'token' =>$this->$token,  //csrf対策のためトークンを作成(セッションに格納)
+        'token' =>$token,  //csrf対策のためトークンを作成(セッションに格納)
       ]);
     }
     /**
      * 編集処理
      */
     public function update(int $id, array $params){
+      print_r($params);
+      echo "<br>";
+      echo $_SESSION['token'];
       if($this->csrf($params['csrf-token'])){
         $shop = new shop();
         if($shop->update($id, $this->set_parameter($params))){
           $_SESSION["flash"] = "編集しました。";
           header("location: ./shop?action=show&id=$shop->id");
         }
-      }
+      } else {
+      echo 'ERROR';
+    }
       
     }
 
@@ -66,14 +72,18 @@
       $token = $this->tokenCreate();
       $_SESSION['token'] = $token;
       $shopModel = new shop();
-      $shop = $shopModel->find($id);
+      $shop = $shopModel->find($id);       //=>店舗情報インスタンス
+
       
+      $items = $shop->hasMany('item');     //=>関連商品
+
       if(!isset($_SESSION['auth_id'])){
          header('location: ./auth?action=new');
       }
       $this->view('show', [
         'shop' => $shop,
         'token' => $token,
+        'items' => $items,
       ]);
      
     }

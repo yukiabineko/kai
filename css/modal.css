@@ -6,7 +6,7 @@
   transform: translate(-50%, -10%);
   background-color: white;
   box-shadow: 1px 3px 0 0 #c0c0c0;
-  transition: .5s;
+  transition: .3s;
   z-index: 3;
 
 }

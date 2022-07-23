@@ -70,7 +70,7 @@ const closeModal = () => {
  * 
  * 前の月
  */
-const prevMonth = (currentDate, timeForm = true) => {                            //timeformは時間のフォームを表示させるか？デフォルトはtrue
+const prevMonth = (currentDate, timeForm = true, className = null) => {                            //timeformは時間のフォームを表示させるか？デフォルトはtrue
 
   let targetDate = currentDate ? new Date(currentDate) : new Date();
   let year = targetDate.getFullYear();
@@ -123,6 +123,7 @@ const nextMonth = (currentDate, timeForm = true) => {                           
   if (timeForm) {
     new TimeForm().setForm(hour, min);
   }
+  
 
 
   //月ラベルの更新

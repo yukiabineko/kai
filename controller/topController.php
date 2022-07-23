@@ -8,7 +8,7 @@ class topController extends baseController{
     $_SESSION['token'] = $token;
 
     $this->view('index',[
-      'token' => $this->$token,
+      'token' => $token,
     ]);    
     //=< トップページのview呼び出し
   }

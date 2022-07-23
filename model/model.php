@@ -24,8 +24,8 @@ class Model{
     $this->table = get_class($this);    //モデルクラス名
     $sql = "CREATE TABLE IF NOT EXISTS $this->table(id INT PRIMARY KEY AUTO_INCREMENT,";
     
-    require_once "./database/$this->table.php";
-    require_once "./key.php";
+    require "./database/$this->table.php";
+    require "./key.php";
     $count = 1;
     foreach($columns as $column){
       $column_name = $column['column'];
@@ -102,7 +102,6 @@ class Model{
       $count ++;
     }
     $sql .= " WHERE id=?";
-    echo $sql;
     /***
      * update処理
      */
@@ -194,4 +193,57 @@ class Model{
       exit();
     }
   }
+  /***************************リレーション関連********************************************************************************************/
+  public function hasMany(string $table_name){
+    require_once "$table_name.php";
+    require "./database/$table_name.php";
+    //リレーション対象のテーブルの初期設定
+    $tb_sql = "CREATE TABLE IF NOT EXISTS $table_name(id INT PRIMARY KEY AUTO_INCREMENT,";
+    $count = 1;
+    foreach($columns as $column){
+      $column_name = $column['column'];
+      $column_type = $column['type'];
+      $tb_sql .= "$column_name $column_type ";
+      count($columns) > $count? $tb_sql.= "," : "";
+      $count ++;
+    }
+    $tb_sql .= ")";
+    $this->pdo->exec($tb_sql);
+
+
+
+
+
+    
+    $sql = "SELECT * FROM $table_name WHERE $this->table"."_id=?";
+    try {
+      $smt = $this->pdo->prepare($sql);
+      $smt->bindValue(1, (int)$this->id, PDO::PARAM_INT);
+      $smt->execute();
+
+
+      $results = $smt->fetchAll(PDO::FETCH_ASSOC);
+      $records = [];
+
+      //リレーション対象のテーブルのカラムを取
+      if(!empty($results)){
+        $columns = array_keys($results[0]);
+      
+        //対応モデルのオブジェクト格納
+        foreach($results as $result){
+          $model = new $table_name();
+          foreach($result as $key=>$value){
+            $model->$key = $value;
+          }
+          array_push($records, $model);
+        }
+      }
+      
+      return $records;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      exit();
+    }
+  }
+
 }

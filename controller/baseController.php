@@ -15,7 +15,12 @@ class baseController{
      //送られてきたモデルのデータ格納
      
      ${ $controllerName } =isset($params[$controllerName])? $params[$controllerName] : "";  //モデルのデータ
-     $token = isset($params['token'])? $params['token'] : null;                               //csrfトークン
+      
+
+     foreach($params as $key=>$value){
+       ${$key} = $value;
+     }
+    $token = isset($params['token']) ? $params['token'] : null;  //csrfトークン
      
      if($controllerName === "empty"){
       include('./view/404_view.php');

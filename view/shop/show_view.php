@@ -2,7 +2,7 @@
 
 <!----------------------------フラッシュ----------------------------------------------------------------------------->
 <!-- ログインフラッシュ-->
-<?php if(isset($_SESSION["flash"])): ?>
+<?php if (isset($_SESSION["flash"])) : ?>
   <div class="flash"><?= $_SESSION["flash"]; ?></div>
   <?php unset($_SESSION["flash"]); ?>
 <?php endif; ?>
@@ -178,6 +178,47 @@
         </li>
 
       </ul>
+
+      <ul class="item-list">
+        <?php foreach ($items as $item) : ?>
+          <!-- リスト　-->
+          <li class="list">
+            <a href="item-show.html" class="link"></a>
+
+            <!-- 画像、値段サイド-->
+            <div class="img-price">
+              <img src="shops/item<?= $item->id ?>/thumbnail.jpg" alt="商品2" srcset="shops/item<?= $item->id ?>/thumbnail.jpg" class="item-img">
+              <ul class="price">
+                <li class="name"><?= $item->name ?></li>
+                <li class="price">
+                  <img src="image/icons/price.svg" alt="価格">
+                  <span><?= $item->price ?></span>円
+                </li>
+              </ul>
+            </div>
+            
+            <!-- 期限サイド -->
+            <div class="time-limit">
+              <img src="image/icons/date.svg" alt="カレンダー">
+              <div class="date"><?= $item->start_processing(); ?> ~ <?= $item->end_processing(); ?></div>
+            </div>
+
+            <div class="li-btns">
+              <!-- 編集ボタン　-->
+              <a href="./item?action=edit&id=<?= $item->id ?>" class="edit-button">
+                <img src="image/icons/pen2.svg" alt="編集ボタン" srcset="image/icons/pen2.svg">
+              </a>
+              <!-- 削除ボタン　-->
+              <button class="delete-button">
+                <img src="image/icons/trash.svg" alt="削除ボタン" srcset="image/icons/trash.svg">
+              </button>
+            </div>
+
+          </li>
+        <?php endforeach; ?>
+      </ul>
+
+
     </section>
 
   </article>

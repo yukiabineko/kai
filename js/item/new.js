@@ -30,7 +30,7 @@ window.addEventListener('load', () => {
       let calendar = document.getElementById('calendar');
       if (calendar) { document.getElementById('modal-contents').removeChild(calendar); }
 
-      createCalendar(false, input.id);
+      itemFormCalendar(input.id);
     });
   });
   //時間modalの表示
@@ -154,4 +154,266 @@ const timeIntegrity = (e) => {
     startError.classList.add('show');
     endError.classList.add('show');
   }
+}
+/**
+ * 
+ * カレンダー作成
+ * 
+ * 
+ */
+const itemFormCalendar = (id, startDate = null, endDate = null) => { 
+  //起点となるinputのidをhiddenに格納 
+  document.getElementById('inputName').value = id;
+  
+  let modal = document.getElementById('modal');
+  let back = document.getElementById('modal-back');
+  back.style.display = 'block';
+  if (id) {
+    let input = document.getElementById(id);
+    modal.style.top = (input.getBoundingClientRect().top + window.scrollY) + "px";
+    window.scroll({top: (input.getBoundingClientRect().top + window.scrollY), behavior: 'smooth'});
+  }
+  else {
+    modal.style.top = '30%';
+  }
+
+
+  let calendar = new Calendar(
+    document.getElementById('target-date').textContent,
+    document.querySelector('.btns').nextElementSibling
+  );
+  let today = new Date();
+  calendar.setDateRange(today.getDate());
+  calendar.cellsAction();
+  document.getElementById('calendar').style.marginBottom = "3rem";
+
+
+  let dateObject = calendar.getTargetDate();
+
+  //日日のパラメーター
+  dateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 1).toString().padStart(2, "0") + "-";
+
+
+  //月ラベルの更新
+  document.querySelector('.year-month').textContent = calendar.getDateLabel();
+  prevButtonCheck();   //前月ボタン分岐
+
+
+  //本月の日が押された場合
+  document.querySelectorAll('.cal-td').forEach((cell) => {
+    cell.addEventListener('click', () => {
+      document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+      closeModal();
+    });
+  });
+
+  //次月の日が押された場合
+  document.querySelectorAll('.next-td').forEach((cell) => {
+    cell.style.color = "blue";
+    cell.addEventListener('click', () => {
+      nextMonthDateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 2).toString().padStart(2, "0") + "-";
+      document.getElementById(id).value = nextMonthDateString + cell.textContent.toString().padStart(2, "0");
+      closeModal();
+    });
+  });
+}
+/**************************************************************************** */
+/**
+ * 
+ * 次の月
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+const nextItemMonth = (currentDate) => {  
+ 
+                          
+  let targetDate = currentDate ? new Date(currentDate) : new Date();
+  let year = targetDate.getFullYear();
+  let month = targetDate.getMonth() + 2;
+  let nextString = year + "-" + month.toString().padStart(2, "0") + "-01"
+  document.getElementById('target-date').textContent = nextString;
+
+  //更新のためカレンダーを一度削除その後前月のカレンダー作成
+  document.getElementById('modal-contents').removeChild(document.getElementById('calendar'));
+  let calendar = new Calendar(nextString, document.querySelector('.btns').nextElementSibling);
+  document.getElementById('calendar').style.marginBottom = "3rem";
+
+  let dateObject = calendar.getTargetDate();
+
+  //日日のパラメーター
+  dateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 1).toString().padStart(2, "0") + "-";
+  
+
+  //*******************************前月の残り、次月の残りともにアクセスできるようにする。*********************************//
+
+  document.querySelectorAll('.prev-td').forEach((td) => {
+    td.classList.remove('emp');
+    td.style.border = "1px solid #c0c0c0";
+    td.style.color = "blue";
+    td.addEventListener('mouseover', () => {
+      td.style.background = 'orange';
+    })
+    td.addEventListener('mouseleave', () => {
+      td.style.background = 'white';
+    })
+  });
+
+  document.querySelectorAll('.next-td').forEach((td) => {
+    td.classList.remove('emp');
+    td.style.border = "1px solid #c0c0c0";
+    td.style.color = "blue";
+    td.addEventListener('mouseover', () => {
+      td.style.background = 'orange';
+    })
+    td.addEventListener('mouseleave', () => {
+      td.style.background = 'white';
+    })
+  });
+  
+
+  //月ラベルの更新
+  document.querySelector('.year-month').textContent = calendar.getDateLabel();
+  prevButtonCheck();
+  let id = document.getElementById('inputName').value;
+  /************************ボタンアクション************************************* */
+  //本月の日が押された場合
+  document.querySelectorAll('.cal-td').forEach((cell) => {
+    cell.addEventListener('click', () => {
+      document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+      closeModal();
+    });
+  });
+
+  //次月の日が押された場合
+  document.querySelectorAll('.next-td').forEach((cell) => {
+    cell.addEventListener('click', () => {
+      nextMonthDateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 2).toString().padStart(2, "0") + "-";
+      document.getElementById(id).value = nextMonthDateString + cell.textContent.toString().padStart(2, "0");
+      closeModal();
+    });
+  });
+
+}
+/************************************************************************************************************************* */
+/**
+ * 
+ * 前の月
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+const prevItemMonth = (currentDate) => {
+
+
+  let targetDate = currentDate ? new Date(currentDate) : new Date();
+  let year = targetDate.getFullYear();
+  let month = targetDate.getMonth();
+  let prevString = year + "-" + month.toString().padStart(2, "0") + "-01";
+  document.getElementById('target-date').textContent = prevString;
+
+  //更新のためカレンダーを一度削除その後前月のカレンダー作成
+  document.getElementById('modal-contents').removeChild(document.getElementById('calendar'));
+  let calendar = new Calendar(prevString, document.querySelector('.btns').nextElementSibling);
+  let dateObject = calendar.getTargetDate();
+  document.getElementById('calendar').style.marginBottom = "3rem";
+
+  //日日のパラメーター
+  dateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 1).toString().padStart(2, "0") + "-";
+
+
+  //月ラベルの更新
+  document.querySelector('.year-month').textContent = calendar.getDateLabel();
+  prevButtonCheck();
+
+  //*******************************前月の残り、次月の残りともにアクセスできるようにする。*********************************//
+
+  document.querySelectorAll('.next-td').forEach((td) => {
+    td.classList.remove('emp');
+    td.style.border = "1px solid #c0c0c0";
+    td.style.color = "blue";
+    td.addEventListener('mouseover', () => {
+      td.style.background = 'orange';
+    })
+    td.addEventListener('mouseleave', () => {
+      td.style.background = 'white';
+    })
+  });
+
+  //月ラベルの更新
+  document.querySelector('.year-month').textContent = calendar.getDateLabel();
+  prevButtonCheck();
+  let id = document.getElementById('inputName').value;
+  /**************************当月の時は当日以後当月以降は全て********************************************* */
+  let today = new Date();
+  let todayYear = today.getFullYear();
+  let todayMonth  = today.getMonth() + 1;
+
+  //当月の場合
+  if(year == todayYear && month == todayMonth){
+    calendar.setDateRange(today.getDate());
+    /*************ボタンアクション**************** */
+    //本月の日が押された場合
+    document.querySelectorAll('.cal-td').forEach((cell) => {
+      cell.addEventListener('click', () => {
+        document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+        closeModal();
+      });
+    });
+
+    //次月の日が押された場合
+    document.querySelectorAll('.next-td').forEach((cell) => {
+      cell.addEventListener('click', () => {
+        nextMonthDateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 2).toString().padStart(2, "0") + "-";
+        document.getElementById(id).value = nextMonthDateString + cell.textContent.toString().padStart(2, "0");
+        closeModal();
+      });
+    });
+
+  }
+  else{
+    document.querySelectorAll('.prev-td').forEach((td) => {
+      td.classList.remove('emp');
+      td.style.border = "1px solid #c0c0c0";
+      td.style.color = "blue";
+      td.addEventListener('mouseover', () => {
+        td.style.background = 'orange';
+      })
+      td.addEventListener('mouseleave', () => {
+        td.style.background = 'white';
+      })
+    });
+    /*************ボタンアクション**************** */
+    //前月の日が押された場合
+    document.querySelectorAll('.prev-td').forEach((cell) => {
+      cell.addEventListener('click', () => {
+        document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+        closeModal();
+      });
+    });
+    //本月の日が押された場合
+    document.querySelectorAll('.cal-td').forEach((cell) => {
+      cell.addEventListener('click', () => {
+        document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+        closeModal();
+      });
+    });
+
+    //次月の日が押された場合
+    document.querySelectorAll('.next-td').forEach((cell) => {
+      cell.addEventListener('click', () => {
+        nextMonthDateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 2).toString().padStart(2, "0") + "-";
+        document.getElementById(id).value = nextMonthDateString + cell.textContent.toString().padStart(2, "0");
+        closeModal();
+      });
+    });
+  }
+  
+
 }

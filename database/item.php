@@ -7,5 +7,6 @@ $columns = [
   ['column' => 'start', 'type' => 'DATETIME NOT NULL'],
   ['column' => 'finish', 'type' => 'DATETIME NOT NULL'],
   ['column' => 'info', 'type' => 'TEXT'],
+  ['column' => 'images', 'type' => 'TEXT'],
   ['column' => 'shop_id', 'type' => 'INT NOT NULL'],
 ];
