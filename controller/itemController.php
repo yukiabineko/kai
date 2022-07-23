@@ -26,8 +26,11 @@ class itemController extends baseController{
       $send_data = $this->parameter_processing($params, $id);     //=>モデルに登録するためデータの加工
       if($item->create($send_data)){
         $this->set_image($_FILES, $id);
+<<<<<<< HEAD
         $_SESSION['flash'] = "商品を登録しました。";
         header('location: ./shop?action=show&id='.$_SESSION['auth_id']);
+=======
+>>>>>>> 0185a6e618ebf05dfd4191a4755863233393789c
       }
       
     }
@@ -73,6 +76,7 @@ public function update(int $id, array $params){
 }
 /***********************************protected******************************************************************************* */
 /********************モデルのデータ送信のためにポストデータの最適化****************************************************************** */
+<<<<<<< HEAD
   protected function parameter_processing(array $params, int $item_id, string $item_images=null): array {
     $shop_id = $_SESSION['auth_id'];
     $images = "";
@@ -156,6 +160,39 @@ public function update(int $id, array $params){
   }
 /**************************************画像を関連ディレクトリに登録**************************************************************************************** */
  protected function set_image(array $files, int $item_id){
+=======
+  protected function parameter_processing(array $params, int $item_id): array {
+    $shop_id = $_SESSION['auth_id'];
+    $images = "";
+    $files = $_FILES['file']['name'];
+
+    //post送信された画像数から
+    $id = 1;
+    for($i= 0; $i< count($files); $i++){
+      !empty($files[$i])? $images.= "./shpps/item$item_id/img$id.jpg" : "";
+      $i != count($files) -1 ? $images.= ",": "";
+      !empty($files[$i]) ? $id ++ : "";
+    }
+
+    $newData = array();
+    $newData['thumbnail'] = !empty($_FILES['thumbnail']["name"])? "./shops/item$item_id/thumbnail.jpg" : null;
+    $newData['name'] = $params['name'];
+    $newData['price']= $params['price'];
+    $newData['stock'] = $params['stock'];
+    $startDate = $params['startDate'];
+    $startTime =  $params['startTime'];
+    $newData['start'] = "$startDate $startTime";
+    $endDate = $params['endDate'];
+    $endTime =  $params['endTime'];
+    $newData['finish'] = "$endDate $endTime";
+    $newData['info'] = $params['info'];
+    $newData['shop_id'] = $shop_id;
+    $newData['images'] = $images;
+    return $newData;
+  }
+/**************************************画像を関連ディレクトリに登録**************************************************************************************** */
+ public function set_image(array $files, int $item_id){
+>>>>>>> 0185a6e618ebf05dfd4191a4755863233393789c
   $directory = "./shops/item$item_id";
   
    if(!empty($files['thumbnail']['name'])){
@@ -168,6 +205,7 @@ public function update(int $id, array $params){
     !empty($files['file']['name'][$i])? $img_number ++ : "";
    }
  }
+<<<<<<< HEAD
 /***************************************画像編集時のメゾット**************************************************************************************************************** */
 protected function updateImage(item $item){
   $uploadFiles = $_FILES['upload-file']['name'];
@@ -199,6 +237,8 @@ protected function updateImage(item $item){
   }
  
 }
+=======
+>>>>>>> 0185a6e618ebf05dfd4191a4755863233393789c
  
 }
 
