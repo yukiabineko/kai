@@ -26,11 +26,8 @@ class itemController extends baseController{
       $send_data = $this->parameter_processing($params, $id);     //=>モデルに登録するためデータの加工
       if($item->create($send_data)){
         $this->set_image($_FILES, $id);
-<<<<<<< HEAD
         $_SESSION['flash'] = "商品を登録しました。";
         header('location: ./shop?action=show&id='.$_SESSION['auth_id']);
-=======
->>>>>>> 0185a6e618ebf05dfd4191a4755863233393789c
       }
       
     }
