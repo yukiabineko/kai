@@ -1,0 +1,245 @@
+html {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+article {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+コンテンツ
+**/
+/********************************コンテンツ**************************************************************************************/
+/**********タイトル**************/
+.title {
+  width: 100%;
+  text-align: center;
+  padding-top: 26px;
+}
+
+.title h2 {
+  font-size: 28px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+}
+
+.title p {
+  font-size: 16.5px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-align: left;
+  margin-top: 47px;
+}
+
+/********************************************ユーザー情報*************************************************************************************/
+.user {
+  width: 100%;
+}
+
+.user h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 22px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+
+}
+
+.user img {
+  width: 30px;
+  height: 35px;
+}
+
+.user h2::before {
+  display: flex;
+  content: "";
+  width: calc(100vw * 0.2);
+  height: 5px;
+  border-top: 5px solid #522f60;
+  border-bottom: 5px solid #522f60;
+
+}
+
+.user h2::after {
+  display: flex;
+  content: "";
+  width: calc(100vw * 0.2);
+  height: 5px;
+  border-top: 5px solid #522f60;
+  border-bottom: 5px solid #522f60;
+}
+
+.user ul {
+  counter-reset: num;
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 36px 0 0;
+  padding: 20px 0 50px;
+  list-style: none;
+}
+
+.user ul li {
+  display: block;
+  margin-bottom: 40px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  padding-left: 3em;
+  text-indent: -3em;
+  margin-top: 1rem;
+
+}
+
+.user ul li:last-child {
+  margin-bottom: 0;
+}
+
+.user ul li::before {
+  counter-increment: num;
+  content: counter(num);
+  display: inline-block;
+  width: 10px;
+  height: 20px;
+  background-color: #522f60;
+  border-radius: 50%;
+  text-align: right;
+  font-size: 16px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  padding: 5px 9px 5px 11px;
+  color: rgb(255, 255, 255);
+  margin-left: 4px;
+
+}
+
+/*********************************店舗情報*********************************************************/
+.shop {
+  width: 100%;
+  margin-top: 78px;
+  margin-bottom: 5rem;
+}
+
+.shop h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 22px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+
+}
+
+.shop h2::before {
+  display: inline-block;
+  content: "";
+  width: calc(100vw * 0.2);
+  height: 5px;
+  border-top: 5px solid #522f60;
+  border-bottom: 5px solid #522f60;
+
+}
+
+.shop h2::after {
+  display: inline-block;
+  content: "";
+  width: calc(100vw * 0.2);
+  height: 5px;
+  border-top: 5px solid #522f60;
+  border-bottom: 5px solid #522f60;
+  margin-left: 10px;
+}
+
+.shop img {
+  width: 30px;
+  height: 30px;
+
+}
+
+.shop ul {
+  counter-reset: num;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 18px 0 48px;
+  list-style: none;
+}
+
+.shop ul li {
+  display: block;
+  margin-bottom: 39px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  padding-left: 3em;
+  text-indent: -3em;
+  margin-top: 1rem;
+}
+
+.shop ul li:last-child {
+  margin-bottom: 0;
+}
+
+.shop ul li::before {
+  counter-increment: num;
+  content: counter(num);
+  display: inline-block;
+  width: 10px;
+  height: 20px;
+  background-color: #522f60;
+  border-radius: 50%;
+  text-align: right;
+  font-size: 16px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  padding: 5px 9px 5px 11px;
+  color: rgb(255, 255, 255);
+  margin-left: 4px;
+
+}
+
+.shop a {
+  background-color: #21e118;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100vw * 0.89);
+  height: calc(100vw *0.24);
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  margin: 3.6rem auto 9rem;
+
+}
+
+.shop a:hover {
+  background-color: #8cf586;
+}

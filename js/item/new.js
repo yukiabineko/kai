@@ -279,6 +279,13 @@ const nextItemMonth = (currentDate) => {
   prevButtonCheck();
   let id = document.getElementById('inputName').value;
   /************************ボタンアクション************************************* */
+  //前月の日が押された場合
+  document.querySelectorAll('.prev-td').forEach((cell) => {
+    cell.addEventListener('click', () => {
+      document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+      closeModal();
+    });
+  });
   //本月の日が押された場合
   document.querySelectorAll('.cal-td').forEach((cell) => {
     cell.addEventListener('click', () => {
