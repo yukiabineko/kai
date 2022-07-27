@@ -16,7 +16,6 @@ class contactController extends baseController
     ]);
     //=< トップページのview呼び出し
   }
-
   /**
    * メール送信
    *
@@ -34,8 +33,8 @@ class contactController extends baseController
       else{
         echo 'not';
       }
-      /*$_SESSION['flash'] = "送信しました。";
-      header('location: ./contact?action=new');*/
+      $_SESSION['flash'] = "送信しました。";
+      header('location: ./contact?action=new');
     }
   }
   
