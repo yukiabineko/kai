@@ -28,14 +28,14 @@
           </li>
 
           <li>
-            <a href="info.html">
+            <a href="./info">
               <img src="./image/info.svg" alt="サイト案内" srcsest="./image/info.svg">
               サイト案内
             </a>
           </li>
 
           <li>
-            <a href="contact.html">
+            <a href="./contact?action=new">
               <img src="./image/contact.svg" alt="問い合わせ" srcset="./image/contact.svg">
               問い合わせ
             </a>
@@ -106,13 +106,13 @@
         </a>
       </li>
       <li>
-        <a href="info.html">
+        <a href="./info">
           <?php include('image/info.svg'); ?>
           サイト案内
         </a>
       </li>
       <li>
-        <a href="contact.html">
+        <a href="./contact?action=new">
           <?php include('image/contact.svg'); ?>
           問い合わせ
         </a>

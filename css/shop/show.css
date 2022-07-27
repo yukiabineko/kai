@@ -6,6 +6,9 @@ header::after {
   width: 100%;
   margin-top: 8px;
 }
+footer{
+  margin-top: 5rem;
+}
 /************************************フラッシュ*********************************************************************************************/
 .flash{
   font-style: italic;
@@ -140,6 +143,7 @@ main {
   margin: 10px 0 0 0;
   padding: 0;
   list-style: none;
+  list-style-position: inside;
 }
 
 .itemlists ul .list {
@@ -150,6 +154,8 @@ main {
   position: relative;
   height: 98px;
   width: 441px;
+ 
+ 
 }
 
 /**カード内リンク */
@@ -196,6 +202,9 @@ main {
   letter-spacing: 0.16em;
   margin-top: -4px;
   padding-bottom: 10px;
+  height: 100%;
+  width: 175px;
+  text-overflow: ellipsis;
 }
 
 .itemlists ul .list .img-price .price .price {
