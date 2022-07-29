@@ -1,0 +1,132 @@
+/***********ヘッダー******************/ 
+header::after {
+  border-bottom: 1px solid #c0c0c0;
+  content: "";
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+
+}
+article {
+  width: 980px;
+  margin: 0 auto;
+  padding: 0;
+}
+article h3{
+  color: #07441e;
+  font-size: 45px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  letter-spacing: 0.16em;
+  margin: 80px 0 11px 20px;
+}
+/*
+*/
+/*********************************コンテンツ***********************************************************/
+.info{
+  display: flex;
+  margin-bottom: 3rem;
+  
+}
+.info .item-data{
+  border-collapse: collapse;
+  height: 621px;
+  background-color: #f0f0f0;
+  margin-left: -20px;
+  width: 496px;
+}
+.info table tr th {
+  color: #522f60;
+  font-size: 25px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  letter-spacing: 0.16em;
+}
+.info table tr td{
+  color: #522f60;
+  font-size: 25px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  letter-spacing: 0.16em;
+  line-height: 2.1;
+  position: relative;
+}
+.info table tr .date {
+ font-size: 18px;
+}
+.info table tr td .text {
+  font-size: 18px;
+  width: 445px;
+  height: 180px;
+  margin: 28px auto -24px;
+  background-color: white;
+  position: relative;
+}
+.text-icon{
+  width: 445px;
+  margin: -40px auto -45px;
+}
+.recommended-point{
+  width: 138px;
+  height: 27px;
+
+}
+.info table tr:nth-child(even){
+  background-color: white;
+  border: 0px none;
+}
+.info table tr:last-child {
+  background-color: #f0f0f0;
+  border: 0px none;
+}
+.info .images .image-list {
+  margin-top: 23px;
+  display: flex;
+}
+.info .images .image-list img{
+  margin-right: 30px;
+  width: 140px;
+  height: 140;
+}
+.btns{
+  display: flex;
+  margin-bottom: 6.2rem;
+}
+.btns .back{
+  text-decoration: none;
+  background-color: #f0f0f0;
+  color: #677f6e;
+  display: flex;
+  font-size: 18px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  letter-spacing: 0.16em;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 80px;
+  margin-right: 20px;
+}
+.btns .order{
+  text-decoration: none;
+  background-color: #522f60;
+  font-size: 18px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(246, 245, 222);
+  display: flex;
+  letter-spacing: 0.32em;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 80px;
+}
+.btns .order img{
+  display: flex;
+  align-items: center;
+  width: 42px;
+  height: 41px;
+}
+.btns .back:hover, .btns .order:hover{
+  background-color: #c0c0c0;
+}

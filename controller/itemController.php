@@ -71,6 +71,35 @@ public function update(int $id, array $params){
 
   }
 }
+/***************************商品個別表示******************************************************** */
+public function show(int $id){
+   //未ログインの場合リダイレクト
+    if (!isset($_SESSION['auth_id'])) {
+      header('location: ./auth?action=new');
+    }
+    $token = $this->tokenCreate();
+    $_SESSION['token'] = $token;
+    $model = new item();
+    $item = $model->find($id);
+    $shop = $item->belogsTo('shop');
+
+    //画像のパス配列化
+    $images = explode(',', $item->images);
+
+
+    $this->view('show', [
+      'token' => $token,  //csrf対策のためトークンを作成(セッションに格納)
+      'item' => $item,
+      'images' => $images,
+      'shop' => $shop,
+    ]);
+
+}
+/*****************************削除処理**************************************************************** */
+public function delete(int $id){
+  
+}
+
 /***********************************protected******************************************************************************* */
 /********************モデルのデータ送信のためにポストデータの最適化****************************************************************** */
 
@@ -136,7 +165,7 @@ public function update(int $id, array $params){
      
 
       $newData = array();
-      $newData['thumbnail'] = !empty($_FILES['thumbnail']["name"]) ? "./shops/item$item_id/thumbnail.jpg" : null;
+      !empty($_FILES['thumbnail']["name"]) ?  $newData['thumbnail'] = "./shops/item$item_id/thumbnail.jpg" : "";
       $newData['name'] = $params['name'];
       $newData['price'] = $params['price'];
       $newData['stock'] = $params['stock'];

@@ -245,5 +245,32 @@ class Model{
       exit();
     }
   }
+  /************************************一対多でリレーション元を取り出す**************************************************************************** */
+  public function belogsTo(string $table_name){
+    require_once "$table_name.php";
+    $sql = "SELECT * FROM $table_name WHERE id=?";
+    try {
+      $smt = $this->pdo->prepare($sql);
+      $smt->bindValue(1, (int)$this->shop_id, PDO::PARAM_INT);
+      $smt->execute();
+      $result = $smt->fetch(PDO::FETCH_ASSOC);
+
+      //リレーション対象のテーブルのカラムを取
+      if(!empty($result)){
+        $columns = array_keys($result);
+      
+        //対応モデルのオブジェクト格納
+          $model = new $table_name();
+          foreach($result as $key=>$value){
+            $model->$key = $value;
+          }
+          return $model;
+      }
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      exit();
+    }
+    
+  }
 
 }

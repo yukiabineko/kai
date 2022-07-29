@@ -1,0 +1,162 @@
+html {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+article {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+article h3 {
+  color: #07441e;
+  font-size: 28px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  letter-spacing: 0.16em;
+  margin: 24px 0 7px 20px;
+  text-align: center;
+}
+/*
+*/
+/*********************************コンテンツ***********************************************************/
+.info {
+  display: block;
+
+}
+/*******************************画像エリア*******************************************************/
+.info #view-img{
+  width: 100vw;
+}
+.info .images .image-list {
+  margin-top: 23px;
+  display: flex;
+}
+
+.info .images .image-list img {
+  width: 29.5vw;
+  height: 140;
+  margin-right: 25px;
+  margin-top: -9px;
+}
+/*************************テーブル********************************************/
+.info .item-data {
+  border-collapse: collapse;
+  background-color: #f0f0f0;
+  margin:18px 0 0 0;
+  width: 100vw;
+  padding-bottom: 2rem;
+}
+.info table tr th {
+  color: #522f60;
+  font-size: 18px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  letter-spacing: 0.16em;
+  width: 30%;
+}
+.info table tr td {
+  color: #522f60;
+  font-size: 18px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  letter-spacing: 0.16em;
+  line-height: 3;
+  position: relative;
+}
+.info table tr .date {
+  font-size: 13px;
+}
+.info table tr td .text {
+  font-size: 13px;
+  margin: 43px auto 8px;
+  background-color: white;
+  position: relative;
+  height: 130px;
+  overflow: scroll;
+  width: 89%;
+}
+.text-icon{
+  width: 89%;
+  margin: 22px auto -65px;
+}
+.recommended-point {
+  margin: 0;
+  padding: 0;
+  width: calc(100vw * 0.23);
+  height: calc(100vw * 0.05);
+  
+}
+
+.info table tr:nth-child(even) {
+  background-color: white;
+  border: 0px none;
+}
+
+.info table tr:last-child {
+  background-color: #f0f0f0;
+  border: 0px none;
+}
+
+.info .images .image-list {
+  margin-top: 23px;
+  display: flex;
+}
+
+.info .images .image-list img {
+  margin-right: 30px;
+  width: calc(100vw * 0.28);
+  height: 140;
+}
+.btns {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 82px 0;
+  width: calc((100vw*0.4*2)+ 30px)
+}
+.btns .back {
+  text-decoration: none;
+  background-color: #f0f0f0;
+  color: #677f6e;
+  display: flex;
+  font-size: 13px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  letter-spacing: 0.16em;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 55px;
+  margin-right: 20px;
+}
+
+.btns .order {
+  text-decoration: none;
+  background-color: #522f60;
+  font-size: 13px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(246, 245, 222);
+  display: flex;
+  letter-spacing: 0.32em;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 55px;
+}
+
+.btns .order img {
+  display: flex;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+
+.btns .back:hover,
+.btns .order:hover {
+  background-color: #c0c0c0;
+}

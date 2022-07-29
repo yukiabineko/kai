@@ -203,6 +203,7 @@ const itemFormCalendar = (id, startDate = null, endDate = null) => {
   document.querySelectorAll('.cal-td').forEach((cell) => {
     cell.addEventListener('click', () => {
       document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+      document.getElementById('target-date').textContent = new Date();
       closeModal();
     });
   });
@@ -213,6 +214,7 @@ const itemFormCalendar = (id, startDate = null, endDate = null) => {
     cell.addEventListener('click', () => {
       nextMonthDateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 2).toString().padStart(2, "0") + "-";
       document.getElementById(id).value = nextMonthDateString + cell.textContent.toString().padStart(2, "0");
+      document.getElementById('target-date').textContent = new Date();
       closeModal();
     });
   });
@@ -283,6 +285,7 @@ const nextItemMonth = (currentDate) => {
   document.querySelectorAll('.prev-td').forEach((cell) => {
     cell.addEventListener('click', () => {
       document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+      document.getElementById('target-date').textContent = new Date();
       closeModal();
     });
   });
@@ -290,6 +293,7 @@ const nextItemMonth = (currentDate) => {
   document.querySelectorAll('.cal-td').forEach((cell) => {
     cell.addEventListener('click', () => {
       document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+      document.getElementById('target-date').textContent = new Date();
       closeModal();
     });
   });
@@ -299,6 +303,7 @@ const nextItemMonth = (currentDate) => {
     cell.addEventListener('click', () => {
       nextMonthDateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 2).toString().padStart(2, "0") + "-";
       document.getElementById(id).value = nextMonthDateString + cell.textContent.toString().padStart(2, "0");
+      document.getElementById('target-date').textContent = new Date();
       closeModal();
     });
   });
@@ -370,6 +375,7 @@ const prevItemMonth = (currentDate) => {
     document.querySelectorAll('.cal-td').forEach((cell) => {
       cell.addEventListener('click', () => {
         document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+        document.getElementById('target-date').textContent = new Date();
         closeModal();
       });
     });
@@ -379,6 +385,7 @@ const prevItemMonth = (currentDate) => {
       cell.addEventListener('click', () => {
         nextMonthDateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 2).toString().padStart(2, "0") + "-";
         document.getElementById(id).value = nextMonthDateString + cell.textContent.toString().padStart(2, "0");
+        document.getElementById('target-date').textContent = new Date();
         closeModal();
       });
     });
@@ -401,6 +408,7 @@ const prevItemMonth = (currentDate) => {
     document.querySelectorAll('.prev-td').forEach((cell) => {
       cell.addEventListener('click', () => {
         document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+        document.getElementById('target-date').textContent = new Date();
         closeModal();
       });
     });
@@ -408,6 +416,7 @@ const prevItemMonth = (currentDate) => {
     document.querySelectorAll('.cal-td').forEach((cell) => {
       cell.addEventListener('click', () => {
         document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+        document.getElementById('target-date').textContent = new Date();
         closeModal();
       });
     });
@@ -417,6 +426,7 @@ const prevItemMonth = (currentDate) => {
       cell.addEventListener('click', () => {
         nextMonthDateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 2).toString().padStart(2, "0") + "-";
         document.getElementById(id).value = nextMonthDateString + cell.textContent.toString().padStart(2, "0");
+        document.getElementById('target-date').textContent = new Date();
         closeModal();
       });
     });

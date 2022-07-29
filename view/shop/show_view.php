@@ -183,7 +183,7 @@
         <?php foreach ($items as $item) : ?>
           <!-- リスト　-->
           <li class="list">
-            <a href="item-show.html" class="link"></a>
+            <a href="./item?action=show&id=<?= $item->id; ?>" class="link"></a>
 
             <!-- 画像、値段サイド-->
             <div class="img-price">
