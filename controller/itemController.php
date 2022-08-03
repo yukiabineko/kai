@@ -4,6 +4,18 @@ require './model/item.php';
 
 class itemController extends baseController{
 
+/********************商品一覧****************************************************/
+public function index(){
+  $model  = new item();
+  $items = $model->all();
+
+  $model->joinLike('shop', 'adress', '石和');
+  
+  $this->view('index',[
+    'items' => $items,
+  ]);
+}
+
 /********************商品登録ページ******************************************** */
   public function new(){
     //未ログインの場合リダイレクト
@@ -73,10 +85,7 @@ public function update(int $id, array $params){
 }
 /***************************商品個別表示******************************************************** */
 public function show(int $id){
-   //未ログインの場合リダイレクト
-    if (!isset($_SESSION['auth_id'])) {
-      header('location: ./auth?action=new');
-    }
+   
     $token = $this->tokenCreate();
     $_SESSION['token'] = $token;
     $model = new item();
@@ -95,8 +104,19 @@ public function show(int $id){
     ]);
 
 }
-/*****************************削除処理**************************************************************** */
-public function delete(int $id){
+/*****************************ajaxによる削除処理**************************************************************** */
+public function delete(int $id, array $params){
+   if($_SERVER["HTTP_X_CSRF_TOKEN"] == $_SESSION['token']){
+      $item = new item();
+      if ($item->delete($id)) {
+        $files = "./shops/item$id/*.jpg";
+        foreach (glob($files) as $val) {
+          unlink($val);
+        }
+        rmdir("./shops/item$id");
+       echo json_encode(['message'=>'削除しました。']);
+      }
+   }
   
 }
 

@@ -1,0 +1,406 @@
+html {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+article {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+/*
+*/
+/*********************************コンテンツ***********************************************************/
+article .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 39px;
+}
+
+article h2 {
+  font-size: 28px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+}
+
+article .title img {
+  width: 35px;
+  height: 35px;
+  margin-right: 6px;
+}
+.back-button {
+  display: flex;
+  width: calc(100vw *0.47);
+  height: calc(100vw * 0.1);
+  background-color: #c0c0c0;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(97, 68, 109);
+  letter-spacing: 0.16em;
+  margin: 59px 0 21px 0;
+
+}
+
+.back-button:hover {
+  background-color: #f5e3e3;
+}
+/*****************************************フォーム**********************************************************************************/
+.form,
+.form .item-form {
+  width: 100%;
+}
+
+.item-table {
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 20px 0 3rem 0;
+  padding-bottom: 32px;
+}
+
+.item-table tr th {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  font-size: 16px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-top: 25px;
+}
+
+.item-table th img {
+  width: 20px;
+  height: 20px;
+  margin: 2px 10px 0 0;
+}
+.item-table th span {
+  color: red;
+  font-size: 12px;
+}
+
+/**
+td
+**/
+.item-table tr td {
+  display: block;
+  width: 100%;
+}
+.item-table tr td input {
+  display: block;
+  width: 99%;
+  height: 50px;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin: 5px auto 0;
+}
+#endDate, #endTime{
+  margin-top: 20px;
+}
+.item-table tr td textarea {
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-top: 4px;
+}
+/**************************エラー*****************************************/
+.error {
+  background-color: red;
+  border-radius: 3px;
+  color: white;
+  margin-top: 10px;
+  position: relative;
+  line-height: 2;
+  display: none;
+}
+
+.error::after {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 0;
+  border-top: 8px solid red;
+  border-left: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid transparent;
+  position: absolute;
+  top: 90%;
+  left: 1%;
+}
+
+.show {
+  display: block;
+}
+/***************************************画像関連********************************************************************************/
+.img-title {
+  display: block;
+  text-align: center;
+  width: 100vw;
+}
+.img-title h2 {
+  display: inline-block;
+  font-size: calc(100vw * 0.0575);
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-top: -2px;
+}
+.img-title h2::before {
+  display: inline-block;
+  content: "";
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  width: calc(100vw * 0.35);
+  height: calc(100vw * 0.02);
+  margin-right: calc(100vw * 0.03);
+}
+.img-title h2::after {
+  display: inline-block;
+  content: "";
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  width: calc(100vw * 0.32);
+  height: calc(100vw * 0.02);
+  margin-left:calc(100vw * 0.03);
+}
+.image p {
+  font-size: 12px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(255, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-top: -2px;
+}
+image h3 {
+  display: flex;
+  font-size: 16px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  align-items: center;
+  padding-top: 10px;
+}
+.image h3::before {
+  display: inline-block;
+  content: "";
+  width: 4px;
+  height: 21px;
+  background-color: black;
+  margin-right: 8px;
+}
+.form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-view {
+  display: flex;
+  align-items: center;
+  width: calc(100vw * 0.674);
+  height: calc(100vw * 0.09);
+  border: 1px solid #c0c0c0;
+  font-size: calc(100vw * 0.02);
+  font-family: "DNP ShueiNMinStd";
+  color: #c0c0c0;
+     
+}
+.form label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #522f60;
+  width: calc(100vw * 0.325);
+  height: calc(100vw * 0.09 + 2px);
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+
+}
+input[type="submit"] {
+  background-color: #522f60;
+  border: none;
+  display: block;
+  width: calc(100vw * 0.9);
+  height: calc(100vw * 0.182);
+  margin: 0 auto 5rem;
+  font-size: 18px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin: 89px auto 107px;
+
+}
+
+input[type="submit"]:hover {
+  background-color: #7f5191;
+}
+/*******************************画像表示エリア***************************************************************/
+.preview {
+  width: 100vw;
+  background-color: #f0f0f0;
+  margin: 0 auto;
+  overflow-y: scroll;
+}
+
+.preview img {
+  width: 100%
+}
+/********************************時間モーダル****************************************************************************/
+#Timemodal{
+  width: calc(100vw * 0.5);
+  position: absolute;
+  top: -150%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: white;
+  box-shadow: 1px 3px 0 0 #c0c0c0;
+  transition: .7s;
+  z-index: 4;
+ 
+}
+#Timemodal .contents{
+  width: 100%;
+  overflow: scroll;
+}
+#Timemodal .contents h3{
+  text-align: center;
+  font-size: 16px;
+}
+#modal .btns{
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+#Timemodal .contents .time-form{
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+}
+#Timemodal .contents .time-form .hour{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+}
+#Timemodal .contents .time-form .hour select{
+  width: 95%;
+  height: 30px;
+  border: 1px solid #c0c0c0;
+}
+#Timemodal .contents .time-form .min{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+}
+#Timemodal .contents .time-form .min span, #Timemodal .contents .time-form .hour span{
+ font-family: "DNP ShueiNMinStd";
+ font-weight: bold;
+ margin-right: 10px;
+ color: black;
+}
+#Timemodal .contents .time-form .min select{
+  width: 95%;
+  height: 30px;
+  border: 1px solid #c0c0c0;
+}
+/**********確定ボタン*******************/
+.modal-time-result-button{
+  display: block;
+  width: 90%;
+  height: calc(100vw * 0.1);
+  background-color: blue;
+  border: none;
+  color: white;
+  margin: .5rem auto 1rem;
+}
+.modal-time-result-button:hover{
+ background-color: skyblue;
+}
+
+
+/**************************************************************************************************************/
+/***************************編集の場合のスタイル******************************************************************/
+/**タイトル
+**/
+article .edit-form-title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 64px;
+  padding-bottom: 6px;
+
+}
+
+article .edit-form-title h2 {
+  font-size: 26px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-left: 6px;
+}
+
+article .edit-form-title img {
+  width: 25px;
+  height: 25px;
+}
+/**
+画像フォームタイトル
+**/
+.image .img-title .edit-img-title{
+  font-size: calc(100vw * 0.06);
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(7, 68, 30);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+}
+
+.image .img-title .edit-img-title::before, .image .img-title .edit-img-title::after{
+  width: calc(100vw * 0.26);
+}
+.image .img-title .edit-img-title::before{
+  margin-right: calc(100vw * 0.02);
+}
+.image .img-title .edit-img-title::after {
+  margin-left: calc(100vw * 0.03);
+}

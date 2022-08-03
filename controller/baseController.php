@@ -16,9 +16,10 @@ class baseController{
      
      ${ $controllerName } =isset($params[$controllerName])? $params[$controllerName] : "";  //モデルのデータ
       
-
-     foreach($params as $key=>$value){
-       ${$key} = $value;
+     if(isset($params)){
+        foreach($params as $key=>$value){
+          ${$key} = $value;
+        }
      }
     $token = isset($params['token']) ? $params['token'] : null;  //csrfトークン
      

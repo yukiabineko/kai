@@ -7,9 +7,9 @@
       <div class="images">
         <img src="<?= $item->thumbnail; ?>" alt="商品" width="480" height="450" id="view-img">
         <div class="image-list">
-          <img src="<?= $images[0]; ?>" alt="商品リスト1" id="img-list-0" class="img-lists">
-          <img src="<?= $images[1]; ?>" alt="商品リスト2" id="img-list-1" class="img-lists">
-          <img src="<?= $images[2]; ?>" alt="商品リスト3" id="img-list-2" class="img-lists">
+          <img src="<?= !empty($images[0])? $images[0] : './image/icons/empty.svg'; ?>" alt="商品リスト1" id="img-list-0" class="img-lists">
+          <img src="<?= !empty($images[1]) ? $images[1] : './image/icons/empty.svg';; ?>" alt="商品リスト2" id="img-list-1" class="img-lists">
+          <img src="<?= !empty($images[2]) ? $images[2] : './image/icons/empty.svg'; ?>" alt="商品リスト3" id="img-list-2" class="img-lists">
         </div>
       </div>
 
@@ -57,9 +57,12 @@
     </div>
     <!-- ボタン　-->
     <div class="btns">
-      <a href="./shop?action=show&id=<?= $item->id ?>" class="back">一覧へ戻る</a>
-      <a href="order.html" class="order">
-        <img src="image/icons/bag2.svg" alt="注文アイコン">注文する
-      </a>
+      <a href="./shop?action=show&id=<?= $shop->id ?>" class="back">一覧へ戻る</a>
+      <!-- 注文ボタンは掲載店がログインしている場合は非表示 -->
+      <?php if(!isset($_SESSION['auth_id']) || ($_SESSION['auth_id'] != $item->shop_id) ) : ?>
+        <a href="order.html" class="order">
+          <img src="image/icons/bag2.svg" alt="注文アイコン">注文する
+        </a>
+      <?php endif; ?>
     </div>
   </article>

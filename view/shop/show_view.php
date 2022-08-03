@@ -1,3 +1,5 @@
+<!-- ajax用csrfトークン格納　-->
+<meta name="csrf-token" content="<?php echo $token; ?>" />
 <p class="shop-name"><?= $shop->name; ?>様</p>
 
 <!----------------------------フラッシュ----------------------------------------------------------------------------->
@@ -11,6 +13,7 @@
 <!-- コンテンツ -->
 <main>
   <!-- 店舗情報 -->
+
   <article class="shop">
     <section class="info">
       <h3>店舗様情報</h3>
@@ -40,185 +43,48 @@
     <section class="itemlists">
       <h3>ご登録商品一覧</h3>
       <a href="./item?action=new" class="btn">新規登録</a>
-      <ul class="item-list">
-        <!-- 商品1 -->
-        <li class="list">
-          <a href="item-show.html" class="link"></a>
-          <!-- 画像、値段サイド-->
-          <div class="img-price">
-            <img src="image/items/item3.png" alt="商品1" srcset="image/items/item3.png" class="item-img">
-            <ul class="price">
-              <li class="name">柏餅1個</li>
-              <li class="price">
-                <img src="image/icons/price.svg" alt="価格">
-                <span>99 </span>円
-              </li>
-            </ul>
-          </div>
-          <!-- 期限サイド -->
-          <div class="time-limit">
-            <img src="image/icons/date.svg" alt="カレンダー">
-            <div class="date">7/23 9:00 ~ 7/24 16:00</div>
-          </div>
-          <!-- 編集・削除ボタン-->
+      <?php if( count($items) > 0): ?>
+        <ul class="item-list">
+          <?php foreach ($items as $item) : ?>
+            <!-- リスト　-->
+            <li class="list" id="list-<?= $item->id ?>">
+              <a href=" ./item?action=show&id=<?= $item->id; ?>" class="link"></a>
 
-          <div class="li-btns">
-            <!-- 編集ボタン　-->
-            <a href="eidt-item.html" class="edit-button">
-              <img src="image/icons/pen2.svg" alt="編集ボタン" srcset="image/icons/pen2.svg">
-            </a>
-            <!-- 削除ボタン　-->
-            <button class="delete-button">
-              <img src="image/icons/trash.svg" alt="削除ボタン" srcset="image/icons/trash.svg">
-            </button>
-          </div>
-        </li>
-        <!-- *****************************************************-->
-        <!-- 商品2 -->
-        <li class="list">
-          <a href="item-show.html" class="link"></a>
-          <!-- 画像、値段サイド-->
-          <div class="img-price">
-            <img src="image/items/item9.png" alt="商品2" srcset="image/items/item9.png" class="item-img">
-            <ul class="price">
-              <li class="name">どらやき1個</li>
-              <li class="price">
-                <img src="image/icons/price.svg" alt="価格">
-                <span>99</span>円
-              </li>
-            </ul>
-          </div>
-          <!-- 期限サイド -->
-          <div class="time-limit">
-            <img src="image/icons/date.svg" alt="カレンダー">
-            <div class="date">7/23 9:00 ~ 7/24 16:00</div>
-          </div>
+              <!-- 画像、値段サイド-->
+              <div class="img-price">
+                <img src="shops/item<?= $item->id ?>/thumbnail.jpg" alt="商品2" srcset="shops/item<?= $item->id ?>/thumbnail.jpg" class="item-img">
+                <ul class="price">
+                  <li class="name"><?= $item->name ?></li>
+                  <li class="price">
+                    <img src="image/icons/price.svg" alt="価格">
+                    <span><?= $item->price ?></span>円
+                  </li>
+                </ul>
+              </div>
 
-          <!-- 編集・削除ボタン-->
+              <!-- 期限サイド -->
+              <div class="time-limit">
+                <img src="image/icons/date.svg" alt="カレンダー">
+                <div class="date"><?= $item->start_processing(); ?> ~ <?= $item->end_processing(); ?></div>
+              </div>
 
-          <div class="li-btns">
-            <!-- 編集ボタン　-->
-            <a href="eidt-item.html" class="edit-button">
-              <img src="image/icons/pen2.svg" alt="編集ボタン" srcset="image/icons/pen2.svg">
-            </a>
-            <!-- 削除ボタン　-->
-            <button class="delete-button">
-              <img src="image/icons/trash.svg" alt="削除ボタン" srcset="image/icons/trash.svg">
-            </button>
-          </div>
+              <div class="li-btns">
+                <!-- 編集ボタン　-->
+                <a href="./item?action=edit&id=<?= $item->id ?>" class="edit-button">
+                  <img src="image/icons/pen2.svg" alt="編集ボタン" srcset="image/icons/pen2.svg">
+                </a>
+                <!-- 削除ボタン　-->
+                <button onclick="deleteItem(<?= $item->id; ?>)" class="delete-button">
+                  <img src="image/icons/trash.svg" alt="削除ボタン" srcset="image/icons/trash.svg">
+                </button>
+              </div>
 
-        </li>
-        <!-- *****************************************************-->
-        <!-- 商品3 -->
-        <li class="list">
-          <a href="item-shop.html" class="link"></a>
-          <!-- 画像、値段サイド-->
-          <div class="img-price">
-            <img src="image/items/item2.png" alt="商品2" srcset="image/items/item2.png" class="item-img">
-            <ul class="price">
-              <li class="name">大福1個</li>
-              <li class="price">
-                <img src="image/icons/price.svg" alt="価格">
-                <span>99</span>円
-              </li>
-            </ul>
-          </div>
-          <!-- 期限サイド -->
-          <div class="time-limit">
-            <img src="image/icons/date.svg" alt="カレンダー">
-            <div class="date">7/23 9:00 ~ 7/24 16:00</div>
-          </div>
-
-          <!-- 編集・削除ボタン-->
-
-          <div class="li-btns">
-            <!-- 編集ボタン　-->
-            <a href="eidt-item.html" class="edit-button">
-              <img src="image/icons/pen2.svg" alt="編集ボタン" srcset="image/icons/pen2.svg">
-            </a>
-            <!-- 削除ボタン　-->
-            <button class="delete-button">
-              <img src="image/icons/trash.svg" alt="削除ボタン" srcset="image/icons/trash.svg">
-            </button>
-          </div>
-        </li>
-        <!-- *****************************************************-->
-        <!-- 商品4 -->
-        <li class="list">
-          <a href="item-show.html" class="link"></a>
-          <!-- 画像、値段サイド-->
-          <div class="img-price">
-            <img src="image/items/item10.png" alt="商品2" srcset="image/items/item10.png" class="item-img">
-            <ul class="price">
-              <li class="name">三色団子1pc</li>
-              <li class="price">
-                <img src="image/icons/price.svg" alt="価格">
-                <span>99</span>円
-              </li>
-            </ul>
-          </div>
-          <!-- 期限サイド -->
-          <div class="time-limit">
-            <img src="image/icons/date.svg" alt="カレンダー">
-            <div class="date">7/23 9:00 ~ 7/24 16:00</div>
-          </div>
-
-          <!-- 編集・削除ボタン-->
-
-          <div class="li-btns">
-            <!-- 編集ボタン　-->
-            <a href="eidt-item.html" class="edit-button">
-              <img src="image/icons/pen2.svg" alt="編集ボタン" srcset="image/icons/pen2.svg">
-            </a>
-            <!-- 削除ボタン　-->
-            <button class="delete-button">
-              <img src="image/icons/trash.svg" alt="削除ボタン" srcset="image/icons/trash.svg">
-            </button>
-          </div>
-        </li>
-
-      </ul>
-
-      <ul class="item-list">
-        <?php foreach ($items as $item) : ?>
-          <!-- リスト　-->
-          <li class="list">
-            <a href="./item?action=show&id=<?= $item->id; ?>" class="link"></a>
-
-            <!-- 画像、値段サイド-->
-            <div class="img-price">
-              <img src="shops/item<?= $item->id ?>/thumbnail.jpg" alt="商品2" srcset="shops/item<?= $item->id ?>/thumbnail.jpg" class="item-img">
-              <ul class="price">
-                <li class="name"><?= $item->name ?></li>
-                <li class="price">
-                  <img src="image/icons/price.svg" alt="価格">
-                  <span><?= $item->price ?></span>円
-                </li>
-              </ul>
-            </div>
-            
-            <!-- 期限サイド -->
-            <div class="time-limit">
-              <img src="image/icons/date.svg" alt="カレンダー">
-              <div class="date"><?= $item->start_processing(); ?> ~ <?= $item->end_processing(); ?></div>
-            </div>
-
-            <div class="li-btns">
-              <!-- 編集ボタン　-->
-              <a href="./item?action=edit&id=<?= $item->id ?>" class="edit-button">
-                <img src="image/icons/pen2.svg" alt="編集ボタン" srcset="image/icons/pen2.svg">
-              </a>
-              <!-- 削除ボタン　-->
-              <button class="delete-button">
-                <img src="image/icons/trash.svg" alt="削除ボタン" srcset="image/icons/trash.svg">
-              </button>
-            </div>
-
-          </li>
-        <?php endforeach; ?>
-      </ul>
-
-
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      <?php else: ?>
+        <div class="empty-item">現在登録されている商品はありません。</div>
+      <?php endif; ?>
     </section>
 
   </article>

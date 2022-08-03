@@ -21,7 +21,7 @@
           </li>
 
           <li>
-            <a href="lineup.html">
+            <a href="./item">
               <img src="./image/item.svg" alt="出品商品" srcset="./image/item.svg">
               出品商品
             </a>
@@ -100,7 +100,7 @@
         </a>
       </li>
       <li>
-        <a href="lineup.html">
+        <a href="./item">
           <img src="./image/item.svg" alt="商品" srcset="./image/item.svg">
           出品商品
         </a>

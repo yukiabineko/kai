@@ -49,6 +49,28 @@ class Model{
   {
     $this->pdo = null;
   }
+  /*********************全理コードの取得*********************************************************/
+  public function all(){
+    $sql = "SELECT * FROM $this->table";
+    try{
+       $smt = $this->pdo->query($sql);
+       $results = $smt->fetchAll(PDO::FETCH_ASSOC);
+       $records = [];
+
+       foreach($results as $result){
+         $model = new $this->table();
+         foreach($result as $key=>$value){
+           $model->$key = $value;
+         }
+        array_push($records, $model);
+       }
+       return $records;
+    }
+    catch(PDOException $e){
+      echo $e->getMessage();
+      exit();
+    }
+  }
   /**********************テーブルのレコード作成************************************************ */
 
   public function create(array $params = null){
@@ -123,6 +145,20 @@ class Model{
       exit();
     }
     
+  }
+  /****************************************削除処理****************************************************************************************/
+  public function delete(int $id){
+    $sql = "DELETE FROM $this->table WHERE id=?";
+    try{
+      $smt = $this->pdo->prepare($sql);
+      $smt->bindValue(1, (int)$id, PDO::PARAM_INT);
+      $smt->execute();
+      return true;
+    }
+    catch(PDOException $e){
+      echo $e->getMessage();
+      exit();
+    }
   }
   /****************************************IDによるレコード検索**************************************************************************** */
   public function find(int $id){
@@ -210,11 +246,6 @@ class Model{
     $tb_sql .= ")";
     $this->pdo->exec($tb_sql);
 
-
-
-
-
-    
     $sql = "SELECT * FROM $table_name WHERE $this->table"."_id=?";
     try {
       $smt = $this->pdo->prepare($sql);
@@ -271,6 +302,14 @@ class Model{
       exit();
     }
     
+  }
+  /*****************************inner join like句 ************************************************************************* */
+  public function joinLike(string $target_table, string $target_column, string $target_string){
+    $sql = 
+    "SELECT $this->table. * FROM $this->table 
+     INNER JOIN $target_table ON $this->table.$target_table"."_id=$target_table.id 
+     WHERE $target_table.$target_column LIKE '%$target_string%'";
+     echo $sql;
   }
 
 }

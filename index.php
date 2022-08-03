@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_log(print_r($_POST, true), 0);
 
 if(empty($_SERVER['REQUEST_URI'])) {
   exit;
