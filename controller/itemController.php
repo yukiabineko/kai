@@ -7,9 +7,20 @@ class itemController extends baseController{
 /********************商品一覧****************************************************/
 public function index(){
   $model  = new item();
-  $items = $model->all();
 
-  $model->joinLike('shop', 'adress', '石和');
+  if(isset($_GET['area'])){
+    $items = $model->joinLike('shop', 'adress', $_GET['area']);
+  }
+  else if(isset( $_GET['shop_name'] )){
+    $items = $model->join('shop', 'name',  $_GET['shop_name']);
+  }
+  else{
+    $page = isset($_GET['page'])? (int)$_GET['page'] - 1 : null;
+    isset($page)? $items = 
+    array_slice($model->all(), $page * 8, 8) 
+    : $items = $model->all();
+  }
+
   
   $this->view('index',[
     'items' => $items,
