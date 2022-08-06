@@ -6,10 +6,17 @@ html {
   border: none;
   box-sizing: border-box;
 }
-article {
-  width: 100vw;
+body{
   margin: 0;
   padding: 0;
+  height: 100%;
+
+}
+article {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding-bottom: 100vh;
 }
 
 /******************************タイトル*******************************************************/
@@ -168,7 +175,8 @@ article {
   margin-top: 4px;
 }
 .items-session .pagination {
-  display: flex;
+  /**display: flex;*/
+  display: none;
   background-color: transparent !important;
   margin-top: 34px;
   margin-bottom: 79px;
@@ -200,6 +208,17 @@ article {
   background-color: #0000ff;
   color: #ddddff;
 }
+.empty{
+  width: 100vw;
+  height: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  color: #444;
+ 
+
+}
 /*********************************************************************************************************************/
 .map{
   width: 100vw;
@@ -212,6 +231,40 @@ article {
   transition: .4s;
   
  }
+ .map-info{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 1rem;
+ }
+ .map-buttons{
+  display: flex;
+  align-items: center;
+ }
+ .all-area-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #522f60;
+  text-decoration: none;
+  color: white;
+  padding: .5rem 1rem;
+  margin-right: 10px;
+ }
+ .all-area-button:hover {
+   opacity: 0.7;
+ }
+ .close-map{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c0c0c0;
+    border: none;
+    color: white;
+    padding: .6rem 1rem;
+    border: 1px solid #c0c0c0;
+ }
  #open{
   display: none;
  }
@@ -220,3 +273,11 @@ article {
   top: 50%;
  
  }
+ /**************************************footer**********************************************************************************/
+ footer{
+  width: 100vw;
+  position: sticky;
+  top: 100vh;
+  padding: 1rem 0;
+ 
+}

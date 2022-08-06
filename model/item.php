@@ -13,5 +13,16 @@ class item extends Model
   {
     return date('n/d G:i', strtotime($this->finish));
   }
+  /**
+   * レコード数
+   */
+  public function pages(){
+    $page_count =  count($this->all());
+    $page_array = [];
+    for($i = 1; $i <= ceil($page_count / 8); $i++ ){
+      array_push($page_array, $i);
+    }
+    return $page_array;
+  }
   
 }

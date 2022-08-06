@@ -181,7 +181,7 @@ class Model{
       exit();
     }
   }
-  /***************************************特定のカラムから検索*************************************************************************** */
+  /***************************************特定のカラムから１行検索*************************************************************************** */
   public function find_by(string $column_name, string $param){
     /*$columSql = "SHOW COLUMNS FROM $this->table WHERE Field='$column_name'";
     echo $columSql;
@@ -200,6 +200,7 @@ class Model{
     }
     return $this;
   }
+  
   /***********************************最後のレコード取り出し************************************************************* */
   public function last(){
     $sql = "SELECT * FROM $this->table ORDER BY id DESC LIMIT 1";
@@ -303,13 +304,47 @@ class Model{
     }
     
   }
+  /*****************************inner join句 ************************************************************************* */
+  public function join(string $target_table, string $target_column =null, string $target_string = null)
+  {
+    $sql =
+      "SELECT $this->table. * FROM $this->table 
+     INNER JOIN $target_table ON $this->table.$target_table" . "_id=$target_table.id ";
+    if(isset($target_column)){
+      $sql.= "WHERE $target_table.$target_column = ?";
+    }
+    $smt = $this->pdo->prepare($sql);
+    $smt->bindValue(1, $target_string, PDO::PARAM_STR);
+    $smt->execute();
+    $results = $smt->fetchAll(PDO::FETCH_ASSOC);
+    $instances = [];
+    foreach($results as $result){
+      $model = new $this->table();
+      foreach($result as $key=>$value){
+        $model->$key = $value;
+      }
+      array_push($instances, $model);
+    }
+    return $instances;
+  }
   /*****************************inner join like句 ************************************************************************* */
   public function joinLike(string $target_table, string $target_column, string $target_string){
     $sql = 
     "SELECT $this->table. * FROM $this->table 
      INNER JOIN $target_table ON $this->table.$target_table"."_id=$target_table.id 
      WHERE $target_table.$target_column LIKE '%$target_string%'";
-     echo $sql;
+     
+     $smt = $this->pdo->query($sql);
+     $results = $smt->fetchAll(PDO::FETCH_ASSOC);
+     $records = [];
+     foreach($results as $result){
+      $model = new $this->table();
+      foreach($result as $key => $value){
+        $model->$key = $value;
+      }
+      array_push($records, $model);
+     }
+     return $records;
   }
 
 }

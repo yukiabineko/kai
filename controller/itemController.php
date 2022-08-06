@@ -6,14 +6,34 @@ class itemController extends baseController{
 
 /********************商品一覧****************************************************/
 public function index(){
+  $parameter = [];
   $model  = new item();
-  $items = $model->all();
 
-  $model->joinLike('shop', 'adress', '石和');
+  //ページ数
+  $pages = $model->pages();
+
+
+  //クエリパラメーターで取り出す商品レコード分岐
+  if(isset($_GET['area'])){
+    $items = $model->joinLike('shop', 'adress', $_GET['area']);
+  }
+  else if(isset( $_GET['shop_name'] )){
+    $items = $model->join('shop', 'name',  $_GET['shop_name']);
+  }
+  else{
+    $page = isset($_GET['page'])? (int)$_GET['page'] - 1 : null;
+    $items =  isset($page)? 
+    array_slice($model->all(), $page * 8, 8) 
+    :  array_slice($model->all(), 0, 8) ;
+  }
+
+  //viewに送信するパラメータのセット
+  $parameter['items'] = $items;
+  isset($page)? $parameter['current_page'] = ($page + 1) :  $parameter['current_page'] = 1;
+  $parameter['pages'] = $pages;
+
   
-  $this->view('index',[
-    'items' => $items,
-  ]);
+  $this->view('index', $parameter);
 }
 
 /********************商品登録ページ******************************************** */
