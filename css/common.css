@@ -411,7 +411,12 @@ footer small {
       background-color: #522f60;
       margin: 0;
       padding: 0;
+<<<<<<< HEAD
       
+=======
+      position: absolute;
+      bottom: 0;
+>>>>>>> 6853b9dda2138e032e8bbc737b92a6644d8ac43d
     }
 
     footer .top-jump {

@@ -190,8 +190,12 @@ header::after {
    background-color: transparent !important;
    margin-top: 34px;
    margin-bottom: 10px;
+<<<<<<< HEAD
    padding-top: 1rem;
    
+=======
+   display: none;
+>>>>>>> 6853b9dda2138e032e8bbc737b92a6644d8ac43d
  }
  .items-session .pagination li  {
   display: inline-block;

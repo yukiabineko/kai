@@ -9,11 +9,14 @@ public function index(){
   $parameter = [];
   $model  = new item();
 
+<<<<<<< HEAD
   //ページ数
   $pages = $model->pages();
 
 
   //クエリパラメーターで取り出す商品レコード分岐
+=======
+>>>>>>> 6853b9dda2138e032e8bbc737b92a6644d8ac43d
   if(isset($_GET['area'])){
     $items = $model->joinLike('shop', 'adress', $_GET['area']);
   }
@@ -22,6 +25,7 @@ public function index(){
   }
   else{
     $page = isset($_GET['page'])? (int)$_GET['page'] - 1 : null;
+<<<<<<< HEAD
     $items =  isset($page)? 
     array_slice($model->all(), $page * 8, 8) 
     :  array_slice($model->all(), 0, 8) ;
@@ -32,6 +36,13 @@ public function index(){
   isset($page)? $parameter['current_page'] = ($page + 1) :  $parameter['current_page'] = 1;
   $parameter['pages'] = $pages;
 
+=======
+    isset($page)? $items = 
+    array_slice($model->all(), $page * 8, 8) 
+    : $items = $model->all();
+  }
+
+>>>>>>> 6853b9dda2138e032e8bbc737b92a6644d8ac43d
   
   $this->view('index', $parameter);
 }

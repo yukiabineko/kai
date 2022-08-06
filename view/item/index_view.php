@@ -41,7 +41,11 @@
 
   <!-- 商品エリア -->
   <section class="items-session">
+<<<<<<< HEAD
     <?php if (count($items) > 0) : ?>
+=======
+    <?php if( count($items) > 0 ) : ?>
+>>>>>>> 6853b9dda2138e032e8bbc737b92a6644d8ac43d
       <ul class="item">
         <?php foreach ($items as $item) : ?>
           <li class="list">
@@ -53,6 +57,7 @@
           </li>
         <?php endforeach; ?>
       </ul>
+<<<<<<< HEAD
       <br>
     <?php else : ?>
       <div class="empty">商品がありません。</div>
@@ -76,6 +81,21 @@
         <?php endif; ?>
       </ul>
     <?php endif; ?>
+=======
+    <?php else: ?>
+      <div class="empty">商品がありません。</div>
+    <?php endif; ?>
+    <!-- ページネーション　-->
+    <ul class="pagination">
+      <li>
+        <a href="#"><前へ</a>
+      </li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#" class="select-page">3</a></li>
+      <li><a href="#">次へ></a></li>
+    </ul>
+>>>>>>> 6853b9dda2138e032e8bbc737b92a6644d8ac43d
   </section>
 
 </article>
