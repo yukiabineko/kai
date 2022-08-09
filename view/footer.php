@@ -1,5 +1,5 @@
  <!-- フッター-->
- <footer>
+ <footer class="footer">
     <a href="#" class="top-jump">top</a>
     <ul>
       <li><a href="./top">トップページ</a></li>

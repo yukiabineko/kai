@@ -1,5 +1,11 @@
 window.addEventListener('load', () => {
 
+  document.getElementById('startDate').readOnly = true;
+  document.getElementById('endDate').readOnly = true;
+  document.getElementById('startTime').readOnly = true;
+  document.getElementById('endTime').readOnly = true;
+
+
   document.getElementById("item-form").addEventListener('submit', (e) => {
     
 

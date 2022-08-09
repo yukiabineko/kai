@@ -7,6 +7,18 @@ html {
   box-sizing: border-box;
 }
 
+/************************************フラッシュ*********************************************************************************************/
+.flash{
+  font-style: italic;
+  width: 100vw;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  background-color: green;
+  color: white;
+  margin: 1rem auto;
+}
+
 /**
 **/
 .shop-name {

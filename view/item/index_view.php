@@ -41,15 +41,11 @@
 
   <!-- 商品エリア -->
   <section class="items-session">
-<<<<<<< HEAD
     <?php if (count($items) > 0) : ?>
-=======
-    <?php if( count($items) > 0 ) : ?>
->>>>>>> 6853b9dda2138e032e8bbc737b92a6644d8ac43d
       <ul class="item">
         <?php foreach ($items as $item) : ?>
           <li class="list">
-            <img src="<?= $item->thumbnail ?>" alt="<?= $item->name ?>" class="img">
+            <img src="<?= !empty($item->thumbnail) ? $item->thumbnail : './image/icons/empty.svg' ?>" alt="<?= $item->name ?>" class="img">
             <div class="items"><?= $item->name ?></div>
             <div class="price">価格<span><?= $item->price ?></span>円</div>
             <div class="shop"><?= $item->belogsTo('shop')->name ?></div>
@@ -57,45 +53,88 @@
           </li>
         <?php endforeach; ?>
       </ul>
-<<<<<<< HEAD
       <br>
     <?php else : ?>
       <div class="empty">商品がありません。</div>
     <?php endif; ?>
-   
+
     <!-- ページネーション　-->
-    <?php if( count($pages) > 1) : ?>
+    <?php if (count($pages) > 1) : ?>
       <ul class="pagination">
-        <?php if (isset($current_page) && $current_page != $pages[0]) : ?>
-          <li><a href="./item?page=<?= (int)$current_page -1  ?>"><前へ</a></li>
+
+        <!-- 最初ボタンの表示分岐ページ数１０以上の場合 -->
+        <?php if (count($pages) >= 10) : ?>
+          <li><a href="./item?page=1">最初へ</a></li>
         <?php endif; ?>
 
-        <?php foreach ($pages as $page) : ?>
-          <li><a href="./item?page=<?= $page  ?>" class=<?php echo (isset($current_page) && $current_page == $page) ? "select-page" : ""  ?>><?= $page ?></a></li>
-          
-        <?php endforeach; ?>
+        <!-- 前へボタンの表示分岐 -->
+        <?php if (isset($current_page) && $current_page != $pages[0]) : ?>
+          <li>
+            <a href="./item?page=<?= (int)$current_page - 1  ?>">
+              <前へ</a>
+          </li>
+        <?php endif; ?>
 
-        <?php if ( isset($current_page) && $current_page != end($pages)) : ?>
-          
+        <!---------------------------ページ10以上----------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- メインページ部ページ１０以上、未満で分岐 -->
+        <?php if (count($pages) >= 10) : ?>
+          <?php foreach ($counts as $ct) : ?>
+            <!-- 5の倍数で分割　-->
+            <?php if (($ct * 5) < $current_page  && (($ct + 1) * 5) >= $current_page) : ?>
+              <?php for ($i = $current_page; $i <= ($current_page + 4); $i++) : ?>
+                <!--合計ページ数を超えたら非表示 -->
+                <?php if ($i <= end($pages)) : ?>
+                  <li>
+                    <a href="./item?page=<?= $i  ?>" class="<?php echo $i == $current_page ? "select-page" : ""     ?>">
+                      <?= $i ?>
+                    </a>
+                  </li>
+                <?php endif; ?>
+              <?php endfor; ?>
+            <?php endif; ?>
+          <?php endforeach; ?>
+
+          <!-- 中間 -->
+          <?php if ($current_page != end($pages)) : ?>
+            <li>
+              <div class="centers">...</div>
+            </li>
+          <?php endif; ?>
+
+          <!-----------------------------ページ10未満------------------------------------------------------------------------------------------------------------------------------------------>
+        <?php else : ?>
+          <?php foreach ($pages as $page) : ?>
+            <li><a href="./item?page=<?= $page  ?>" class=<?php echo (isset($current_page) && $current_page == $page) ? "select-page" : ""  ?>><?= $page ?></a></li>
+          <?php endforeach; ?>
+        <?php endif; ?>
+
+        <!------------------------------------------------------------------------------------------------------------->
+
+        <!-- 次へボタンの表示分岐 -->
+        <?php if (isset($current_page) && $current_page != end($pages)) : ?>
           <li><a href="./item?page=<?= (int)$current_page + 1  ?>">次へ</a></li>
+        <?php endif; ?>
+
+        <!-- 最後ボタンの表示分岐ページ数１０以上の場合 -->
+        <?php if (count($pages) >= 10) : ?>
+          <li><a href="./item?page=<?= end($pages) ?>">最後</a></li>
         <?php endif; ?>
       </ul>
     <?php endif; ?>
-=======
-    <?php else: ?>
-      <div class="empty">商品がありません。</div>
-    <?php endif; ?>
-    <!-- ページネーション　-->
-    <ul class="pagination">
-      <li>
-        <a href="#"><前へ</a>
-      </li>
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#" class="select-page">3</a></li>
-      <li><a href="#">次へ></a></li>
-    </ul>
->>>>>>> 6853b9dda2138e032e8bbc737b92a6644d8ac43d
+
+    <footer class="ft">
+      <a href="#" class="top-jump">top</a>
+      <ul>
+        <li><a href="./top">トップページ</a></li>
+        <li><a href="./item">出品商品</a></li>
+        <li><a href="./info">サイト案内</a></li>
+        <li><a href="./shop?action=new">販売店登録</a></li>
+        <li><a href="./contact?action=new">お問合せ</a></li>
+      </ul>
+      <small>copyright kai</small>
+    </footer>
+
   </section>
+
 
 </article>

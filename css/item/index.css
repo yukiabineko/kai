@@ -11,6 +11,9 @@
   position: relative;
   box-sizing: border-box;
  }
+.ft{
+  display: none;
+}
 header::after {
   border-bottom: 1px solid #c0c0c0;
   content: "";
@@ -130,7 +133,13 @@ header::after {
    margin-top: 30px;
    width: 213px;
    padding-bottom: 8px;
+  transition: .2s;
  
+ }
+ .items-session ul .list:hover{
+  transform: translateY(-30px);
+  opacity: 0.7;
+  
  }
  .items-session ul .list .img{
    width: 214px;
@@ -187,15 +196,10 @@ header::after {
  
  .items-session .pagination{
    display: flex;
+   align-items: center;
    background-color: transparent !important;
    margin-top: 34px;
    margin-bottom: 10px;
-<<<<<<< HEAD
-   padding-top: 1rem;
-   
-=======
-   display: none;
->>>>>>> 6853b9dda2138e032e8bbc737b92a6644d8ac43d
  }
  .items-session .pagination li  {
   display: inline-block;
@@ -217,6 +221,15 @@ header::after {
    text-decoration: none;
    justify-content: center;
    
+ }
+ .centers{
+    align-items: center;
+    display: flex;
+    font-size: 9px;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    justify-content: center;
  }
  .items-session .pagination li .select-page{
     background-color: #0000ff;

@@ -1,0 +1,441 @@
+/***********ヘッダー******************/
+header::after {
+  border-bottom: 1px solid #c0c0c0;
+  content: "";
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+
+}
+
+article {
+  width: 980px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+article .title {
+  text-align: center;
+}
+
+article .title h3 {
+  display: inline-block;
+  color: #000;
+  font-size: 46px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  letter-spacing: 0.16em;
+  margin: 27px 0 20px 20px;
+  text-align: center;
+  position: relative;
+
+}
+
+article .title h3::after {
+  display: block;
+  content: "";
+  width: 50%;
+  height: 0;
+  border-bottom: 4px solid #522f60;
+  position: absolute;
+  top: 84%;
+  margin-bottom: 1rem;
+}
+
+article .title h3::before {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 0;
+  border-bottom: 4px solid #9b69af;
+  position: absolute;
+  top: 84%;
+  margin-bottom: 1rem;
+}
+
+/*
+*/
+/******************************商品コンテンツ*******************************************************/
+article .contents {
+  border: 1px solid #c0c0c0;
+  width: 783px;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+article .contents .item {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 42px;
+  width: 709px;
+
+}
+
+article .contents .item img {
+  width: 403px;
+  height: 203px;
+  margin-left: 35px;
+}
+
+article .contents .item ul {
+  list-style: none;
+  height: 203px;
+  margin: 0;
+  padding: 0;
+}
+
+article .contents .item ul li {
+  font-size: 30px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(7, 68, 30);
+  letter-spacing: 0.16em;
+  margin: -1rem 0 1.4rem 0;
+
+
+}
+
+article .contents .item ul .price {
+  margin-top: -1.5rem;
+  padding-bottom: 9px;
+
+}
+
+article .contents .item ul li span {
+  font-size: 50px;
+  font-family: "DNP ShueiNMinStd";
+  font-style: italic;
+  color: #ff0000;
+  letter-spacing: 0.16em;
+}
+
+article .contents .border {
+  width: 711px;
+  border-bottom: 1.22px solid #c0c0c0;
+  margin: 1.52rem auto;
+}
+
+/*****************************フォームエリア*******************************************************/
+.order-form {
+  width: 770px;
+  margin: -15px 0 0 30px;
+}
+
+.order-form .form-group {
+  display: flex;
+  align-items: center;
+}
+
+.order-form .form-group p {
+  font-size: 30px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(7, 68, 30);
+  letter-spacing: 0.16em;
+  margin-right: 19px;
+
+}
+
+.order-form .form-group input[type="number"] {
+  font-size: 30px;
+  width: 586px;
+  height: 41px;
+  border: 1px solid #c0c0c0;
+  border-radius: 4px;
+  text-align: right;
+}
+
+.order-form .group2 {
+  margin: -30px 0 -15px 0;
+}
+
+.order-form .group2 p {
+  margin-right: 14px;
+}
+
+.datetime-form {
+  width: 490px;
+  height: 41px;
+  border: 1px solid #c0c0c0;
+  border-radius: 4px;
+  font-size: 30px;
+  text-align: right;
+}
+
+/*************************合計金額**********************************/
+.total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 716px;
+  margin: 0 auto;
+}
+
+.total .total-title {
+  font-size: 30px;
+  font-family: "DNP ShueiNMinStd";
+  letter-spacing: 0.16em;
+}
+
+.total .total-money {
+  font-size: 38px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(7, 68, 30);
+  letter-spacing: 0.16em;
+}
+
+.total .total-money span {
+  color: red;
+}
+
+/******************注文ボタン************************/
+.btns {
+  display: flex;
+  align-items: center;
+}
+
+.btns .cart {
+  display: flex;
+  width: 273px;
+  height: 85px;
+  background-color: #522f60;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(246, 245, 222);
+  letter-spacing: 0.16em;
+  margin: 27px 27px 50px 30px;
+
+}
+
+.btns .cart img {
+  width: 40px;
+  height: 40px;
+}
+
+.btns .back {
+  display: flex;
+  width: 273px;
+  height: 85px;
+  background-color: #f0f0f0;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: "DNP ShueiNMinStd";
+  color: #07441e;
+  letter-spacing: 0.16em;
+  margin: 27px 0 50px 0;
+
+}
+
+.btns .cart:hover {
+  background-color: violet;
+}
+
+.btns .back:hover {
+  background-color: #c0c0c0;
+}
+
+/**********************************地図エリア******************************************************************/
+.map {
+  width: 980px;
+  text-align: center;
+  position: relative;
+  margin-top: 23px;
+}
+
+.map h3 {
+  display: inline-block;
+  font-size: 46px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(0, 0, 0);
+  letter-spacing: 0.16em;
+  position: relative;
+}
+
+.map h3::before {
+  display: block;
+  content: "";
+  width: 99%;
+  height: 0px;
+  border-bottom: 4px solid #9b69af;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: -16px;
+}
+
+.map h3::after {
+  display: block;
+  content: "";
+  width: 50%;
+  height: 0px;
+  border-bottom: 4px solid #522f60;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: -16px;
+}
+
+.map p {
+  font-size: 12px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(255, 0, 0);
+  letter-spacing: 00.16em;
+  margin: -3rem 0 40px -6rem;
+
+}
+
+#mapcontainer {
+  width: 800px;
+  height: 800px;
+  margin: 0 auto;
+}
+
+/**********************その他商品**********************************************/
+.others {
+  width: 980px;
+  text-align: center;
+  position: relative;
+  margin-top: 23px;
+  margin-bottom: 14.5rem;
+  border: none;
+}
+
+.others h3 {
+  display: inline-block;
+  font-size: 46px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(0, 0, 0);
+  letter-spacing: 0.16em;
+  position: relative;
+}
+
+.others h3::before {
+  display: block;
+  content: "";
+  width: 96%;
+  height: 0px;
+  border-bottom: 4px solid #9b69af;
+  position: absolute;
+  top: 100%;
+  left: 2%;
+  margin-top: -16px;
+}
+
+.others h3::after {
+  display: block;
+  content: "";
+  width: 50%;
+  height: 0px;
+  border-bottom: 4px solid #522f60;
+  position: absolute;
+  top: 100%;
+  left: 2%;
+  margin-top: -16px;
+}
+
+.others .contents {
+  width: 980px;
+}
+
+.others .contents ul {
+  list-style: none;
+  margin: 30px 88px 0 88px;
+  padding: 0;
+  display: flex;
+  width: 980px;
+  height: 423px;
+
+}
+
+.others .contents ul li {
+  width: 240px;
+  height: 323px;
+  background-color: #f6f5de;
+  border-radius: 4px 4px 0 0;
+  margin-right: 40px;
+  box-shadow: 1px 2px 0 0 #dddddd;
+}
+
+.others .contents ul li .item-img {
+  width: 240px;
+  height: 150px;
+  border-radius: 4px 4px 0 0;
+}
+
+.others .contents ul li .name {
+  font-size: 18px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(4, 4, 4);
+  letter-spacing: 00.16em;
+  text-align: left;
+  margin-top: -4px;
+  margin-bottom: -.4rem;
+
+}
+
+.others .contents ul li .price {
+  font-size: 18px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(4, 4, 4);
+  letter-spacing: 00.16em;
+  text-align: left;
+  margin-bottom: 7px;
+
+}
+
+.others .contents ul li .price span {
+  font-size: 26px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  font-style: italic;
+  color: #ff0000;
+  letter-spacing: 00.16em;
+  text-align: left;
+
+}
+
+.others .contents ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(255, 255, 255);
+  background-color: #21e118;
+  width: 216px;
+  height: 53px;
+  margin: 0 auto;
+}
+
+.others .contents ul li a img {
+  width: 23px;
+  height: 27px;
+}
+
+.other-item-link {
+  display: block;
+  width: 980px;
+  text-align: left;
+  margin-left: 88px;
+  margin-top: -4.4rem;
+  margin-bottom: 23px;
+  font-size: 16px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(87, 127, 243);
+  text-decoration: underline;
+  line-height: 1.2;
+
+}
+
+.others .contents ul li a img {
+  width: 18px;
+  height: 19px;
+}

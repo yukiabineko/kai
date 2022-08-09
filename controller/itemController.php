@@ -9,14 +9,11 @@ public function index(){
   $parameter = [];
   $model  = new item();
 
-<<<<<<< HEAD
   //ページ数
   $pages = $model->pages();
 
 
   //クエリパラメーターで取り出す商品レコード分岐
-=======
->>>>>>> 6853b9dda2138e032e8bbc737b92a6644d8ac43d
   if(isset($_GET['area'])){
     $items = $model->joinLike('shop', 'adress', $_GET['area']);
   }
@@ -25,7 +22,6 @@ public function index(){
   }
   else{
     $page = isset($_GET['page'])? (int)$_GET['page'] - 1 : null;
-<<<<<<< HEAD
     $items =  isset($page)? 
     array_slice($model->all(), $page * 8, 8) 
     :  array_slice($model->all(), 0, 8) ;
@@ -36,13 +32,15 @@ public function index(){
   isset($page)? $parameter['current_page'] = ($page + 1) :  $parameter['current_page'] = 1;
   $parameter['pages'] = $pages;
 
-=======
+  //表示するページネーションの数(今回は5でふりわける)
+  $page_count = $this->page_nation_number( count($pages));
+
+  $parameter['counts'] = $page_count;
+  
+
     isset($page)? $items = 
     array_slice($model->all(), $page * 8, 8) 
     : $items = $model->all();
-  }
-
->>>>>>> 6853b9dda2138e032e8bbc737b92a6644d8ac43d
   
   $this->view('index', $parameter);
 }
@@ -282,6 +280,17 @@ protected function updateImage(item $item){
   }
  
 }
+  /***************************ページネーションの振り分け****************************************************** */
+  public function page_nation_number(int $page_number){
+    
+    $id = 0;
+    $numbers = [];
+    for($i = $page_number; $i>=0; $i-=5){
+     array_push($numbers, $id);
+     $id++;
+    }
+    return $numbers;
+  }
 
  
 }

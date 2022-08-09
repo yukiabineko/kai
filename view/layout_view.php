@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="./css/modal.css">
   <link rel="stylesheet" href="./css/<?= $controllerName ?>/<?= $actionName ?>.css" media="screen and (min-width: 980px)">
   <link rel="stylesheet" href="./css/<?= $controllerName ?>/<?= $actionName ?>-mobile.css" media="screen and (max-width: 979px)">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
   <script>
     (function(d) {
       var config = {

@@ -12,11 +12,15 @@ body{
   height: 100%;
 
 }
+.footer{
+  display: none;
+}
 article {
   width: 100vw;
   height: 100vh;
   margin: 0;
-  padding-bottom: 100vh;
+ 
+
 }
 
 /******************************タイトル*******************************************************/
@@ -101,6 +105,8 @@ article {
 .items-session {
   width: 100vw;
   margin: 30px 0 0 0;
+  padding-bottom: 100vh;
+  position: relative;
 }
 .items-session ul {
   display: flex;
@@ -119,6 +125,11 @@ article {
   margin-top: 30px;
   width: calc((100vw - 50px)/2);
   padding-bottom: 8px;
+
+}
+items-session ul .list:hover {
+  transform: translateY(-30px);
+  opacity: 0.7;
 
 }
 .items-session ul .list .img {
@@ -175,12 +186,13 @@ article {
   margin-top: 4px;
 }
 .items-session .pagination {
-  /**display: flex;*/
-  display: none;
+  display: flex;
   background-color: transparent !important;
   margin-top: 34px;
   margin-bottom: 79px;
-  margin-left: -2%;
+  padding-bottom: 12rem;
+
+ 
 }
 .items-session .pagination li {
   display: inline-block;
@@ -229,6 +241,8 @@ article {
   top: 100vh;
   opacity: 0;
   transition: .4s;
+  z-index:9;
+  overflow: scroll;
   
  }
  .map-info{
@@ -274,10 +288,67 @@ article {
  
  }
  /**************************************footer**********************************************************************************/
- footer{
+ .ft{
   width: 100vw;
-  position: sticky;
-  top: 100vh;
+  position: absolute;
+  bottom: 0;
   padding: 1rem 0;
+  
  
+}
+
+.ft .top-jump {
+  border-radius: 50%;
+  background-color: #522f60;
+  content: "top";
+  color: #FFFFFF;
+  display: inline-block;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  position: absolute;
+  padding-top: 8px;
+  text-align: center;
+  left: 50%;
+  top: -12%;
+  width: 150px;
+  height: 100px;
+  transform: translateX(-50%);
+  text-decoration: none;
+  z-index: 1;
+
+}
+
+.ft ul {
+  display: block;
+  list-style: none;
+  text-align: center;
+  position: relative;
+  padding: 0;
+  width: 100vw;
+  z-index: 2;
+  margin-top: 3rem;
+}
+
+ft ul li {
+  margin-bottom: 33px;
+}
+
+.ft ul li a {
+  color: white;
+  font-size: 21.27px;
+  font-family: "DNP ShueiNMinStd";
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-decoration: none;
+}
+
+.ft small {
+  color: white;
+  display: block;
+  font-size: 11px;
+  font-family: "DNP ShueiNMinStd";
+  text-align: center;
+  letter-spacing: 0.11em;
 }

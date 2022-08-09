@@ -1,0 +1,352 @@
+html {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+
+}
+.footer{
+  display: none;
+}
+article {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding-bottom: 180vh;
+
+}
+
+/******************************タイトル*******************************************************/
+.title {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.title img {
+  width: 41px;
+  height: 37px;
+}
+.title h1 {
+  font-size: 20.56px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(7, 68, 30);
+  letter-spacing: 0.16em;
+}
+.title-info {
+  font-size: 10px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(7, 68, 30);
+  letter-spacing: 0.16em;
+}
+.search {
+  display: block;
+  margin: 30px 0 30px 0;
+  width: 100vw;
+  box-sizing: border-box;
+  margin-top: 19px;
+}
+.search form {
+  display: flex;
+  align-items: center;
+}
+
+.search form input[type="text"] {
+  border: 1px solid #c0c0c0;
+  border-radius: 0px;
+  display: block;
+  font-size: 15px;
+  font-family: "DNP ShueiNMinStd";
+  width: 88%;
+  height: 42px;
+}
+
+.search form input[type="text"]:focus {
+  outline: none;
+  background-color: pink;
+
+}
+
+.search form input[type="submit"] {
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-family: "DNP ShueiNMinStd";
+  background-color: #522f60;
+  border: 1px solid #522f60;
+  border-radius: 0px;
+  display: block;
+  width: 12.8%;
+  height: 46px;
+}
+
+.map-button {
+  background-color: #522f60;
+  border-radius: 0px;
+  border: none;
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-family: "DNP ShueiNMinStd";
+  width: 92.3%;
+  line-height: 3;
+  margin: 20px auto;
+
+}
+/****************************商品エリア*****************************************************************************/
+.items-session {
+  width: 100vw;
+  margin: 30px 0 0 0;
+}
+.items-session ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -26px 0 -5px 0;
+  padding: 0;
+  list-style: none;
+  width: 100vw;
+}
+.items-session ul .list {
+  background-color: #f6f5de;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+  border-radius: 4px;
+  margin-left: 15px;
+  margin-top: 30px;
+  width: calc((100vw - 50px)/2);
+  padding-bottom: 8px;
+
+}
+.items-session ul .list .img {
+  width: 100%;
+  height: 150px;
+  margin-left: -1px;
+}
+.items-session ul .list .items,
+.items-session ul .list .price,
+.items-session ul .list .shop {
+  font-size: 16.5px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(4, 4, 4);
+  letter-spacing: 0.16em;
+  margin-top: -4px;
+}
+.items-session ul .list .items {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.items-session ul .list .price {
+  padding-top: 3px;
+}
+
+.items-session ul .list .shop {
+  padding-top: 8px;
+}
+.items-session ul .list .price span {
+  font-size: 23.5px;
+  font-family: "DNP ShueiNMinStd";
+  font-style: italic;
+  font-weight: bold;
+  color: rgb(255, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  margin-right: 7px;
+}
+.items-session ul .list a {
+  background-color: #21e118;
+  display: flex;
+  font-size: 12.9px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(255, 255, 255);
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 3px);
+  height: 40px;
+  margin: 0 auto;
+  text-decoration: none;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-top: 4px;
+}
+.items-session .pagination {
+  display: flex;
+  background-color: transparent !important;
+  margin-top: 34px;
+  margin-bottom: 79px;
+  padding-bottom: 12rem;
+
+ 
+}
+.items-session .pagination li {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: none;
+  border-radius: 50%;
+  margin-right: 3px;
+}
+
+.items-session .pagination li a {
+  align-items: center;
+  display: flex;
+  font-size: 9px;
+  width: 50px;
+  height: 50px;
+  background-color: #c0c0c0;
+  border-radius: 50%;
+  color: #335862;
+  text-decoration: none;
+  justify-content: center;
+}
+
+.items-session .pagination li .select-page {
+  background-color: #0000ff;
+  color: #ddddff;
+}
+.empty{
+  width: 100vw;
+  height: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  color: #444;
+ 
+
+}
+/*********************************************************************************************************************/
+.map{
+  width: 100vw;
+  height: 100vw;
+  background-color: white;
+  position: absolute;
+  left: 1%;
+  top: 100vh;
+  opacity: 0;
+  transition: .4s;
+  
+ }
+ .map-info{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 1rem;
+ }
+ .map-buttons{
+  display: flex;
+  align-items: center;
+ }
+ .all-area-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #522f60;
+  text-decoration: none;
+  color: white;
+  padding: .5rem 1rem;
+  margin-right: 10px;
+ }
+ .all-area-button:hover {
+   opacity: 0.7;
+ }
+ .close-map{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c0c0c0;
+    border: none;
+    color: white;
+    padding: .6rem 1rem;
+    border: 1px solid #c0c0c0;
+ }
+ #open{
+  display: none;
+ }
+ #open:checked ~ .map{
+  opacity: 1;
+  top: 50%;
+ 
+ }
+ /**************************************footer**********************************************************************************/
+ .ft{
+  width: 100vw;
+  position: sticky !important;
+  top: 100vh !important;
+  padding: 1rem 0 !important;
+  
+ 
+}
+.ft {
+  width: 100%;
+  height: auto;
+  background-color: #522f60;
+  margin: 0;
+  padding: 0;
+}
+
+.ft .top-jump {
+  border-radius: 50%;
+  background-color: #522f60;
+  content: "top";
+  color: #FFFFFF;
+  display: inline-block;
+  font-size: 24px;
+  font-family: "DNP ShueiNMinStd";
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  position: absolute;
+  padding-top: 8px;
+  text-align: center;
+  left: 50%;
+  top: -12%;
+  width: 150px;
+  height: 100px;
+  transform: translateX(-50%);
+  text-decoration: none;
+  z-index: 1;
+
+}
+
+.ft ul {
+  display: block;
+  list-style: none;
+  text-align: center;
+  position: relative;
+  padding: 0;
+  width: 100vw;
+  z-index: 2;
+  margin-top: 3rem;
+}
+
+ft ul li {
+  margin-bottom: 33px;
+}
+
+.ft ul li a {
+  color: white;
+  font-size: 21.27px;
+  font-family: "DNP ShueiNMinStd";
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-decoration: none;
+}
+
+.ft small {
+  color: white;
+  display: block;
+  font-size: 11px;
+  font-family: "DNP ShueiNMinStd";
+  text-align: center;
+  letter-spacing: 0.11em;
+}
