@@ -6,7 +6,12 @@ class itemController extends baseController{
 
 /********************商品一覧****************************************************/
 public function index(){
+  $token = $this->tokenCreate();
+  $_SESSION['token'] = $token;
+
   $parameter = [];
+  $parameter['token'] = $token;
+  
   $model  = new item();
 
   //ページ数
@@ -119,6 +124,10 @@ public function show(int $id){
     $_SESSION['token'] = $token;
     $model = new item();
     $item = $model->find($id);
+    //存在しないgetパラメーターを検知したらリダイレクト
+    if(empty($item->id)){
+      header('location: ./item?action=index');
+    }
     $shop = $item->belogsTo('shop');
 
     //画像のパス配列化

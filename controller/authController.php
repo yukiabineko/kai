@@ -40,6 +40,9 @@
     }
   /*************************ログアウト処理**************************************************************************/
     public function delete(int $id, $params){
+      echo "session:".$_SESSION['token']."<br>";
+      echo "params:".$params['csrf-token'];
+
       if($this->csrf($params['csrf-token'])){
         unset($_SESSION['auth_id']);
         $shop = new shop();

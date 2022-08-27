@@ -42,6 +42,7 @@
       s.parentNode.insertBefore(tk, s)
     })(document);
   </script>
+  <script src="./js/main.js"></script>
   <script src="./js/object.js"></script>
   <script src="./js/modal.js"></script>
   <script src="./js/<?= $controllerName ?>/<?= $actionName ?>.js"></script>
@@ -49,12 +50,37 @@
 </head>
 
 <body>
+  <!-- 買い物カゴに入れた場合のみ表示 -->
+  <?php if (isset($_SESSION['orders']) && count($_SESSION['orders']) > 0) : ?>
+    <div class="shopping-cart">
+      <div class="shopping-cart-default">
+        <div class="shopping-cart-icon">
+          <img src="./image/icons/shopping-cart.svg" alt="カート" class="shopping-cart-img">
+          <span class="shopping-cart-item-count">
+            <?= count($_SESSION['orders']) ?>
+          </span>
+        </div>
+        <!-- 買い物かごタイトル　-->
+        <p class="shopping-cart-title">買い物かご確認</p>
+        <a href="./order?action=new" class="shopping-cart-link" onclick="showOrders(arguments[0])">詳細を見る</a>
+      </div>
+      
+      <!-- 拡大時の表示エリア -->
+      <div class="shopping-cart-infomation">
+        <h1>買い物かごリスト</h1>
+        <p>注文を確定したい場合はしたのボタンを押下してください。</p>
+        <div class="shopping-cart-buttos">
+          <button class="shopping-cart-close" onclick="shoppingCartInfoClose()">閉じる</button>
+        </div>
+      </div>
+    </div>
+  <?php endif; ?>
+  <!-- 各viewのコンテンツ -->
   <?php
   include("./view/header.php");
   include("./view/" . $controllerName . "/" . $actionName . "_view.php");
   include("./view/footer.php");
   ?>
-
 </body>
 
 </html>

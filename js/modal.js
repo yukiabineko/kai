@@ -15,6 +15,7 @@ const min = [
 
 
 const createCalendar = (timeform = true, id = null, startDate = null, endDate = null) => {         //timeformは時間のフォームを表示させるか？デフォルトはtrue idは入力後反映する要素
+  
   let modal = document.getElementById('modal');
   let back = document.getElementById('modal-back');
   back.style.display = 'block';
@@ -63,6 +64,19 @@ const createCalendar = (timeform = true, id = null, startDate = null, endDate = 
 const closeModal = () => {
   let modal = document.getElementById('modal');
   let back = document.getElementById('modal-back');
+
+  let today = new Date();
+  let year = today.getFullYear();
+  let month = today.getMonth() + 1;
+  let resetDate = `${year}-${month.toString().padStart(2, "0")}-01`;
+  //とじられたら、月を当月に戻す。
+  document.getElementById('target-date').textContent = resetDate;
+
+  
+  //地図表示
+  let map = document.getElementById('mapcontainer');
+  if (map) { document.getElementById('mapcontainer').style.display = "block"; };
+  
   back.style.display = 'none';
   modal.style.top = '-200%';
 }
@@ -139,7 +153,7 @@ const prevButtonCheck = () => {
   let todayYear = today.getFullYear();
   let todayMonth = today.getMonth() + 1;
 
-  let target = new Date(document.getElementById("target-date").textContent);
+  let target = new Date(document.getElementById("target-date").textContent.replace( /-/g , "/" ) );
   let targetYear = target.getFullYear();
   let targetMonth = target.getMonth() + 1;
 
@@ -194,7 +208,4 @@ const changeButtonCreate = (id = null) => {
   modal.appendChild(button);
 
 }
-/**
- * 時間モーダルの表示
- */
 

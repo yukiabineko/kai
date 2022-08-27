@@ -1,0 +1,488 @@
+/**********ヘッダー******************/
+header::after {
+  border-bottom: 1px solid #c0c0c0;
+  content: "";
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+}
+
+article {
+  width: 980px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+article .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+article .title h1 {
+  display: inline-block;
+  font-size: 46px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  position: relative;
+  margin-top: 52px;
+}
+
+article .title h1::after {
+  display: block;
+  content: "";
+  width: 50%;
+  height: 0;
+  border-bottom: 4px solid #9b69af;
+  position: absolute;
+  top: 100%;
+
+}
+
+article .title h1::before {
+  display: block;
+  content: "";
+  width: 98%;
+  height: 0;
+  border-bottom: 4px solid #522f60;
+  position: absolute;
+  top: 100%;
+
+}
+
+article .title .total-area p {
+  text-align: left;
+  font-size: 20px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+
+}
+
+article .title .total-area {
+  margin-top: -5px;
+}
+
+article .title .total-area .total-price {
+  display: flex;
+  align-items: center;
+  margin-top: -1rem;
+
+}
+
+article .title .total-area .total-price .price-area {
+  display: flex;
+  align-items: center;
+  width: 296px;
+  height: 30px;
+  background-color: #27271d;
+  color: #f5f5f5;
+  justify-content: flex-end;
+  font-size: 20px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-right: 10px;
+}
+
+article .title .total .total-price .price-area span {
+  font-size: 20px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+}
+
+/************************カートエリア***********************************************/
+.carts {
+  width: 980px;
+  margin-top: 15px;
+}
+
+.carts .items {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carts .items li {
+  width: 978px;
+  height: 420px;
+  border: 1px solid #000;
+  margin-bottom: 100px;
+}
+
+.carts .items li .contents {
+  display: flex;
+  width: 735px;
+  margin: 25px 0 0 71px;
+}
+
+.carts .items li .contents .info {
+  display: block;
+  font-size: 30px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  margin: -4px 0 0 50px;
+
+}
+
+/*************商品リスト１行目**************************/
+.carts .items li .contents img {
+  width: 202px;
+  height: 156px;
+  border-radius: 0;
+}
+
+.carts .items li .contents .info .item-info .name {
+  font-size: 30px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-right: 78px;
+  margin-bottom: 29px;
+  font-weight: bold;
+
+
+}
+
+.carts .items li .contents .info .item-info .name span {
+  margin-left: 25px;
+
+}
+
+.carts .items li .contents .info .price-info {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  color: #000;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-bottom: 30px;
+}
+
+.carts .items li .contents .info .price-info .price {
+  margin-left: 34px;
+  color: red;
+}
+
+.carts .items li .contents .info .price-info .en {
+  margin-left: -10px;
+  color: #000;
+}
+
+/****************商品２列目*********************************************/
+.carts .items li .contents .info .shop-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 535px
+}
+
+.carts .items li .contents .info .shop-info .receiving_store {
+  font-size: 30px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+}
+
+.carts .items li .contents .info .shop-info .store-name {
+  font-size: 30px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+
+}
+
+/***********************フォームエリア********************************************************/
+.form-group {
+  width: 931px;
+  margin: 37px 0 35px -74px;
+  display: flex;
+  align-items: center;
+}
+
+.form-group .number-label {
+  font-size: 30px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-left: 150px;
+}
+
+.form-group .order-number {
+  width: 98px;
+  height: 40px;
+  border-radius: 0;
+  border: 1px solid #c0c0c0;
+  text-align: right;
+  margin-left: 14px;
+  font-size: 20px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+}
+
+.form-group .receiving-label {
+  font-size: 30px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-left: 40px;
+}
+
+.form-group .receiving-box {
+  width: 314px;
+  height: 40px;
+  border: 1px solid #c0c0c0;
+  margin-left: 13px;
+  font-size: 18px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-align: right;
+
+}
+
+.form-group .border {
+  border-top: 1px solid #c0c0c0;
+}
+
+.hr {
+  width: 100%;
+  border-top: 1px solid #c0c0c0;
+}
+
+/********************商品合計エリア**********************************************************/
+.total {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-top: -23px;
+  white-space: nowrap;
+}
+
+.total .total-price {
+  font-size: 36px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(39, 39, 29);
+  line-height: 4.306;
+  letter-spacing: 0.16em;
+  margin-left: 27px;
+
+}
+
+.total .total-price-tax {
+  font-size: 36px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(39, 39, 29);
+  line-height: 4.306;
+  letter-spacing: 00.16em;
+  margin-left: 98px;
+}
+
+
+.total .total-price-tax span {
+  color: #ff0000;
+}
+
+.total button {
+  background-color: #ff0000;
+  border: none;
+  display: flex;
+  width: 230px;
+  height: 78px;
+  align-items: center;
+  justify-content: center;
+  font-size: 29px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  line-height: 5.345;
+  letter-spacing: 0.16em;
+  margin: 2px 0 0 96px;
+
+}
+
+.total button:hover {
+  background-color: #e36161;
+}
+
+.total button img {
+  width: 40px;
+  height: 40px;
+}
+
+/*******************************ユーザーフォームエリア************************************************************************************/
+/**
+ユーザータイトル
+*/
+.user {
+  width: 980px;
+  text-align: center;
+  margin-top: -56px;
+
+}
+
+.user h1 {
+  display: inline-block;
+  font-size: 46px;
+  font-family: "DNP ShueiNMinStd";
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  position: relative;
+}
+
+.user h1::after {
+  display: block;
+  content: "";
+  width: 50%;
+  height: 0;
+  border-bottom: 4px solid #9b69af;
+  position: absolute;
+  top: 100%;
+
+}
+
+.user h1::before {
+  display: block;
+  content: "";
+  width: 98%;
+  height: 0;
+  border-bottom: 4px solid #522f60;
+  position: absolute;
+  top: 100%;
+
+}
+
+/********************ユーザーフォーム内容************************************************************/
+.user-table {
+  width: 980px;
+  margin: 12px auto 98px;
+  border-collapse: collapse;
+}
+
+.user-table tr th {
+  background-color: #f0f0f0;
+  border-right: 1px solid #fff;
+  width: 406px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+}
+
+.user-table tr th img {
+  width: 40px;
+  height: 40px;
+  margin-left: 8px;
+}
+
+.user-table tr th .name,
+.tel,
+.email {
+  font-size: 26px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.user-table tr th .name span,
+.tel span {
+  font-size: 12px;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(255, 0, 0);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+
+}
+
+.user-table tr td {
+  background-color: #f0f0f0;
+  width: 573px;
+}
+
+.user-table tr td input[type="text"],
+input[type="tel"],
+input[type="email"] {
+  border-radius: 0;
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid #694b75;
+  height: 58px;
+}
+
+.btns {
+  display: block;
+  width: 80%;
+  margin: 0 auto 135px;
+}
+
+.btns input[type="submit"] {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  align-items: center;
+  border: none;
+  background-color: #522f60;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  letter-spacing: 0.16em;
+  color: rgb(255, 255, 255);
+  margin-bottom: 33px;
+
+}
+
+.btns input[type="submit"]:hover {
+  background-color: rgb(125, 76, 145);
+}
+
+.btns a {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  background-color: #f0f0f0;
+
+}
+
+.btns a:hover {
+  background-color: #cfc9c9;
+}

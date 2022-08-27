@@ -138,6 +138,7 @@ article .contents .border {
   justify-content: space-between;
   align-items: center;
   margin: 25px auto;
+  white-space: nowrap;
 }
 
 .total .total-title {
@@ -167,7 +168,7 @@ article .contents .border {
 .btns {
   display: block;
   width: 84.6%;
-  margin: 44px auto;
+  margin: 44px 0;
 }
 
 .btns .cart {
@@ -175,6 +176,7 @@ article .contents .border {
   width: 100%;
   height: 74px;
   background-color: #522f60;
+  border: none;
   align-items: center;
   justify-content: center;
   text-decoration: none;

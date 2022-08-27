@@ -138,7 +138,7 @@ class Model{
       $smt->bindValue($column_number, (int)$id, PDO::PARAM_INT);
       $smt->execute();
       //作成したレコードを呼び出し
-      $this->last();
+      $this->find($id);
       return true;
     } catch (PDOException $e) {
       echo $e->getMessage();
@@ -229,6 +229,29 @@ class Model{
       echo $e->getMessage();
       exit();
     }
+  }
+  /****************************レコード数カラム、指定して複数取り出し*********************************************************************************** */
+  public function where(string $column_name, string $param, int $limit = null, int $exclusion = null){
+   $sql = "SELECT * FROM $this->table WHERE $column_name=?";
+   isset($exclusion) ? $sql .= " AND NOT id= ?" : "";
+   isset($limit)? $sql.= " LIMIT ?" : "";
+
+   $smt = $this->pdo->prepare($sql);
+   $smt->bindValue(1, $param, PDO::PARAM_STR);
+   $smt->bindValue(2,$exclusion,PDO::PARAM_STR);
+   $smt->bindValue(3, (int)$limit, PDO::PARAM_INT);
+   $smt->execute();
+   $records = $smt->fetchAll(PDO::FETCH_ASSOC);
+  
+   $items = [];
+   foreach($records as $record){
+     $obj = new $this->table();
+     foreach($record as $key => $value){
+      $obj->$key = $value;
+     }
+     array_push($items, $obj);
+   }
+   return $items;
   }
   /***************************リレーション関連********************************************************************************************/
   public function hasMany(string $table_name){

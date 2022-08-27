@@ -90,7 +90,8 @@ article .contents .item ul li {
   color: rgb(7, 68, 30);
   letter-spacing: 0.16em;
   margin: -1rem 0 1.4rem 0;
-
+  white-space:nowrap;
+  
 
 }
 
@@ -150,6 +151,11 @@ article .contents .border {
 .order-form .group2 p {
   margin-right: 14px;
 }
+.form-border{
+  width: 722px;
+  border-bottom: 1.22px solid #c0c0c0;
+  margin: 1.52rem 0;
+}
 
 .datetime-form {
   width: 490px;
@@ -165,8 +171,8 @@ article .contents .border {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 716px;
-  margin: 0 auto;
+  width: 750px;
+  box-sizing: border-box;
 }
 
 .total .total-title {
@@ -180,6 +186,7 @@ article .contents .border {
   font-family: "DNP ShueiNMinStd";
   color: rgb(7, 68, 30);
   letter-spacing: 0.16em;
+  
 }
 
 .total .total-money span {
@@ -197,6 +204,7 @@ article .contents .border {
   width: 273px;
   height: 85px;
   background-color: #522f60;
+  border: none;
   align-items: center;
   justify-content: center;
   text-decoration: none;
@@ -204,7 +212,7 @@ article .contents .border {
   font-family: "DNP ShueiNMinStd";
   color: rgb(246, 245, 222);
   letter-spacing: 0.16em;
-  margin: 27px 27px 50px 30px;
+  margin: 27px 27px 50px 0;
 
 }
 
@@ -243,6 +251,7 @@ article .contents .border {
   text-align: center;
   position: relative;
   margin-top: 23px;
+  z-index: 1;
 }
 
 .map h3 {

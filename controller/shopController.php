@@ -50,7 +50,6 @@
      * 編集処理
      */
     public function update(int $id, array $params){
-      print_r($params);
       echo "<br>";
       echo $_SESSION['token'];
       if($this->csrf($params['csrf-token'])){
@@ -77,7 +76,7 @@
       
       $items = $shop->hasMany('item');     //=>関連商品
 
-      if(!isset($_SESSION['auth_id'])){
+      if(!isset($_SESSION['auth_id']) || $shop->id != $_SESSION['auth_id']){
          header('location: ./auth?action=new');
       }
       $this->view('show', [
