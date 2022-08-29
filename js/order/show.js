@@ -66,7 +66,10 @@ const getMapPointer = async()=>{
 const viewCalender = (start,finish, tms) =>{
   //地図非表示
   document.getElementById('mapcontainer').style.display = "none";
-  
+
+  let todayMonth = new Date().getMonth();
+  let startMonth = new Date(start).getMonth();
+  let calendar = null;
 
   let timeData = JSON.parse(tms);
   
@@ -78,10 +81,21 @@ const viewCalender = (start,finish, tms) =>{
   let input = document.getElementById("dtm");
   modal.style.top = (input.getBoundingClientRect().top + window.scrollY) + "px";
 
-  let calendar = new Calendar(
-    document.getElementById('target-date').textContent,
-    document.querySelector('.btns').nextElementSibling
-  );
+  //開始日ずけが現在の月以降の場合はカレンダーオブジェクトの引数をstartにする。
+  if(todayMonth < startMonth){
+    calendar = new Calendar(
+      start,
+      document.querySelector('.btns').nextElementSibling
+    );
+    document.getElementById('target-date').textContent = start;
+  }
+  else{
+    calendar = new Calendar(
+      document.getElementById('target-date').textContent,
+      document.querySelector('.btns').nextElementSibling
+    );
+  }
+
   calendar.setDateTimeRange(start, finish);
 
   //終了日時が当月で終了の場合は次月のボタンを非表示
@@ -93,7 +107,7 @@ const viewCalender = (start,finish, tms) =>{
 
   //月ラベルの更新
   document.querySelector('.year-month').textContent = calendar.getDateLabel();
-  prevButtonCheck();   //前月ボタン分岐
+  PrevButtonCheck(calendar,start);   //前月ボタン分岐
   nextButtonCheck(calendar, finish);  //次月ボタン分岐
 
 
@@ -154,7 +168,7 @@ const changeNextMonth = (currentDate, start, finish, tms) => {
 
   //月ラベルの更新
   document.querySelector('.year-month').textContent = calendar.getDateLabel();
-  prevButtonCheck();
+  PrevButtonCheck(calendar,start);
   nextButtonCheck(calendar, finish);  //次月ボタン分岐
 
   //カレンダー各日付押下更新
@@ -208,7 +222,7 @@ const changePrevMonth = (currentDate, start, finish, tms) => {
 
   //月ラベルの更新
   document.querySelector('.year-month').textContent = calendar.getDateLabel();
-  prevButtonCheck();
+  PrevButtonCheck(calendar,start);
   nextButtonCheck(calendar, finish);  //次月ボタン分岐
 
   //カレンダー各日付押下更新
@@ -318,12 +332,41 @@ const nextButtonCheck = ( targetCalendar, last )=>{
   console.log('販売最終日');
   console.log(lastDate);
 
-  if( targetLastDate > lastDate ){
+  if( targetLastDate > lastDate || targetLastDate.getDate() == lastDate.getDate()){
     document.querySelector('.next').disabled = true;
   }
   else{
     document.querySelector('.next').disabled = false;
   }
+}
+/**
+ * 
+ */
+/***************************************************************************************************** */
+//前の月の表示チェック
+const PrevButtonCheck = ( targetCalendar, start) => {
+  //前月ボタン当月以前は非表示
+  let today = new Date();
+  let todayYear = today.getFullYear();
+  let todayMonth = today.getMonth() + 1;
+
+  let target = new Date(document.getElementById("target-date").textContent.replace( /-/g , "/" ) );
+  let targetYear = target.getFullYear();
+  let targetMonth = target.getMonth() + 1;
+
+  let firstDate = new Date(start.replace(/-/g , "/"));
+
+
+  if( firstDate.getMonth() + 1 > todayMonth){
+    document.querySelector('.prev').disabled = true;
+  }
+  else if (parseInt(todayYear) <= parseInt(targetCalendar.getYear()) && parseInt(todayMonth) < parseInt(targetCalendar.getMonth())) {
+    document.querySelector('.prev').disabled = false;
+  }
+  else {
+    document.querySelector('.prev').disabled = true;
+  }
+
 }
 /*******************時間のリセット******************************************************************** */
 const timeFormReset = ()=>{
@@ -380,3 +423,4 @@ const changeMinSelectBox = ( start, finish )=>{
     }
   });
 }
+/*** */

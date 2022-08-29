@@ -59,7 +59,7 @@
   <div class="btns">
     <a 
      href="<?php echo (!isset($_SESSION['auth_id']) || $_SESSION['auth_id'] != $item->shop_id)?
-     "./item" : "./shop?action=show&id=<?= $shop->id ?>" ?>" 
+     "./item" : "./shop?action=show&id=".$shop->id ?>" 
      class="back">一覧へ戻る
     </a>
     <!-- 注文ボタンは掲載店がログインしている場合は非表示 -->

@@ -21,11 +21,15 @@ body{
 }
 /*詳細ボタンを押された場合のレイアウト*/
 .shopping-cart-large{
-  width: calc( 100vw * 0.8 );
+  width: calc( 100vw * 0.6 );
   height: calc( 100vh * 0.7);
-  transform: translateY(-20%);
+  transform: translate(-30%, -20%);
   outline: none;
   border: none;
+  border-radius: 0;
+  background-color: rgb(242, 249, 233);
+  box-shadow: 1px 2px 5px  #c0c0c0;
+  overflow-y: scroll;
 }
 /*詳細ボタンを押された場合にデフォルトのアイコン等を非表示*/
 .shopping-cart-default-none{
@@ -84,8 +88,72 @@ body{
 }
 .shopping-cart-infomation-show{
   display: block;
+  overflow-y: scroll;
 }
-
+/*ショッピングカート拡大時のタイトル*/
+.shopping-cart-infomation h1{
+  color: #522f60;
+  font-size: 32px;
+  font-family: "DNP ShueiNMinStd";
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-align: center;
+  margin-top: calc(100vw * 0.05);
+}
+.shopping-cart-infomation p{
+  width: 85%;
+  margin: 10px auto 0;
+  color: #522f60;
+}
+/*ショッピングカート拡大時のテーブル*/
+.shopping-cart-table{
+  width: 85%;
+  background-color: white;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+.shopping-cart-table th{
+  background-color: #f0f0f0;
+  line-height: 3;
+  color: #522f60;
+}
+.shopping-cart-table td{
+  line-height: 3;
+}
+/**ショッピングカート開いた場合のボタン*/
+.shopping-cart-buttos{
+  width: 85%;
+  margin: 50px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+/*ショッピングカート情報閉じるボタン*/
+.shopping-cart-close{
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c0c0c0;
+  border: none;
+  color: #FFFFFF;
+  line-height: 4;
+}
+.oreder-link-button{
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #522f60;
+  border: none;
+  color: #FFFFFF;
+  line-height: 3.5;
+  text-decoration: none;
+}
+.shopping-cart-close:hover, .oreder-link-button:hover{
+  opacity: 0.7;
+}
 
 
 /**ヘッダー関連 ******************************************************/
@@ -490,6 +558,57 @@ footer small {
       font-size: 18px;
       font-weight: bold !important;
     }
+        .shopping-cart-infomation {
+          position: relative;
+        }
+    
+        /*ショッピングカート拡大時のタイトル*/
+        .shopping-cart-infomation h1 {
+          color: #522f60;
+          font-size: calc(100vw * 0.05);
+          font-family: "DNP ShueiNMinStd";
+          font-weight: bold;
+          line-height: 1.2;
+          letter-spacing: 0.11em;
+          text-align: center;
+          margin-top: calc(100vw * 0.1);
+        }
+    
+        /*詳細ボタンを押された場合のレイアウト*/
+        .shopping-cart-large {
+          width: 100vw;
+          height: calc(100vh * 0.5);
+          transform: translate(10%, -20%);
+        }
+    
+        .shopping-cart-infomation p {
+          font-size: calc(100vw * 0.02);
+          margin-top: 30px;
+        }
+    
+        .shopping-cart-table {
+          width: 100%;
+          font-size: calc(100vw * 0.02);
+        }
+    
+        /**ショッピングカート開いた場合のボタン*/
+        .shopping-cart-buttos {
+          width: 95%;
+          margin: 30px auto;
+          display: block;
+          position: sticky;
+          bottom: 1rem;
+        }
+    
+        .shopping-cart-buttos * {
+          width: 100%;
+          margin-bottom: 10px;
+          font-size: calc(100vw * 0.02);
+        }
+    
+        .oreder-link-button {
+          line-height: 4;
+        }
     /************************************フッター************************************************************************/
     footer {
       width: 100%;
@@ -554,4 +673,5 @@ footer small {
       text-align: center;
       letter-spacing: 0.11em;
     }
-}
+  }
+  

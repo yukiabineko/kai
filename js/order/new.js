@@ -1,3 +1,5 @@
+let targetOrderElement = null;   //どのオーダーがアクションされているか見分ける変数
+
 window.addEventListener('load', () => {
   let total = 0;
   document.querySelectorAll('.receiving-box').forEach(element => {
@@ -7,6 +9,7 @@ window.addEventListener('load', () => {
     total += Number(totalElement.textContent);
     document.querySelector('.price-area').textContent = total;
   });
+  
   
 });
 const priceChange = (target) => {
@@ -27,8 +30,13 @@ const priceChange = (target) => {
   document.getElementById('taxprice-' + id).textContent = taxprice;
 
   //合計金額計算配置
+
   document.querySelectorAll('.tax-price').forEach((obj) => {
     let taxprice = obj.textContent;
+  });
+
+  document.querySelectorAll('.total-price-tax').forEach((obj) => {
+    let taxprice = obj.children[0].textContent;
     totalAll += parseInt(taxprice);
   });
   document.querySelector('.price-area').textContent = totalAll;
@@ -44,8 +52,12 @@ const priceChange = (target) => {
  */
 /******************************************************************************************************************************** */
 const changeviewCalender = (element,start,finish, tms) =>{
+  let todayMonth = new Date().getMonth();
+  let startMonth = new Date(start.replace(/-/g , "/")).getMonth();
+  let calendar = null;
  
   let timeData = JSON.parse(tms);
+  targetOrderElement  = element;
   
 
   let modal = document.getElementById('modal');
@@ -54,10 +66,22 @@ const changeviewCalender = (element,start,finish, tms) =>{
 
   modal.style.top = (element.getBoundingClientRect().top + window.scrollY) + "px";
 
-  let calendar = new Calendar(
-    document.getElementById('target-date').textContent,
-    document.querySelector('.btns').nextElementSibling
-  );
+  //開始日ずけが現在の月以降の場合はカレンダーオブジェクトの引数をstartにする。
+  if(todayMonth < startMonth){
+    calendar = new Calendar(
+      start,
+      document.querySelector('.btns').nextElementSibling
+    );
+    document.getElementById('target-date').textContent = start;
+  }
+  else{
+     calendar = new Calendar(
+      document.getElementById('target-date').textContent,
+      document.querySelector('.btns').nextElementSibling
+    );
+  }
+
+  
   calendar.setDateTimeRange(start, finish);
 
   //終了日時が当月で終了の場合は次月のボタンを非表示
@@ -69,7 +93,7 @@ const changeviewCalender = (element,start,finish, tms) =>{
 
   //月ラベルの更新
   document.querySelector('.year-month').textContent = calendar.getDateLabel();
-  prevButtonCheck();   //前月ボタン分岐
+  PrevButtonCheck(calendar, start);   //前月ボタン分岐
   nextButtonCheck(calendar, finish);  //次月ボタン分岐
 
 
@@ -98,7 +122,8 @@ const changeviewCalender = (element,start,finish, tms) =>{
  * 
  */
 /******************************************************************************************************************************************** */
-const changeNextMonth = (element, currentDate, start, finish, tms) => {
+const changeNextMonth = (currentDate, start, finish, tms) => {
+  console.log(targetOrderElement);
   let timeData = JSON.parse(tms);
 
   let targetDate = currentDate ? new Date(currentDate.replace( /-/g , "/" ) ) : new Date();
@@ -130,14 +155,14 @@ const changeNextMonth = (element, currentDate, start, finish, tms) => {
 
   //月ラベルの更新
   document.querySelector('.year-month').textContent = calendar.getDateLabel();
-  prevButtonCheck();
+  PrevButtonCheck(calendar, start);
   nextButtonCheck(calendar, finish);  //次月ボタン分岐
 
   //カレンダー各日付押下更新
   calendar.cellsAction(); 
   console.log("カレンダー");
   console.log(calendar);
-  ButtonCreate(element, null, calendar);
+  ButtonCreate(targetOrderElement, null, calendar);
 
    //開始、終了時間によるセレクトボックス変更
    changeMinSelectBox(start, finish);
@@ -150,7 +175,7 @@ const changeNextMonth = (element, currentDate, start, finish, tms) => {
  * 
  */
 /******************************************************************************************************************************************** */
-const changePrevMonth = (element, currentDate, start, finish, tms) => {
+const changePrevMonth = (currentDate, start, finish, tms) => {
   let timeData = JSON.parse(tms);
 
   let targetDate = currentDate ? new Date(currentDate.replace( /-/g , "/" ) ) : new Date();
@@ -184,14 +209,14 @@ const changePrevMonth = (element, currentDate, start, finish, tms) => {
 
   //月ラベルの更新
   document.querySelector('.year-month').textContent = calendar.getDateLabel();
-  prevButtonCheck();
+  PrevButtonCheck(calendar, start);
   nextButtonCheck(calendar, finish);  //次月ボタン分岐
 
   //カレンダー各日付押下更新
   calendar.cellsAction(); 
   console.log("カレンダー");
   console.log(calendar);
-  ButtonCreate(element, null, calendar);
+  ButtonCreate(targetOrderElement, null, calendar);
 
    //開始、終了時間によるセレクトボックス変更
    changeMinSelectBox(start, finish);
@@ -285,7 +310,7 @@ const ButtonCreate = (element, id = null, calendar) => {
  */
 /****************************************************************************************************************************************** */
 const nextButtonCheck = ( targetCalendar, last )=>{
-  let targetLastDate = targetCalendar.lastObject     //表示されているカレンダーの月最終日
+  let targetLastDate = targetCalendar.getLast();     //表示されているカレンダーの月最終日
   let lastDate = new Date(last.replace( /-/g , "/" ) );                     //販売終了日
 
   console.log('カレンダー最終日');
@@ -300,6 +325,35 @@ const nextButtonCheck = ( targetCalendar, last )=>{
   else{
     document.querySelector('.next').disabled = false;
   }
+}
+/**
+ * 
+ */
+/***************************************************************************************************** */
+//前の月の表示チェック
+const PrevButtonCheck = ( targetCalendar, start) => {
+  //前月ボタン当月以前は非表示
+  let today = new Date();
+  let todayYear = today.getFullYear();
+  let todayMonth = today.getMonth() + 1;
+
+  let target = new Date(document.getElementById("target-date").textContent.replace( /-/g , "/" ) );
+  let targetYear = target.getFullYear();
+  let targetMonth = target.getMonth() + 1;
+
+  let firstDate = new Date(start.replace(/-/g , "/"));
+
+
+  if( firstDate.getMonth() + 1 > todayMonth){
+    document.querySelector('.prev').disabled = true;
+  }
+  else if (parseInt(todayYear) <= parseInt(targetCalendar.getYear()) && parseInt(todayMonth) < parseInt(targetCalendar.getMonth())) {
+    document.querySelector('.prev').disabled = false;
+  }
+  else {
+    document.querySelector('.prev').disabled = true;
+  }
+
 }
 /*******************時間のリセット******************************************************************** */
 const timeFormReset = ()=>{
@@ -355,3 +409,5 @@ const changeMinSelectBox = ( start, finish )=>{
     }
   });
 }
+
+

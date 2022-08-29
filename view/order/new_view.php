@@ -28,7 +28,7 @@
                   <div class="name">商品名<span><?= $data['name'] ?></span></div>
 
                   <div class="price-info">単価
-                    <span class="price" id="price-<?=  $data['id'] ?>"><?= $data['price'] ?>
+                    <span class="price" id="price-<?= $data['id'] ?>"><?= $data['price'] ?>
                       <sapn class="en">円</sapn>
                     </span>
                   </div>
@@ -48,25 +48,12 @@
 
               <!--注文数-->
               <div class="number-label">注文数</div>
-              <input 
-                type="number" 
-                name="number[]" 
-                class="order-number" 
-                value="<?= $data['stockInfo']['input'] ?>" 
-                id="number-<?= $data['id'] ?>" 
-                min="1" max="<?= $data['stockInfo']['limit'] ?>" onchange="priceChange(this)"
-              >
+              <input type="number" name="number[]" class="order-number" value="<?= $data['stockInfo']['input'] ?>" id="number-<?= $data['id'] ?>" min="1" max="<?= $data['stockInfo']['limit'] ?>" onchange="priceChange(this)">
 
               <!--受け取り時間-->
               <div class="receiving-label">受取時間</div>
-              <input 
-                type="text" 
-                name="receiving[]" 
-                class="receiving-box" 
-                id="receiving-<?= $data["id"] ?>" 
-                onclick="changeviewCalender(this,`<?= $data['dtInfo']['start'] ?>`,`<?= $data['dtInfo']['finish'] ?>`, `<?= json_encode(setDateTime($data['dtInfo']['start'], $data['dtInfo']['finish'])) ?>`)"
-                 value="<?= $data['dtInfo']['input'] ?>"
-              >
+              <input type="text" name="receiving[]" class="receiving-box" id="receiving-<?= $data["id"] ?>" onclick="changeviewCalender(this,`<?= $data['dtInfo']['start'] ?>`,`<?= $data['dtInfo']['finish'] ?>`,
+               `<?= json_encode(setDateTime($data['dtInfo']['start'], $data['dtInfo']['finish'])) ?>`)" value="<?= $data['dtInfo']['input'] ?>">
 
             </div>
 
@@ -75,13 +62,14 @@
             <!--合計金額-->
             <div class="total">
               <div class="total-price" id="total-<?= $data['id'] ?>">
-                 合計<?= total_price($data['price'], $data['stockInfo']['input'])  ?>
+                合計<?= total_price($data['price'], $data['stockInfo']['input'])  ?>
               </div>
 
               <div class="total-price-tax">税込合計
                 <span id="taxprice-<?= $data['id'] ?>" class="tax-price">
                   <?= total_tax_price($data['price'], $data['stockInfo']['input'])  ?>
-                </span> 円</div>
+                </span> 円
+              </div>
 
               <button class="del-button"><img src="image/icons/trash.svg" alt="ゴミ箱">削除</button>
             </div>
@@ -140,9 +128,19 @@
   <div id="modal-contents">
     <h3>日時登録</h3>
     <div class="btns">
-      <button class="prev" onclick="prevMonth(document.getElementById('target-date').textContent)">全月</button>
+      <button class="prev" onclick="changePrevMonth(
+          document.getElementById('target-date').textContent,
+          `<?= $data['dtInfo']['start'] ?>`,
+          `<?= $data['dtInfo']['finish'] ?>`,
+          `<?= json_encode(setDateTime($data['dtInfo']['start'], $data['dtInfo']['finish'])) ?>`
+        )">前月</button>
       <div class="year-month">xxx</div>
-      <button class="next" onclick="nextMonth(document.getElementById('target-date').textContent)">次月</button>
+      <button class="next" onclick="changeNextMonth(
+          document.getElementById('target-date').textContent,
+          `<?= $data['dtInfo']['start'] ?>`,
+          `<?= $data['dtInfo']['finish'] ?>`,
+          `<?= json_encode(setDateTime($data['dtInfo']['start'], $data['dtInfo']['finish'])) ?>`
+        )">次月</button>
     </div>
     <!-- カレンダー -->
     <table class="calendar"></table>

@@ -64,13 +64,34 @@
         <p class="shopping-cart-title">買い物かご確認</p>
         <a href="./order?action=new" class="shopping-cart-link" onclick="showOrders(arguments[0])">詳細を見る</a>
       </div>
-      
+
       <!-- 拡大時の表示エリア -->
       <div class="shopping-cart-infomation">
         <h1>買い物かごリスト</h1>
         <p>注文を確定したい場合はしたのボタンを押下してください。</p>
+        <table class="shopping-cart-table">
+          <thead>
+            <tr>
+              <th>商品名</th>
+              <th>価格</th>
+              <th>注文数</th>
+              <th>合計金額</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($_SESSION['orders'] as $cart) : ?>
+              <tr>
+                <td><?= $cart['name'] ?></td>
+                <td style="text-align: center"><?= $cart['price'] ?></td>
+                <td style="text-align: center"><?= $cart['stockInfo']['input'] ?></td>
+                <td style="text-align: center"><?= (int)$cart['price'] * (int)$cart['stockInfo']['input'] ?></td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
         <div class="shopping-cart-buttos">
           <button class="shopping-cart-close" onclick="shoppingCartInfoClose()">閉じる</button>
+          <a href="./order?action=new" class="oreder-link-button">注文ページへ</a>
         </div>
       </div>
     </div>
