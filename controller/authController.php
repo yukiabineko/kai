@@ -26,6 +26,7 @@
           $this->session_store($record->id);
           $sessinId = $_SESSION['auth_id'];
           $_SESSION["flash"] = "ログインしました。";
+          if(isset($_SESSION['orders'])){ unset($_SESSION['orders']); }
           header("location: ./shop?action=show&id=$sessinId");
         }
         //ログイン失敗

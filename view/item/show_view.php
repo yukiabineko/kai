@@ -1,4 +1,5 @@
 <!-- コンテンツ -->
+<?php $exist = isset($_SESSION['orders'])? search_target_id($item->id, $_SESSION['orders']) : false ?>
 <article>
   <h3>商品名:<?= $item->name; ?></h3>
 
@@ -63,7 +64,7 @@
      class="back">一覧へ戻る
     </a>
     <!-- 注文ボタンは掲載店がログインしている場合は非表示 -->
-    <?php if (!isset($_SESSION['auth_id']) || ($_SESSION['auth_id'] != $item->shop_id)) : ?>
+    <?php if ( (!isset($_SESSION['auth_id']) || ($_SESSION['auth_id'] != $item->shop_id)) && $exist == false) : ?>
       <a href="./order?action=show&id=<?= $item->id ?>" class="order">
         <img src="image/icons/bag2.svg" alt="注文アイコン">注文する
       </a>

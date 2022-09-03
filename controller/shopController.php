@@ -25,6 +25,7 @@
         if ($shop->create($params)) {
           $_SESSION['auth_id'] = $shop->id;                  //=>自動ログイン
           $_SESSION['flash'] = '登録しました。';
+          if(isset($_SESSION['orders'])){ unset($_SESSION['orders']); }  //買い物かごがあった場合一度削除
           header("location: ./shop?action=show&id=$shop->id");
         }
       }

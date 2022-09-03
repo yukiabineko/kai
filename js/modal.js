@@ -121,6 +121,12 @@ const nextMonth = (currentDate, timeForm = true) => {                           
   let targetDate = currentDate ? new Date(currentDate) : new Date();
   let year = targetDate.getFullYear();
   let month = targetDate.getMonth() + 2;
+
+
+
+
+
+  
   let nextString = year + "-" + month.toString().padStart(2, "0") + "-01"
   document.getElementById('target-date').textContent = nextString;
 
@@ -163,6 +169,9 @@ const prevButtonCheck = () => {
   console.log("ターゲット月:" + targetMonth);
 
   if (parseInt(todayYear) <= parseInt(targetYear) && parseInt(todayMonth) < parseInt(targetMonth)) {
+    document.querySelector('.prev').disabled = false;
+  }
+  else if (parseInt(todayYear) < parseInt(targetYear)){
     document.querySelector('.prev').disabled = false;
   }
   else {

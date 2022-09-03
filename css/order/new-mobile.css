@@ -6,6 +6,9 @@ html {
   border: none;
   box-sizing: border-box;
 }
+.hidden-element{
+  display: none;
+}
 
 article {
   width: 100vw;

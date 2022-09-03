@@ -19,7 +19,7 @@
 
         <?php foreach ($_SESSION['orders'] as $data) : ?>
           <!-- 商品 -->
-          <li>
+          <li id="order-item-<?= $data['id'] ?>">
             <div class="contents">
               <img src="<?= $data['thumbnail'] ?>" alt="<?= $data['name'] ?>">
               <div class="info">
@@ -55,6 +55,12 @@
               <input type="text" name="receiving[]" class="receiving-box" id="receiving-<?= $data["id"] ?>" onclick="changeviewCalender(this,`<?= $data['dtInfo']['start'] ?>`,`<?= $data['dtInfo']['finish'] ?>`,
                `<?= json_encode(setDateTime($data['dtInfo']['start'], $data['dtInfo']['finish'])) ?>`)" value="<?= $data['dtInfo']['input'] ?>">
 
+              <!--パラメータ隠し要素各種 -->
+              <div id="hidden-start-<?= $data['id'] ?>" class="hidden-element"><?= $data['dtInfo']['start'] ?></div>
+              <div id="hidden-end-<?= $data['id'] ?>" class="hidden-element"><?= $data['dtInfo']['finish'] ?></div>
+              <div id="hidden-times-<?= $data['id'] ?>" class="hidden-element"><?= json_encode(setDateTime($data['dtInfo']['start'], $data['dtInfo']['finish'])) ?></div>
+
+
             </div>
 
 
@@ -71,7 +77,11 @@
                 </span> 円
               </div>
 
-              <button class="del-button"><img src="image/icons/trash.svg" alt="ゴミ箱">削除</button>
+              <button 
+                class="del-button" 
+                id="cart-delete-<?= $data['id'] ?>"
+                onclick="deleteCartItem(event,<?= $data['id'] ?>)"
+                ><img src="image/icons/trash.svg" alt="ゴミ箱">削除</button>
             </div>
 
           </li>
@@ -129,18 +139,10 @@
     <h3>日時登録</h3>
     <div class="btns">
       <button class="prev" onclick="changePrevMonth(
-          document.getElementById('target-date').textContent,
-          `<?= $data['dtInfo']['start'] ?>`,
-          `<?= $data['dtInfo']['finish'] ?>`,
-          `<?= json_encode(setDateTime($data['dtInfo']['start'], $data['dtInfo']['finish'])) ?>`
-        )">前月</button>
+          document.getElementById('target-date').textContent)">前月</button>
       <div class="year-month">xxx</div>
       <button class="next" onclick="changeNextMonth(
-          document.getElementById('target-date').textContent,
-          `<?= $data['dtInfo']['start'] ?>`,
-          `<?= $data['dtInfo']['finish'] ?>`,
-          `<?= json_encode(setDateTime($data['dtInfo']['start'], $data['dtInfo']['finish'])) ?>`
-        )">次月</button>
+          document.getElementById('target-date').textContent)">次月</button>
     </div>
     <!-- カレンダー -->
     <table class="calendar"></table>

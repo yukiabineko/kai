@@ -2,6 +2,7 @@
 class Calendar {
 
   constructor(setDt = null, dom = null) {
+    
     this.dayCount = 1;
     this.targetDateObject = setDt ? new Date(setDt.replace( /-/g , "/" ) ) : new Date();
     //選択されているセルの日付け
@@ -210,6 +211,7 @@ class Calendar {
      let beginObj = new Date(begin.replace( /-/g , "/" ) );
      //範囲の初日
      let beginDate = beginObj.getDate();
+     let beginMonth = beginObj.getMonth() + 1;
      let lastObj = new Date(last.replace( /-/g , "/" ) );
 
 
@@ -227,8 +229,8 @@ class Calendar {
       }
       //前の月で範囲内のものはボタンを押せるようにする。
       document.querySelectorAll('.prev-td').forEach((cell)=>{
-        let targetObj = new Date(this.year, this.month -1, cell.textContent);
-        if(beginObj <= targetObj){
+        let targetObj = new Date(this.year, this.month -2, cell.textContent);
+        if( (beginObj <= targetObj) && ( targetObj > today  )){
           console.log("prev");
           console.log(cell);
           cell.classList.remove('emp');
@@ -254,9 +256,9 @@ class Calendar {
     /******************************************************************************************* */
     else if(status == 'prev'){
 
-      //カレンダーが当月かどうかで分岐
+      //カレンダーが当月かどうかで分岐また販売初日が前月かで分岐
 
-      if(this.month == today.getMonth() + 1 ){
+      if(this.month == today.getMonth() + 1 && beginMonth == today.getMonth() + 1 ){
         for (let i = beginDate; i <= this.lastDate; i++) {
           let targetObj = new Date(this.year, this.month - 1, i);
           if (targetObj <= lastObj && targetObj >= today) {
@@ -281,6 +283,23 @@ class Calendar {
             cell.className = "emp";
             
           });
+      }
+      //販売初日が前月で過ぎてしまっている場合前月のボタン無効化。
+      else if( this.month == today.getMonth() + 1 && beginMonth < today.getMonth() + 1){
+        for (let i = this.beginDate; i <= this.lastDate; i++) {
+          let targetObj = new Date(this.year, this.month - 1, i);
+          //対象日が販売終了日以内か
+          if (targetObj <= lastObj && targetObj >= today) {
+            let cell = document.getElementById('cal-' + i);
+            cell.classList.remove('emp');
+            cell.classList.add('cal-td');
+          }
+        }
+        //前の月の日付は非表示
+        document.querySelectorAll('.prev-td').forEach((cell) => {
+          cell.className = "emp";
+          
+        });
       }
       else{
         for (let i = this.beginDate; i <= this.lastDate; i++) {
@@ -322,6 +341,21 @@ class Calendar {
     /********************************************************************************************* */
     else{
       //範囲のみ表示
+
+      //開始日が当月以前の場合
+       if(today.getMonth() + 1 > beginObj.getMonth() +1){
+        for(let i=  this.beginDate;  i<= this.lastDate; i++ ){
+          let targetObj = new Date(this.year, this.month - 1, i);
+          if (targetObj <= lastObj && targetObj >= today) {
+            
+            let cell = document.getElementById('cal-' + i);
+            cell.classList.remove('emp');
+            cell.classList.add('cal-td');
+          }
+        }
+       }
+
+      //開始日が当月以内の場合
       for (let i = beginDate; i <= this.lastDate; i++) {
         let targetObj = new Date(this.year, this.month - 1, i);
         if (targetObj <= lastObj && targetObj >= today) {

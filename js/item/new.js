@@ -237,11 +237,17 @@ const itemFormCalendar = (id, startDate = null, endDate = null) => {
  */
 const nextItemMonth = (currentDate) => {  
  
-                          
+  let nextString = "";                        
   let targetDate = currentDate ? new Date(currentDate) : new Date();
   let year = targetDate.getFullYear();
   let month = targetDate.getMonth() + 2;
-  let nextString = year + "-" + month.toString().padStart(2, "0") + "-01"
+  if(month == 13){
+     nextString = (year +1 ) + "-01-01";
+  }
+  else{
+     nextString = year + "-" + month.toString().padStart(2, "0") + "-01"
+  }
+
   document.getElementById('target-date').textContent = nextString;
 
   //更新のためカレンダーを一度削除その後前月のカレンダー作成
@@ -329,11 +335,20 @@ const nextItemMonth = (currentDate) => {
  */
 const prevItemMonth = (currentDate) => {
 
-
   let targetDate = currentDate ? new Date(currentDate) : new Date();
   let year = targetDate.getFullYear();
   let month = targetDate.getMonth();
-  let prevString = year + "-" + month.toString().padStart(2, "0") + "-01";
+
+
+  let prevString = "";
+
+  if (month == 0) {
+    prevString = (year - 1) + "-12-01";
+  }
+  else {
+    prevString = year + "-" + month.toString().padStart(2, "0") + "-01";
+  }
+
   document.getElementById('target-date').textContent = prevString;
 
   //更新のためカレンダーを一度削除その後前月のカレンダー作成

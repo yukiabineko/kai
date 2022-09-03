@@ -1,3 +1,5 @@
+<?php  require_once './helper/share_helper.php';  ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 

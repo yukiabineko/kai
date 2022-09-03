@@ -6,10 +6,12 @@ class orderController extends baseController
 {/***********************************注文ページ************************************************************************ */
   public function show(int $item_id)
   {
+    require_once './helper/share_helper.php';
+    
     $model = new item();
     $item = $model->find($item_id);
      //存在しないgetパラメーターを検知したらリダイレクト
-     if(empty($item->id)){
+     if(empty($item->id) || (isset($_SESSION['orders']) && search_target_id($item->id , $_SESSION['orders']) == true) ){
       header('location: ./item?action=index');
     }
     $othersItem = $model->where('shop_id', $item->shop_id, 3, $item->id);
@@ -36,7 +38,18 @@ class orderController extends baseController
   }
   /********************************注文確定ボタン**************************************************************************************** */
   public function new(){
-
+  
+    //前のページのURLが指定の出ない場合でオーダーセッションがない場合は一覧へリダイレクト
+   /* $before_url = $_SERVER['HTTP_REFERER'];
+    if (strpos($before_url, 'order') == false) {
+      header('location: ./item');
+    }
+    */
+    require_once './helper/share_helper.php';
+    //同じ商品の追加防止
+    if(isset($_SESSION['orders']) && isset($_GET['item_id']) && search_target_id($_GET['item_id'], $_SESSION['orders']) == true ){
+      header('location: ./order?action=new');
+    }
     
     //オーダーセッションなかったら作成
     if(!isset($_SESSION['orders'])){
@@ -76,5 +89,17 @@ class orderController extends baseController
 
 
     $this->view("new");
+  }
+  //買い物かごの削除
+  public function delete(int $id){
+    $orders = $_SESSION['orders'];
+    $target = $orders[$id];
+    $price = $target["price"];
+    $num = $target['stockInfo']['input'];
+
+
+    unset($orders[$id]);
+    $_SESSION['orders'] = $orders;
+     echo json_encode(['status' =>1, 'price'=>$price, 'num'=>$num, 'id'=> $id],JSON_UNESCAPED_UNICODE);
   }
 }

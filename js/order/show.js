@@ -66,10 +66,20 @@ const getMapPointer = async()=>{
 const viewCalender = (start,finish, tms) =>{
   //地図非表示
   document.getElementById('mapcontainer').style.display = "none";
+  
 
-  let todayMonth = new Date().getMonth();
-  let startMonth = new Date(start).getMonth();
+  let today = new Date();
+  let todayYear = today.getFullYear();
+  let todayMonth = today.getMonth() +1;
+  let todayDate = today.getDate();
+  let todayStr =  todayYear + "/" +todayMonth.toString().padStart(2, "0") + "/" +todayDate.toString().padStart(2, "0");
+  
+  
+
+
+  let startMonth = new Date(start.replace( /-/g , "/" )).getMonth();
   let calendar = null;
+
 
   let timeData = JSON.parse(tms);
   
@@ -90,10 +100,12 @@ const viewCalender = (start,finish, tms) =>{
     document.getElementById('target-date').textContent = start;
   }
   else{
+    document.getElementById('target-date').textContent =todayStr;
     calendar = new Calendar(
       document.getElementById('target-date').textContent,
       document.querySelector('.btns').nextElementSibling
     );
+    
   }
 
   calendar.setDateTimeRange(start, finish);
@@ -142,7 +154,15 @@ const changeNextMonth = (currentDate, start, finish, tms) => {
   let targetDate = currentDate ? new Date(currentDate.replace( /-/g , "/" ) ) : new Date();
   let year = targetDate.getFullYear();
   let month = targetDate.getMonth() + 2;
-  let nextString = year + "-" + month.toString().padStart(2, "0") + "-01"
+  let nextString = "";
+  if( month == 13 ){
+    nextString = ( year + 1 ) +  "-01-01";
+  }
+  else{
+    nextString = year + "-" + month.toString().padStart(2, "0") + "-01"
+  }
+  
+  
   document.getElementById('target-date').textContent = nextString;
 
   //更新のためカレンダーを一度削除その後前月のカレンダー作成
@@ -194,7 +214,15 @@ const changePrevMonth = (currentDate, start, finish, tms) => {
   let targetDate = currentDate ? new Date(currentDate.replace( /-/g , "/" ) ) : new Date();
   let year = targetDate.getFullYear();
   let month = targetDate.getMonth();
-  let nextString = year + "-" + month.toString().padStart(2, "0") + "-01"
+  let nextString = "";
+
+  if( month == 0 ){
+    nextString = (year - 1) +  "-12-01";
+  }
+  else{
+    nextString = year + "-" + month.toString().padStart(2, "0") + "-01"
+  }
+
   document.getElementById('target-date').textContent = nextString;
 
   //更新のためカレンダーを一度削除その後前月のカレンダー作成
@@ -350,22 +378,45 @@ const PrevButtonCheck = ( targetCalendar, start) => {
   let todayYear = today.getFullYear();
   let todayMonth = today.getMonth() + 1;
 
-  let target = new Date(document.getElementById("target-date").textContent.replace( /-/g , "/" ) );
+
+  let target = targetCalendar.getTargetDate();
   let targetYear = target.getFullYear();
   let targetMonth = target.getMonth() + 1;
 
+
+  
+
   let firstDate = new Date(start.replace(/-/g , "/"));
+  let firstYear = firstDate.getFullYear();
+  let firstMonth = firstDate.getMonth() + 1;
+  //alert("最初:" +firstDate + "\nカレンダー:" + target + "\n本日:" + today);
 
 
-  if( firstDate.getMonth() + 1 > todayMonth){
+  //同じ年で現在回覧カレンダー月が当月より先 または回覧カレンダーが次年度の場合ボタン不活性解除
+  if( (todayMonth < targetMonth && todayYear == targetYear) || todayYear < targetYear){
+    document.querySelector('.prev').disabled = false;
+  }
+  else{
     document.querySelector('.prev').disabled = true;
   }
-  else if (parseInt(todayYear) <= parseInt(targetCalendar.getYear()) && parseInt(todayMonth) < parseInt(targetCalendar.getMonth())) {
+
+
+
+
+
+ /* if (firstDate.getMonth() + 1 < todayMonth && parseInt(todayYear) == parseInt(targetCalendar.getYear())){
+    document.querySelector('.prev').disabled = true;
+  }
+  else if (parseInt(todayYear) == parseInt(targetCalendar.getYear()) && parseInt(todayMonth) < parseInt(targetCalendar.getMonth())) {
+    document.querySelector('.prev').disabled = false;
+  }
+  else if (parseInt(todayYear) < parseInt(targetCalendar.getYear())){
     document.querySelector('.prev').disabled = false;
   }
   else {
     document.querySelector('.prev').disabled = true;
   }
+  */
 
 }
 /*******************時間のリセット******************************************************************** */

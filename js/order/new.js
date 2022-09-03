@@ -79,6 +79,7 @@ const changeviewCalender = (element,start,finish, tms) =>{
       document.getElementById('target-date').textContent,
       document.querySelector('.btns').nextElementSibling
     );
+    
   }
 
   
@@ -122,14 +123,29 @@ const changeviewCalender = (element,start,finish, tms) =>{
  * 
  */
 /******************************************************************************************************************************************** */
-const changeNextMonth = (currentDate, start, finish, tms) => {
-  console.log(targetOrderElement);
+const changeNextMonth = (currentDate) => {
+  let id = targetOrderElement.id.split('receiving-')[1];
+  let start = document.getElementById('hidden-start-' + id ).textContent;
+  let finish = document.getElementById('hidden-end-' + id).textContent;
+  let tms = document.getElementById('hidden-times-' + id).textContent;
+
+
   let timeData = JSON.parse(tms);
+  let nextString = "";
+
 
   let targetDate = currentDate ? new Date(currentDate.replace( /-/g , "/" ) ) : new Date();
   let year = targetDate.getFullYear();
   let month = targetDate.getMonth() + 2;
-  let nextString = year + "-" + month.toString().padStart(2, "0") + "-01"
+
+  if( month == 12 ){
+    nextString = ( year + 1 )  + "-01-01";
+  }
+  else{
+    nextString = year + "-" + month.toString().padStart(2, "0") + "-01"
+  }
+  
+
   document.getElementById('target-date').textContent = nextString;
 
   //更新のためカレンダーを一度削除その後前月のカレンダー作成
@@ -175,18 +191,32 @@ const changeNextMonth = (currentDate, start, finish, tms) => {
  * 
  */
 /******************************************************************************************************************************************** */
-const changePrevMonth = (currentDate, start, finish, tms) => {
+const changePrevMonth = (currentDate) => {
+  let id = targetOrderElement.id.split('receiving-')[1];
+  let start = document.getElementById('hidden-start-' + id).textContent;
+  let finish = document.getElementById('hidden-end-' + id).textContent;
+  let tms = document.getElementById('hidden-times-' + id).textContent;
+  let prevString = "";
+
   let timeData = JSON.parse(tms);
 
   let targetDate = currentDate ? new Date(currentDate.replace( /-/g , "/" ) ) : new Date();
   let year = targetDate.getFullYear();
   let month = targetDate.getMonth();
-  let nextString = year + "-" + month.toString().padStart(2, "0") + "-01"
-  document.getElementById('target-date').textContent = nextString;
+
+
+  if( month == 0 ){
+    prevString = (year -1) + "-12-01"
+  }
+  else{
+    prevString = year + "-" + month.toString().padStart(2, "0") + "-01"
+  }
+
+  document.getElementById('target-date').textContent = prevString;
 
   //更新のためカレンダーを一度削除その後前月のカレンダー作成
   document.getElementById('modal-contents').removeChild(document.getElementById('calendar'));
-  let calendar = new Calendar(nextString, document.querySelector('.btns').nextElementSibling);
+  let calendar = new Calendar(prevString, document.querySelector('.btns').nextElementSibling);
   console.log('前月のカレンダー');
   console.log(calendar);
   calendar.setDateTimeRange(start, finish, 'prev');
@@ -319,7 +349,7 @@ const nextButtonCheck = ( targetCalendar, last )=>{
   console.log('販売最終日');
   console.log(lastDate);
 
-  if( targetLastDate > lastDate ){
+  if( targetLastDate > lastDate || targetLastDate.getDate() == lastDate.getDate() ){
     document.querySelector('.next').disabled = true;
   }
   else{
@@ -337,22 +367,35 @@ const PrevButtonCheck = ( targetCalendar, start) => {
   let todayYear = today.getFullYear();
   let todayMonth = today.getMonth() + 1;
 
-  let target = new Date(document.getElementById("target-date").textContent.replace( /-/g , "/" ) );
+  let firstDate = new Date(start.replace(/-/g , "/"));
+  let firstYear = firstDate.getFullYear();
+  let firstMonth = firstDate.getMonth() + 1;
+
+  let target = targetCalendar.getTargetDate();
   let targetYear = target.getFullYear();
   let targetMonth = target.getMonth() + 1;
 
-  let firstDate = new Date(start.replace(/-/g , "/"));
+  
 
-
-  if( firstDate.getMonth() + 1 > todayMonth){
-    document.querySelector('.prev').disabled = true;
-  }
-  else if (parseInt(todayYear) <= parseInt(targetCalendar.getYear()) && parseInt(todayMonth) < parseInt(targetCalendar.getMonth())) {
+  //同じ年で現在回覧カレンダー月が当月より先 または回覧カレンダーが次年度の場合ボタン不活性解除
+  if( (todayMonth < targetMonth && todayYear == targetYear) || todayYear < targetYear){
     document.querySelector('.prev').disabled = false;
   }
-  else {
+  else{
     document.querySelector('.prev').disabled = true;
   }
+
+
+ /* if(targetYear == todayYear && todayMonth <= targetMonth ){
+    document.querySelector('.prev').disabled = false;
+  }
+  else if(targetYear > todayYear ){
+    document.querySelector('.prev').disabled = false;
+  }
+  else{
+    document.querySelector('.prev').disabled = true;
+  }
+  */
 
 }
 /*******************時間のリセット******************************************************************** */
@@ -409,5 +452,44 @@ const changeMinSelectBox = ( start, finish )=>{
     }
   });
 }
+//買い物カートの削除(ajax)
+const deleteCartItem = (event,id) =>{
+  event.preventDefault();
+  let warning = confirm('削除してもよいですか？');
+  if(warning){
+    let params = new URLSearchParams();
+    params.set('id', id);
+    fetch(`./order?action=delete&id=${id}`,{
+      method: 'POST',
+      body: params,
+    })
+    .then(response => response.json())
+    .then(res =>{
+      if(res['status'] == 1 ){
+        let deletePrice = Math.floor( parseInt(res['price']) * parseInt(res['num']) *1.1);
+        let totalPrice = parseInt(document.querySelector('.price-area').textContent);
+        
+        document.getElementById('order-item-' + id ).style.display = "none";
+        let countElement = document.querySelector('.shopping-cart-item-count');
+        let count = parseInt(countElement.textContent);
+        countElement.textContent = count - 1;
 
+        totalPrice -= deletePrice;
+        document.querySelector('.price-area').textContent = totalPrice;
+
+
+        if( countElement.textContent == 0 ){
+          //document.querySelector('.shopping-cart').style.display = "none";
+          window.location = "./item";
+        }
+        history.replaceState('', '買い物かご', './order?action=new');
+      }
+    })
+    .catch(error =>{
+      alert(error);
+      console.log(error);
+    })
+    
+  }
+}
 
