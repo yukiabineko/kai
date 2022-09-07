@@ -9,6 +9,21 @@ html {
 .hidden-element{
   display: none;
 }
+/*エラーエリア*/
+.cart-form-error{
+  display: none;
+  transition: .5s;
+  background-color: red;
+  padding: .5rem 0;
+  margin: 1.2rem auto;
+  width: calc(100vw * 0.851);
+}
+.error-message {
+  color: white;
+  font-weight: bold;
+  margin-top: .5rem;
+  margin-left: .5rem;
+}
 
 article {
   width: 100vw;

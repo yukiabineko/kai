@@ -369,5 +369,31 @@ class Model{
      }
      return $records;
   }
+  /************************************id複数選択で検索***************************************************************************************************** */
+  public function include(array $id_array){
+    $sql = "SELECT * FROM $this->table WHERE id in(";
+    foreach($id_array as $i => $id){
+      $sql.= $i != array_key_last($id_array) ? "$id," : $id;
+    }
+    $sql.=")";
+    try{
+      $smt = $this->pdo->query($sql);
+      $results = $smt->fetchAll(PDO::FETCH_ASSOC);
+      $records = [];
+      foreach($results as $result){
+        $model = new $this->table();
+        foreach($result as $key => $value){
+          $model->$key = $value;
+        }
+        array_push($records, $model);
+      }
+      return $records;
+    }
+    catch(PDOException $e){
+      echo $e->getMessage();
+      die();
+    }
+
+  }
 
 }

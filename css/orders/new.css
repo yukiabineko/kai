@@ -9,7 +9,19 @@ header::after {
 .hidden-element{
   display: none;
 }
-
+/*エラーエリア*/
+.cart-form-error{
+  display: none;
+  transition: .5s;
+  background-color: red;
+  padding: .5rem 0;
+}
+.error-message{
+  color: white;
+  font-weight: bold;
+  margin-top: .5rem;
+  margin-left: .5rem;
+}
 article {
   width: 980px;
   margin: 0 auto;

@@ -17,7 +17,7 @@
     <div class="border"></div>
     <!-- 注文数等フォーム　-->
 
-    <form action="./order" class="order-form" method="GET">
+    <form action="./orders" class="order-form" method="GET">
       <input type="hidden" name="item_id" value="<?= $item->id ?>">
       <input type="hidden" name="action" value="new">
       <input type="hidden" name="thumbnail" value="<?= $item->thumbnail ?>">

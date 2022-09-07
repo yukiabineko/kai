@@ -2,6 +2,7 @@ let targetOrderElement = null;   //どのオーダーがアクションされて
 
 window.addEventListener('load', () => {
   let total = 0;
+  let errors = [];
   document.querySelectorAll('.receiving-box').forEach(element => {
     element.readOnly = true;
   });
@@ -9,9 +10,89 @@ window.addEventListener('load', () => {
     total += Number(totalElement.textContent);
     document.querySelector('.price-area').textContent = total;
   });
+ /****************************ERROR関連開始************************************************************************* */ 
+  //フォーム送信時の処理
+  document.getElementById("order-form").addEventListener('submit', (event)=>{
+     
+     errors.splice(0);
+
+    let errorsElement = document.querySelector('.cart-form-error');
+    while(errorsElement.firstChild){
+      errorsElement.removeChild(errorsElement.firstChild);
+    }
+     //個数のフォームで未入力があったらエラー配列に格納
+     document.querySelectorAll('.order-number').forEach((input)=>{
+        let error_num_message = "⚠︎個数を入力していない項目があります。";
+        let exist = errors.indexOf(error_num_message);
+        if(input.value == "" && exist < 0){ 
+         
+          errors.push(error_num_message);
+        }
+     });
+    //日時が未入力フォームがある場合はエラー配列に格納
+      document.querySelectorAll('.receiving-box').forEach((input)=>{
+        let error_date_message = "⚠︎受け取り日時を入力していない項目があります。";
+        let exist = errors.indexOf(error_date_message);
+        if(input.value == "" && exist < 0 ){ 
+          errors.push(error_date_message);
+        }
+      });
+    //名前未入力の場合エラー配列に格納
+    if( document.getElementById('user-name').value == "" ){
+      let error_name_message = "⚠︎お名前が入力されていません。";
+      let exist = errors.indexOf(error_name_message);
+      if( exist < 0 ){ errors.push(error_name_message); }
+    }
+    //電話番号未入力の場合エラー配列に格納
+    if( document.getElementById('user-tel').value == "" ){
+      let error_tel_message = "⚠︎電話番号が入力されていません。";
+      let exist = errors.indexOf(error_tel_message);
+      if( exist < 0 ){ errors.push(error_tel_message); }
+    }
+    //メールアドレス未入力の場合エラー配列に格納
+    if( document.getElementById('user-tel').value == "" ){
+      let error_mail_message = "⚠︎メールアドレスが入力されていません。";
+      let exist = errors.indexOf(error_mail_message);
+      if( exist < 0){ errors.push(error_mail_message); }
+    }
+
+    if(errors.length > 0){
+      event.preventDefault();
+      errorsElement = document.querySelector('.cart-form-error');
+      errorsElement.style.display = 'block';
+      errors.forEach((error)=>{
+        let errorMessage = document.createElement('div');
+        errorMessage.classList ="error-message";
+        errorMessage.textContent = error;
+        errorsElement.appendChild(errorMessage);
+
+      });
+      errorsElement.scrollIntoView(true);
+    }
+    else{
+      errorsElement.style.display = "none";
+
+    }
   
-  
+  });
+  /********************************ERROR関連終了*************************************************************************** */ 
+  /*********************************注文数関連************************************************************************************** */
+  document.querySelectorAll('.order-number').forEach((number)=>{
+     number.addEventListener('change', ()=>{
+        const max = Number(number.max);
+        let num = Number(number.value);
+        if( max < num){
+          alert('販売数は' + max + "です。");
+          number.value = max;
+          priceChange(number);
+        }
+     });
+  });
+  /*********************************注文数関連終了************************************************************************************** */
 });
+const stopSubmit = (event)=>{
+  event.preventDefault();
+}
 const priceChange = (target) => {
   let totalAll = 0;
   const id = target.id.split('number-')[1];

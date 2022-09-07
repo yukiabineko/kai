@@ -1,7 +1,8 @@
 <?php require_once "./helper/order_helper.php"; ?>
 
 <article>
-  <form action="#" method="post">
+  <form action="./orders?action=create" method="post" id="order-form" novalidate>
+
     <!-- タイトルと合計金額エリア-->
     <div class="title">
       <h1>買い物かご確認</h1>
@@ -13,6 +14,19 @@
         </div>
       </div>
     </div>
+    <!-- 未入力等エラーがあった場合の表示　-->
+    <div class="cart-form-error"></div>
+
+    <div class="cart-session-error">
+      <?php if (!empty($_SESSION['error_message'])) : ?>
+        <?php foreach ($_SESSION['error_message'] as $error) : ?>
+          <div class="error-session"><?= $error ?></div>
+        <?php endforeach; ?>
+      <?php endif;
+      unset($_SESSION['error_message']); ?>
+    </div>
+
+
     <!-- カート商品エリア-->
     <section class="carts">
       <ul class="items">
@@ -60,6 +74,7 @@
               <div id="hidden-end-<?= $data['id'] ?>" class="hidden-element"><?= $data['dtInfo']['finish'] ?></div>
               <div id="hidden-times-<?= $data['id'] ?>" class="hidden-element"><?= json_encode(setDateTime($data['dtInfo']['start'], $data['dtInfo']['finish'])) ?></div>
 
+              <input type="hidden" name="items[]" value="<?= $data['item_id'] ?>">
 
             </div>
 
@@ -77,11 +92,7 @@
                 </span> 円
               </div>
 
-              <button 
-                class="del-button" 
-                id="cart-delete-<?= $data['id'] ?>"
-                onclick="deleteCartItem(event,<?= $data['id'] ?>)"
-                ><img src="image/icons/trash.svg" alt="ゴミ箱">削除</button>
+              <button class="del-button" id="cart-delete-<?= $data['id'] ?>" onclick="deleteCartItem(event,<?= $data['id'] ?>)"><img src="image/icons/trash.svg" alt="ゴミ箱">削除</button>
             </div>
 
           </li>
@@ -117,7 +128,7 @@
             <img src="image/icons/mail.svg" alt="メールアドレス">
             <div class="email">メールアドレス</div>
           </th>
-          <td><input type="email" name="tel" id="user-mail"></td>
+          <td><input type="email" name="email" id="user-mail"></td>
         </tr>
       </table>
     </section>

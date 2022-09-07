@@ -93,7 +93,7 @@
         </table>
         <div class="shopping-cart-buttos">
           <button class="shopping-cart-close" onclick="shoppingCartInfoClose()">閉じる</button>
-          <a href="./order?action=new" class="oreder-link-button">注文ページへ</a>
+          <a href="./orders?action=new" class="oreder-link-button">注文ページへ</a>
         </div>
       </div>
     </div>
