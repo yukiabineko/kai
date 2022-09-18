@@ -75,6 +75,10 @@
               <div id="hidden-times-<?= $data['id'] ?>" class="hidden-element"><?= json_encode(setDateTime($data['dtInfo']['start'], $data['dtInfo']['finish'])) ?></div>
 
               <input type="hidden" name="items[]" value="<?= $data['item_id'] ?>">
+              <input type="hidden" name="shops[]" value="<?= $data['shop_name'] ?>">
+              <input type="hidden" name="item_names[]" value="<?= $data['name'] ?>">
+              <input type="hidden" name="price[]" value="<?= $data['price'] ?>">
+
 
             </div>
 
@@ -119,7 +123,7 @@
             <img src="image/icons/tel.svg" alt="電話番号">
             <div class="tel">電話番号<span>(*必須です)</span></div>
           </th>
-          <td><input type="tel" name="tel" id="user-tel"></td>
+          <td><input type="text" name="tel" id="user-tel"></td>
         </tr>
 
         <!-- メールアドレス-->

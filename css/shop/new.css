@@ -128,7 +128,7 @@ input[type="submit"]:hover {
 }
 
 /**************************エラー*****************************************/
-.error {
+.error,.error-vallidation {
   background-color: red;
   border-radius: 3px;
   color: white;
@@ -137,7 +137,10 @@ input[type="submit"]:hover {
   line-height: 2;
   display: none;
 }
-.error::after {
+.error-vallidation{
+  display: block;
+}
+.error::after, .error-vallidation::after {
   display: block;
   content: "";
   width: 1px;

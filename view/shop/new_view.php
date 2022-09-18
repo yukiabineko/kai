@@ -6,7 +6,6 @@
     <h2>新規店舗登録</h2>
   </section>
   <a href="#" class="back-button">戻る</a>
-
   <!--フォーム-->
   <section class="form">
     <form action="./shop?action=create" method="post" id="user-form">
@@ -19,7 +18,7 @@
           </th>
           <td>
             <div class="error" id="error-name">店舗名は必須です。</div>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name" value="<?php echo  isset($_SESSION['input'])?  $_SESSION['input']['name'] : ''  ?>">
           </td>
         </tr>
         <!-- メールアドレス -->
@@ -30,7 +29,10 @@
           </th>
           <td>
             <div class="error" id="error-email">メールアドレスは必須です。</div>
-            <input type="email" name="email" id="email">
+            <?php if(isset($_SESSION['vallidation']['mail_error']) ) : ?>
+              <div class="error-vallidation"><?= $_SESSION['vallidation']['mail_error'] ?></div>
+            <?php endif; ?>
+            <input type="email" name="email" id="email" value="<?php echo  isset($_SESSION['input'])?  $_SESSION['input']['email'] : ''  ?>">
           </td>
         </tr>
         <!-- 電話番号 -->
@@ -41,7 +43,13 @@
           </th>
           <td>
             <div class="error" id="error-tel">電話番号は必須です。</div>
-            <input type="tel" name="tel" id="tel">
+            <?php if(isset($_SESSION['vallidation']['tel_error']) ) : ?>
+              <div class="error-vallidation"><?= $_SESSION['vallidation']['tel_error'] ?></div>
+            <?php endif; ?>
+            <input 
+              type="tel" name="tel" id="tel" placeholder="ハイフン(-)は入れないでください。(例09011112222)" 
+              value="<?php echo  isset($_SESSION['input'])?  $_SESSION['input']['tel'] : ''  ?>"
+            >
           </td>
         </tr>
         <!-- 住所 -->
@@ -52,7 +60,9 @@
           </th>
           <td>
             <div class="error" id="error-adress">住所は必須です。</div>
-            <input type="text" name="adress" id="adress" placeholder="*市町村から入力ください(例 甲府市丸の内一丁目1-8)">
+            <input type="text" name="adress" id="adress" placeholder="*市町村から入力ください(例 甲府市丸の内一丁目1-8)" 
+                  value="<?php echo  isset($_SESSION['input'])?  $_SESSION['input']['adress'] : ''  ?>"
+            >
           </td>
         </tr>
         <!-- パスワード -->
@@ -82,8 +92,14 @@
       <!-- csrf対策 -->
       <input type="hidden" name="csrf-token" value="<?= $token; ?>">
       <input type="submit" value="送信">
-
+      
     </form>
   </section>
 
 </article>
+<!-- バリデーションセッションがある場合は削除 -->
+<?php if(isset($_SESSION['vallidation'])){
+  unset($_SESSION['vallidation']);
+ }
+ 
+?>

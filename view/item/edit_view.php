@@ -60,9 +60,9 @@
           </th>
           <td>
             <div class="error" id="error-startDate">開始日は必須です。</div>
-            <input type="text" name="startDate" id="startDate" placeholder="開始日" class="input dt-input" value="<?= date('Y-m-d', strtotime($item->start)); ?>">
+            <input type="text" name="startDate" id="startDate" placeholder="開始日" class="input dt-input" value="<?= date('Y-m-d', strtotime($item->start)); ?>" autocomplete="off">
             <div class="error" id="error-endDate">終了日は必須です。</div>
-            <input type="text" name="endDate" id="endDate" placeholder="終了日" class="input dt-input" value="<?= date('Y-m-d', strtotime($item->finish)); ?>">
+            <input type="text" name="endDate" id="endDate" placeholder="終了日" class="input dt-input" value="<?= date('Y-m-d', strtotime($item->finish)); ?>" autocomplete="off">
           </td>
         </tr>
 
@@ -187,6 +187,7 @@
     <table class="calendar"></table>
     <!-- 月パラメータ用 -->
     <div id="target-date"></div>
+    <input type="hidden" name="inputName" id="inputName">
   </div>
 </div>
 

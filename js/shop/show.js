@@ -1,5 +1,34 @@
 window.addEventListener('load', ()=>{
-  
+  document.querySelectorAll('.statusbtn').forEach((btn)=>{
+    btn.addEventListener('click', ()=>{
+      let params = new URLSearchParams();
+      params.set('change', true);
+      const idElement = btn.previousElementSibling;
+      const id = idElement.value;
+      fetch(`./orders?action=update&id=${id}`,{
+        method: 'POST',
+        body: params,
+      })
+      .then(response => response.json())
+      .then(res =>{
+         if(res.status == "1" ){
+           btn.parentElement.firstElementChild.classList.add('incomplete');
+           btn.parentElement.firstElementChild.textContent = "未完";
+           alert('受け渡し状況を【未完了】に変更しました。');
+         }
+         else{
+           btn.parentElement.firstElementChild.classList.remove('incomplete');
+           btn.parentElement.firstElementChild.textContent = "完了";
+           alert('受け渡し状況を【完了】に変更しました。');
+         }
+      })
+      .catch(error =>{
+        alert(error);
+        console.log(error);
+      });
+     
+    });
+  });
 });
 /**
  * 

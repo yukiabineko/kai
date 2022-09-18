@@ -10,6 +10,8 @@
   min-height: 100vh;
   position: relative;
   box-sizing: border-box;
+  overflow: hidden;
+  overflow-y: scroll;
  }
 .ft{
   display: none;
@@ -29,6 +31,15 @@ header::after {
    position: relative;
     
    padding-bottom: calc(100vh - 140px);
+ }
+ /*フラッシュ*/
+ .flash-success{
+  width: 100%;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  line-height: 3;
+
  }
  /*
  */
@@ -245,6 +256,16 @@ header::after {
     color: #444;
     padding-bottom: -400px;
   
+ }
+ /*売り切れ表示 */
+ .solidout{
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.2rem;
  }
  /******************************************地図関連***************************************************************************/
  .map{

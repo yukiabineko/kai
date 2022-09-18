@@ -203,8 +203,11 @@ main {
   margin-top: -4px;
   padding-bottom: 10px;
   height: 100%;
-  width: 175px;
+  width: 165px;
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
+  word-break: break-all;
 }
 
 .itemlists ul .list .img-price .price .price {
@@ -342,14 +345,15 @@ main {
   width: 442px;
   margin: 0 0 6.5rem -18px;
   list-style: none;
-}
+} 
 
 .order .info .lists li {
   width: 442px;
-  height: 540px;
   background-color: #f0f0f0;
   margin-bottom: 3.2rem;
   position: relative;
+  padding-bottom: .05rem;
+  
 
 }
 
@@ -394,6 +398,28 @@ main {
   width: 40px;
   height: 40px;
 }
+/*文字数が多い場合のクラス*/
+.user-long {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(82, 47, 96);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  margin-left: 5.5rem;
+  padding-top: 8px;
+ 
+ 
+}
+
+.user-long img {
+  width: 30px;
+  height: 30px;
+}
+
 
 .item {
   width: 100%;
@@ -495,6 +521,7 @@ main {
   letter-spacing: 0.16em;
   margin-top: 32px;
   margin-left: 10px;
+  text-decoration: none;
 }
 
 .tel img {
@@ -515,6 +542,12 @@ main {
   letter-spacing: 0.16em;
   margin-top: 32px;
   margin-left: 10px;
+  box-sizing: border-box;
+  width: calc(100% - 30px);
+}
+/*メールの文字数が多い場合のスタイル*/
+.email-long{
+  letter-spacing: 0;
 }
 
 .email img {
@@ -545,4 +578,15 @@ main {
 
 .statusbtn:hover {
   opacity: 0.8;
+}
+/*オーダーがない場合*/
+.order-empty{
+  display: flex;
+  background-color: #f0f0f0;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(0, 0, 0);
+  letter-spacing: 0.16em;
 }

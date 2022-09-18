@@ -22,6 +22,15 @@ article {
  
 
 }
+/*フラッシュ*/
+.flash-success{
+  width: 100%;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  line-height: 3;
+
+ }
 
 /******************************タイトル*******************************************************/
 .title {
@@ -127,7 +136,7 @@ article {
   padding-bottom: 8px;
 
 }
-items-session ul .list:hover {
+.items-session ul .list:hover {
   transform: translateY(-30px);
   opacity: 0.7;
 
@@ -231,13 +240,23 @@ items-session ul .list:hover {
  
 
 }
+/*売り切れ表示 */
+.solidout {
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.2rem;
+}
 /*********************************************************************************************************************/
 .map{
   width: 100vw;
   height: 100vw;
   background-color: white;
   position: absolute;
-  left: 1%;
+  left: 100%;
   top: 100vh;
   opacity: 0;
   transition: .4s;
@@ -251,6 +270,7 @@ items-session ul .list:hover {
   justify-content: space-between;
   position: sticky;
   top: 1rem;
+  box-sizing: border-box;
  }
  .map-buttons{
   display: flex;
@@ -285,6 +305,7 @@ items-session ul .list:hover {
  #open:checked ~ .map{
   opacity: 1;
   top: 50%;
+  left: 0;
  
  }
  /**************************************footer**********************************************************************************/

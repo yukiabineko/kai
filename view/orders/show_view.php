@@ -9,9 +9,9 @@
     <div class="item">
       <img src="<?= $item->thumbnail; ?>" alt="商品">
       <ul>
-        <li><?= $item->name ?></li>
+        <li class="<?php echo mb_strlen($item->name) > 13 ? "name-long" : ""  ?>"><?= $item->name ?></li>
         <li class="price">¥<span><?= $item->price ?></span>円</li>
-        <li><?= $shop->name ?></li>
+        <li class="<?php echo mb_strlen($item->name) > 13 ? "shop-long" : ""  ?>"><?= $shop->name ?></li>
       </ul>
     </div>
     <div class="border"></div>

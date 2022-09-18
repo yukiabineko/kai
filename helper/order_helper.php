@@ -36,3 +36,23 @@ function total_price(string $baseprice, string $cout): int{
 function total_tax_price(string $baseprice, string $count): int{
   return total_price($baseprice, $count) * 1.1;
 } 
+//メール本文作成
+function create_mail_text(array $params){
+  $message = "植松サイトご利用ありがとうございます。\n";
+  $message.= "【注文内容の確認】\n";
+  for($i=0; $i< count($params['number']); $i++){
+    $message.= $params['item_names'][$i]."\n";
+    $message.= "価格";
+    $message.= "受け取り日時:".$params['receiving'][$i]."\n";
+    $message.= "注文数:".$params['number'][$i]."\n";
+    $message.="合計:".(int)$params['number'][$i] * (int)$params['price'][$i]."\n";
+    $message.= "税込:".ceil( (int)$params['number'][$i] * (int)$params['price'][$i]*1.1 )."`\n";
+    $message.="------------------------------------------";
+  }
+  $message.="連絡等はこちらからよろしくお願いいたします\n。";
+  $message.= "yukiabineko@live.com\n";
+  $message.="************************************************\n";
+  $message.="【代表者　植松　勇貴】";
+
+  return $message;
+}

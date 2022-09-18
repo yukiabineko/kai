@@ -1,5 +1,6 @@
  <link rel="stylesheet" href="./css/shop/new.css" media="screen and (min-width: 980px)">
  <link rel="stylesheet" href="./css/shop/new-mobile.css"" media=" screen and (max-width: 979px)">
+ <script src="./js/shop/new.js"></script>
  <!-- コンテンツ -->
  <article>
    <!-- タイトル -->
@@ -22,7 +23,9 @@
            </th>
            <td>
              <div class="error" id="error-name">店舗名は必須です。</div>
-             <input type="text" name="name" id="name" value="<?= $shop->name ?>">
+             <input type="text" name="name" id="name" 
+              value="<?= isset( $_SESSION['input']['name'] )? $_SESSION['input']['name'] :  $shop->name ?>"
+             >
            </td>
          </tr>
          <!-- メールアドレス -->
@@ -32,8 +35,13 @@
              <span>(*必須です。)</span>
            </th>
            <td>
+             <?php if(isset($_SESSION['vallidation']['mail_error']) ) : ?>
+               <div class="error-vallidation"><?= $_SESSION['vallidation']['mail_error'] ?></div>
+             <?php endif; ?>
              <div class="error" id="error-email">メールアドレスは必須です。</div>
-             <input type="email" name="email" id="email" value="<?= $shop->email ?>">
+             <input type="email" name="email" id="email" 
+               value="<?= isset( $_SESSION['input']['email'] )? $_SESSION['input']['email'] : $shop->email ?>"
+              >
            </td>
          </tr>
          <!-- 電話番号 -->
@@ -43,8 +51,13 @@
              <span>(*必須です。)</span>
            </th>
            <td>
+             <?php if(isset($_SESSION['vallidation']['tel_error']) ) : ?>
+               <div class="error-vallidation"><?= $_SESSION['vallidation']['tel_error'] ?></div>
+             <?php endif; ?>
              <div class="error" id="error-tel">電話番号は必須です。</div>
-             <input type="tel" name="tel" id="tel" value="<?= $shop->tel ?>">
+             <input type="tel" name="tel" id="tel" 
+               value="<?= isset( $_SESSION['input']['tel'] )? $_SESSION['input']['tel'] :  $shop->tel ?>"
+             >
            </td>
          </tr>
          <!-- 住所 -->
@@ -55,7 +68,9 @@
            </th>
            <td>
              <div class="error" id="error-adress">住所は必須です。</div>
-             <input type="text" name="adress" id="adress" placeholder="*市町村から入力ください(例 甲府市丸の内一丁目1-8)" value="<?= $shop->adress ?>">
+             <input type="text" name="adress" id="adress" placeholder="*市町村から入力ください(例 甲府市丸の内一丁目1-8)" 
+               value="<?= isset( $_SESSION['input']['adress'] )? $_SESSION['input']['adress'] :  $shop->adress ?>"
+             >
            </td>
          </tr>
          <!-- パスワード -->
@@ -90,3 +105,9 @@
    </section>
 
  </article>
+ <!-- バリデーションセッションがある場合は削除 -->
+<?php if(isset($_SESSION['vallidation'])){
+  unset($_SESSION['vallidation']);
+ }
+ 
+?>

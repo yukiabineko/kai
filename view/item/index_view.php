@@ -1,5 +1,7 @@
 <article>
-  <!-- 説明エリア -->
+  <?php if(isset($_SESSION['success'])) : ?>
+    <div class="flash-success"><?= $_SESSION['success'] ?></div>
+  <?php unset($_SESSION['success']); endif;   ?>
   <section>
     <div class="title">
       <img src="image/icons/grape.svg" alt="葡萄">
@@ -49,7 +51,11 @@
             <div class="items"><?= $item->name ?></div>
             <div class="price">価格<span><?= $item->price ?></span>円</div>
             <div class="shop"><?= $item->belogsTo('shop')->name ?></div>
-            <a href="./item?action=show&id=<?= $item->id ?>"><img src="image/icons/eye.png" alt="search">詳細を見る</a>
+            <?php if($item->stock > 0) : ?>
+              <a href="./item?action=show&id=<?= $item->id ?>"><img src="image/icons/eye.png" alt="search">詳細を見る</a>
+            <?php else: ?>
+              <div class="solidout">売り切れ</div>
+            <?php endif; ?>
           </li>
         <?php endforeach; ?>
       </ul>

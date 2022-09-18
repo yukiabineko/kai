@@ -95,7 +95,6 @@ class Model{
     try{
       $smt = $this->pdo->prepare($sql);
       $column_number = 1;
-      echo $sql.'<br>';
     
       foreach($params as $key=>$value){
         $smt->bindValue($column_number, $value, gettype($value)=="integer"? PDO::PARAM_INT : PDO::PARAM_STR);
@@ -171,10 +170,15 @@ class Model{
 
      $result = $smt->fetch(PDO::FETCH_ASSOC);
      $this->id = $result['id'];
-     foreach($result as $key=>$value){
-      $this->$key = $value;
+     if(!empty($result)){
+      foreach($result as $key=>$value){
+        $this->$key = $value;
+       }
+       return $this;
      }
-     return $this;
+     else{
+       return null;
+     }
     }
     catch(PDOException $e){
       echo $e->getMessage();
@@ -195,10 +199,16 @@ class Model{
     $smt->bindValue(1, $param, PDO::PARAM_STR);
     $smt->execute();
     $results = $smt->fetch(PDO::FETCH_ASSOC);
-    foreach($results as $key=>$value){
-      $this->$key = $value;
+    if(!empty($results)){
+      foreach($results as $key=>$value){
+        $this->$key = $value;
+      }
+      return $this;
     }
-    return $this;
+    else{
+      return null;
+    }
+   
   }
   
   /***********************************最後のレコード取り出し************************************************************* */
@@ -207,10 +217,15 @@ class Model{
     try{
      $smt = $this->pdo->query($sql);
      $result = $smt->fetch(PDO::FETCH_ASSOC);
-     foreach($result as $key=>$value){
-      $this->$key = $value;
+     if(!empty($result)){
+      foreach($result as $key=>$value){
+        $this->$key = $value;
+       }
+       return $this;
      }
-     return $this;
+     else{
+      return null;
+     }
     }
     catch(PDOException $e){
       echo $e->getMessage();

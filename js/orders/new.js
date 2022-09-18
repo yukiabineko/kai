@@ -13,8 +13,10 @@ window.addEventListener('load', () => {
  /****************************ERROR関連開始************************************************************************* */ 
   //フォーム送信時の処理
   document.getElementById("order-form").addEventListener('submit', (event)=>{
-     
-     errors.splice(0);
+    errors.splice(0);
+    const telRegex = /^0\d{9,10}$/;
+    const mailRegex = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/;
+    
 
     let errorsElement = document.querySelector('.cart-form-error');
     while(errorsElement.firstChild){
@@ -49,12 +51,25 @@ window.addEventListener('load', () => {
       let exist = errors.indexOf(error_tel_message);
       if( exist < 0 ){ errors.push(error_tel_message); }
     }
+    //正規表現による正確な電話入力か確認
+    if(telRegex.test(document.getElementById('user-tel').value ) == false){
+      let error_telregex_message = "⚠︎電話番号の入力が不正です。";
+      let exist = errors.indexOf(error_telregex_message);
+      if (exist < 0) { errors.push(error_telregex_message); }
+    }
     //メールアドレス未入力の場合エラー配列に格納
     if( document.getElementById('user-tel').value == "" ){
       let error_mail_message = "⚠︎メールアドレスが入力されていません。";
       let exist = errors.indexOf(error_mail_message);
       if( exist < 0){ errors.push(error_mail_message); }
     }
+    //正規表現による正確なメールアドレスか入力か確認
+    if (telRegex.test(document.getElementById('user-mail').value) == false) {
+      let error_mailregex_message = "⚠︎メールアドレスの入力が不正です。";
+      let exist = errors.indexOf(error_mailregex_message);
+      if (exist < 0) { errors.push(error_mailregex_message); }
+    }
+    
 
     if(errors.length > 0){
       event.preventDefault();

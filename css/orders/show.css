@@ -94,6 +94,17 @@ article .contents .item ul li {
   
 
 }
+/*商品名文字列多い場合の処理*/
+article .contents .item ul .name-long{
+  font-size: 24px;
+  white-space: inherit;
+}
+/*商品名文字列多い場合の処理*/
+article .contents .item ul .shop-long {
+  font-size: 24px;
+  white-space: inherit;
+  margin-top: -2.2rem;
+}
 
 article .contents .item ul .price {
   margin-top: -1.5rem;

@@ -1,3 +1,4 @@
+<?php require_once './helper/shop_helper.php';  ?>
 <!-- ajax用csrfトークン格納　-->
 <meta name="csrf-token" content="<?php echo $token; ?>" />
 <p class="shop-name"><?= $shop->name; ?>様</p>
@@ -13,7 +14,6 @@
 <!-- コンテンツ -->
 <main>
   <!-- 店舗情報 -->
-
   <article class="shop">
     <section class="info">
       <h3>店舗様情報</h3>
@@ -43,7 +43,7 @@
     <section class="itemlists">
       <h3>ご登録商品一覧</h3>
       <a href="./item?action=new" class="btn">新規登録</a>
-      <?php if( count($items) > 0): ?>
+      <?php if (count($items) > 0) : ?>
         <ul class="item-list">
           <?php foreach ($items as $item) : ?>
             <!-- リスト　-->
@@ -82,7 +82,7 @@
             </li>
           <?php endforeach; ?>
         </ul>
-      <?php else: ?>
+      <?php else : ?>
         <div class="empty-item">現在登録されている商品はありません。</div>
       <?php endif; ?>
     </section>
@@ -93,149 +93,79 @@
   <article class="order">
     <section class="info">
       <h3>注文依頼リスト</h3>
-      <ul class="lists">
-        <!-- ****************************list1********************************************** -->
-        <li>
-          <div class="status">完了</div>
-          <div class="user">
-            <img src="image/icons/user.svg" alt="ユーザー" srcset="image/icons/user.svg">
-            田中　太郎様
-          </div>
+      <!-- オーダーがあるかどうかで分岐　-->
+      <?php if( count($orders) > 0 ) : ?>
+          <ul class="lists">
+          <!-- ****************************list1********************************************** -->
+          <?php foreach ($orders as $order) : ?>
+            <li>
+              <!-- 引き渡しステータス -->
+              <?php if ($order['status'] == "1") : ?>
+                <div class="status incomplete">未完</div>
+              <?php else : ?>
+                <div class="status">完了</div>
+              <?php endif; ?>
 
-          <!-- 商品名-->
-          <div class="item">
-            <img src="image/icons/grape2.svg" alt="アイコン" srcset="image/icons/grape2.svg">
-            柏餅1個
-          </div>
+              <div class=" <?= customer_strlen_check($order['name']) ?>">
+                <img src="image/icons/user.svg" alt="ユーザー" srcset="image/icons/user.svg">
+                <?= $order['name'] ?>様
+              </div>
 
-          <!-- 価格-->
-          <div class="price">
-            <img src="image/icons/price.svg" alt="価格" srcset="image/icons/price.svg">
-            <span>99</span>円
-            <img src="image/icons/bag.svg" alt="数" srcset="image/icons/bag.svg" class="num">2個
-            <div class="total">
-              計<span>217</span>円<span class="tax">(税込)</span>
-            </div>
-          </div>
+              <!-- 商品名-->
+              <div class="item">
+                <img src="image/icons/grape2.svg" alt="アイコン" srcset="image/icons/grape2.svg">
+                <?= $order['item_name'] ?>
+              </div>
 
-          <!-- 日時 -->
-          <div class="datetime">
-            <img src="image/icons/date.svg" alt="カレンダー" srcset="image/icons/date.svg">
-            22年8/22
-            <img src="image/icons/time.svg" alt="時間" srcset="image/icons/time.svg" class="clock">
-            <span>15:00</span>
-          </div>
+              <!-- 価格-->
+              <div class="price">
+                <img src="image/icons/price.svg" alt="価格" srcset="image/icons/price.svg">
+                <span><?= $order['price'] ?></span>円
+                <img src="image/icons/bag.svg" alt="数" srcset="image/icons/bag.svg" class="num"><?= $order['order_count'] ?>個
+                <div class="total">
+                  計<span>
+                    <?= floor((int)$order['price'] * (int)$order['order_count'] * 1.1) ?>
+                  </span>円<span class="tax">(税込)</span>
+                </div>
+              </div>
 
-          <!-- 電話番号 -->
-          <div class="tel">
-            <img src="image/icons/tel.svg" alt="電話番号" srcset="image/icons/tel.svg">
-            090-1111-2224
-          </div>
+              <!-- 日時 -->
+              <div class="datetime">
+                <img src="image/icons/date.svg" alt="カレンダー" srcset="image/icons/date.svg">
+                <?= date('Y年m/d', strtotime($order['receiving'])) ?>
+                <img src="image/icons/time.svg" alt="時間" srcset="image/icons/time.svg" class="clock">
+                <span><?= date('g:i', strtotime($order['receiving'])) ?></span>
+              </div>
 
-          <!-- メールアドレス -->
-          <a class="email" href="mailto:tanaka@example.com">
-            <img src="image/icons/mail.svg" alt="メールアドレス" srcset="image/icons/mail.svg">
-            tanaka@example.com
-          </a>
+              <!-- 電話番号 -->
+              <a class="tel" href="tel:<?php echo $order['tel'] ?>">
+                <img src="image/icons/tel.svg" alt="電話番号" srcset="image/icons/tel.svg">
+                <?= $order['tel'] ?>
+              </a>
 
-          <!-- 変更ボタン -->
-          <button class="statusbtn">状況変更</button>
-        </li>
-        <!-- ****************************list2********************************************** -->
-        <li>
-          <div class="status incomplete">未完</div>
-          <div class="user">
-            <img src="image/icons/user.svg" alt="ユーザー" srcset="image/icons/user.svg">
-            山田　花子様
-          </div>
+              <!-- メールアドレス -->
+              <a class="<?= email_strlen_check( $order['email']) ?>" href="mailto:<?php echo $order['email'] ?>">
+                <img src="image/icons/mail.svg" alt="メールアドレス" srcset="image/icons/mail.svg">
+                <?= $order['email'] ?>
+              </a>
 
-          <!-- 商品名-->
-          <div class="item">
-            <img src="image/icons/grape2.svg" alt="アイコン" srcset="image/icons/grape2.svg">
-            大福1個
-          </div>
+              <!-- 隠しパラメータオーダーのid -->
+              <input type="hidden" id="order-id" value="<?= $order['id'] ?>">
 
-          <!-- 価格-->
-          <div class="price">
-            <img src="image/icons/price.svg" alt="価格" srcset="image/icons/price.svg">
-            <span>99</span>円
-            <img src="image/icons/bag.svg" alt="数" srcset="image/icons/bag.svg" class="num">2個
-            <div class="total">
-              計<span>217</span>円
-            </div>
-          </div>
+              <!-- 変更ボタン -->
+              <button class="statusbtn">状況変更</button>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      <?php else: ?>
+        <div class="order-empty">現在注文はありません。</div>
+      <?php endif; ?>
 
-          <!-- 日時 -->
-          <div class="datetime">
-            <img src="image/icons/date.svg" alt="カレンダー" srcset="image/icons/date.svg">
-            22年8/23
-            <img src="image/icons/time.svg" alt="時間" srcset="image/icons/time.svg" class="clock">
-            <span>17:00</span>
-          </div>
-
-          <!-- 電話番号 -->
-          <div class="tel">
-            <img src="image/icons/tel.svg" alt="電話番号" srcset="image/icons/tel.svg">
-            090-1111-2223
-          </div>
-
-          <!-- メールアドレス -->
-          <a class="email" href="mailto:yamada@example.com">
-            <img src="image/icons/mail.svg" alt="メールアドレス" srcset="image/icons/mail.svg">
-            yamada@example.com
-          </a>
-
-          <!-- 変更ボタン -->
-          <button class="statusbtn">状況変更</button>
-        </li>
-        <!-- ****************************list3********************************************** -->
-        <li>
-          <div class="status incomplete">未完</div>
-          <div class="user">
-            <img src="image/icons/user.svg" alt="ユーザー" srcset="image/icons/user.svg">
-            山田　花子様
-          </div>
-
-          <!-- 商品名-->
-          <div class="item">
-            <img src="image/icons/grape2.svg" alt="アイコン" srcset="image/icons/grape2.svg">
-            どら焼き1個
-          </div>
-
-          <!-- 価格-->
-          <div class="price">
-            <img src="image/icons/price.svg" alt="価格" srcset="image/icons/price.svg">
-            <span class="unit-price">99</span>円
-            <img src="image/icons/bag.svg" alt="数" srcset="image/icons/bag.svg" class="num">4個
-            <div class="total">
-              計<span>435</span>円
-            </div>
-          </div>
-
-          <!-- 日時 -->
-          <div class="datetime">
-            <img src="image/icons/date.svg" alt="カレンダー" srcset="image/icons/date.svg">
-            22年8/24
-            <img src="image/icons/time.svg" alt="時間" srcset="image/icons/time.svg" class="clock">
-            <span>11:00</span>
-          </div>
-
-          <!-- 電話番号 -->
-          <div class="tel">
-            <img src="image/icons/tel.svg" alt="電話番号" srcset="image/icons/tel.svg">
-            090-1111-2223
-          </div>
-
-          <!-- メールアドレス -->
-          <a class="email" href="mailto:yamada@example.com">
-            <img src="image/icons/mail.svg" alt="メールアドレス" srcset="image/icons/mail.svg">
-            yamada@example.com
-          </a>
-
-          <!-- 変更ボタン -->
-          <button class="statusbtn">状況変更</button>
-        </li>
-      </ul>
     </section>
   </article>
 </main>
+<!-- 削除時の確認モーダル -->
+<div class="modal-back"></div>
+<div class="delete-modal">
+
+</div>

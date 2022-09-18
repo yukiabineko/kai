@@ -418,3 +418,14 @@ article .contents .border {
   margin: -4px 0 15px 0;
 
 }
+/*オーダーがない場合*/
+.order-empty{
+  display: flex;
+  background-color: #f0f0f0;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  font-family: "DNP ShueiNMinStd";
+  color: rgb(0, 0, 0);
+  letter-spacing: 0.16em;
+}
