@@ -9,7 +9,9 @@
     <img src="image/icons/grape.svg" alt="タイトル">
     <h2>【<?= $item->name ?>】編集</h2>
   </section>
-  <a href="shop.html" class="back-button">戻る</a>
+  <?php if(isset($_SERVER['HTTP_REFERER'])) : ?>
+    <a href="<?= $_SERVER['HTTP_REFERER'] ?>" class="back-button">戻る</a>
+  <?php endif; ?>
 
   <!--フォーム-->
 

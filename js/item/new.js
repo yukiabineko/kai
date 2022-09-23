@@ -296,7 +296,8 @@ const nextItemMonth = (currentDate) => {
   //前月の日が押された場合
   document.querySelectorAll('.prev-td').forEach((cell) => {
     cell.addEventListener('click', () => {
-      document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+      prevMonthDateString = dateObject.getFullYear() + "-" + dateObject.getMonth().toString().padStart(2, "0") + "-";
+      document.getElementById(id).value = prevMonthDateString + cell.textContent.toString().padStart(2, "0");
       document.getElementById('target-date').textContent = new Date();
       closeModal();
     });
@@ -428,7 +429,8 @@ const prevItemMonth = (currentDate) => {
     //前月の日が押された場合
     document.querySelectorAll('.prev-td').forEach((cell) => {
       cell.addEventListener('click', () => {
-        document.getElementById(id).value = dateString + cell.textContent.toString().padStart(2, "0");
+        prevMonthDateString = dateObject.getFullYear() + "-" + dateObject.getMonth().toString().padStart(2, "0") + "-";
+        document.getElementById(id).value = prevMonthDateString + cell.textContent.toString().padStart(2, "0");
         document.getElementById('target-date').textContent = new Date();
         closeModal();
       });

@@ -46,6 +46,8 @@
       <?php if (count($items) > 0) : ?>
         <ul class="item-list">
           <?php foreach ($items as $item) : ?>
+            <?php $tgoders = $item->hasMany('orders');  ?>
+
             <!-- リスト　-->
             <li class="list" id="list-<?= $item->id ?>">
               <a href=" ./item?action=show&id=<?= $item->id; ?>" class="link"></a>
@@ -74,7 +76,7 @@
                   <img src="image/icons/pen2.svg" alt="編集ボタン" srcset="image/icons/pen2.svg">
                 </a>
                 <!-- 削除ボタン　-->
-                <button onclick="deleteItem(<?= $item->id; ?>)" class="delete-button">
+                <button onclick="openDeleteModal(this, <?= $item->id ?>, <?= count($tgoders) ?>)" class="delete-button">
                   <img src="image/icons/trash.svg" alt="削除ボタン" srcset="image/icons/trash.svg">
                 </button>
               </div>
@@ -94,8 +96,8 @@
     <section class="info">
       <h3>注文依頼リスト</h3>
       <!-- オーダーがあるかどうかで分岐　-->
-      <?php if( count($orders) > 0 ) : ?>
-          <ul class="lists">
+      <?php if (count($orders) > 0) : ?>
+        <ul class="lists">
           <!-- ****************************list1********************************************** -->
           <?php foreach ($orders as $order) : ?>
             <li>
@@ -144,7 +146,7 @@
               </a>
 
               <!-- メールアドレス -->
-              <a class="<?= email_strlen_check( $order['email']) ?>" href="mailto:<?php echo $order['email'] ?>">
+              <a class="<?= email_strlen_check($order['email']) ?>" href="mailto:<?php echo $order['email'] ?>">
                 <img src="image/icons/mail.svg" alt="メールアドレス" srcset="image/icons/mail.svg">
                 <?= $order['email'] ?>
               </a>
@@ -157,7 +159,7 @@
             </li>
           <?php endforeach; ?>
         </ul>
-      <?php else: ?>
+      <?php else : ?>
         <div class="order-empty">現在注文はありません。</div>
       <?php endif; ?>
 
@@ -165,7 +167,42 @@
   </article>
 </main>
 <!-- 削除時の確認モーダル -->
-<div class="modal-back"></div>
+<div class="modal-back" onclick="deleteModalClose()"></div>
+<!-- モーダル本体 -->
 <div class="delete-modal">
-
+  <div class="modal-content">
+    <!-- タイトル 閉じるボタン　-->
+    <div class="modal-header">
+      <h1>【ご確認ください】</h1>
+      <button onclick="deleteModalClose()">x</button>
+    </div>
+    <!-- 内容　-->
+    <div class="modal-body">
+      <p class="modal-info">*すでに注文をなさっているお客様がいらっしゃいます。すべて連絡を終えてから削除してください。</p>
+      <form action="#" method="POST" class="delete-orders-form">
+        <table class="modal-table">
+          <thead class="pc-thead">
+            <tr>
+              <th colspan="3">日時</th>
+              <th rowspan="2">お客様名</th>
+              <th rowspan="2">電話番号</th>
+              <th rowspan="2">メールアドレス</th>
+              <th rowspan="2">連絡確認</th>
+            </tr>
+            <tr>
+              <th>日付け</th>
+              <th>曜日</th>
+              <th>時間</th>
+            </tr>
+          </thead>
+          <tbody class="order-tbody"></tbody>
+        </table>
+        <input type="hidden" name="multiple" value="true">
+        <input type="hidden" name="csrf-token" value="<?= $token ?>">
+        <input type="submit" value="削除する" class="delete-modal-submit" disabled>
+      </form>
+    </div>
+    <!-- 内容 -->
+  </div>
 </div>
+<!-- モーダル本体 -->

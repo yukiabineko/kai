@@ -58,13 +58,13 @@ window.addEventListener('load', () => {
       if (exist < 0) { errors.push(error_telregex_message); }
     }
     //メールアドレス未入力の場合エラー配列に格納
-    if( document.getElementById('user-tel').value == "" ){
+    if( document.getElementById('user-mail').value == "" ){
       let error_mail_message = "⚠︎メールアドレスが入力されていません。";
       let exist = errors.indexOf(error_mail_message);
       if( exist < 0){ errors.push(error_mail_message); }
     }
     //正規表現による正確なメールアドレスか入力か確認
-    if (telRegex.test(document.getElementById('user-mail').value) == false) {
+    if (mailRegex.test(document.getElementById('user-mail').value) == false) {
       let error_mailregex_message = "⚠︎メールアドレスの入力が不正です。";
       let exist = errors.indexOf(error_mailregex_message);
       if (exist < 0) { errors.push(error_mailregex_message); }

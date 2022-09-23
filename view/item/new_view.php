@@ -5,7 +5,9 @@
     <img src="image/icons/grape.svg" alt="タイトル">
     <h2>新規商品登録</h2>
   </section>
-  <a href="shop.html" class="back-button">戻る</a>
+  <?php if(isset($_SERVER['HTTP_REFERER'])) : ?>
+    <a href="<?= $_SERVER['HTTP_REFERER'] ?>" class="back-button">戻る</a>
+  <?php endif; ?>
 
   <!--フォーム-->
   <section class="form">

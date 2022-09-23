@@ -50,8 +50,9 @@ class Model{
     $this->pdo = null;
   }
   /*********************全理コードの取得*********************************************************/
-  public function all(){
-    $sql = "SELECT * FROM $this->table";
+  public function all(string $sort_column = null, string $sort = null){
+    $sql = isset($sort_column)?  "SELECT * FROM $this->table ORDER BY $sort_column $sort" : "SELECT * FROM $this->table ";
+   
     try{
        $smt = $this->pdo->query($sql);
        $results = $smt->fetchAll(PDO::FETCH_ASSOC);
@@ -269,7 +270,7 @@ class Model{
    return $items;
   }
   /***************************リレーション関連********************************************************************************************/
-  public function hasMany(string $table_name){
+  public function hasMany(string $table_name, string $sort_column = null, string $sort = null){
     require_once "$table_name.php";
     require "./database/$table_name.php";
     //リレーション対象のテーブルの初期設定
@@ -284,8 +285,11 @@ class Model{
     }
     $tb_sql .= ")";
     $this->pdo->exec($tb_sql);
+    $sql = "SELECT * FROM $table_name WHERE $this->table" . "_id=?";
 
-    $sql = "SELECT * FROM $table_name WHERE $this->table"."_id=?";
+    if( isset($sort_column) && isset($sort)){
+      $sql.= " ORDER BY $sort_column $sort";
+    }
     try {
       $smt = $this->pdo->prepare($sql);
       $smt->bindValue(1, (int)$this->id, PDO::PARAM_INT);

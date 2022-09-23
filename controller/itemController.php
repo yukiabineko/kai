@@ -144,20 +144,27 @@ public function show(int $id){
 }
 /*****************************ajaxによる削除処理**************************************************************** */
 public function delete(int $id, array $params){
-   if($_SERVER["HTTP_X_CSRF_TOKEN"] == $_SESSION['token']){
+   if( ( isset($params['csrf-token']) && $params['csrf-token'] == $_SESSION['token'] ) || $_SERVER["HTTP_X_CSRF_TOKEN"] == $_SESSION['token']){
       $item = new item();
+      $orders = $item->find($id)->hasMany('orders');
       if ($item->delete($id)) {
         $files = "./shops/item$id/*.jpg";
         foreach (glob($files) as $val) {
           unlink($val);
         }
+        if( count($orders) > 0 ){
+          foreach($orders as $order){
+            $order->delete($order->id);
+          }
+        }
         rmdir("./shops/item$id");
-       echo json_encode(['message'=>'削除しました。']);
+        $_SESSION['flash'] = "削除しました。";
+        isset($params['multiple'])? header('location: ./shop?action=show&id='.$_SESSION['auth_id']) : "";
+        echo json_encode(['message' => '削除しました。']);
+       
       }
    }
-  
 }
-
 /***********************************protected******************************************************************************* */
 /********************モデルのデータ送信のためにポストデータの最適化****************************************************************** */
 

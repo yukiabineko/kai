@@ -59,6 +59,9 @@ if(file_exists('./controller/' . $call . 'Controller.php')){
       case 'delete':
         $response = $obj->delete($querys['id'], $_POST);
         break;
+      case 'modal':
+        $response = $obj->modal( $_POST );
+        break;
      
       default:
         break;

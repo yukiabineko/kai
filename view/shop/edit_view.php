@@ -8,10 +8,12 @@
      <img src="image/icons/memo.svg" alt="タイトルアイコン">
      <h2><?= $shop->name ?>編集</h2>
    </section>
-   <a href="#" class="back-button">戻る</a>
+   <?php if(isset($_SERVER['HTTP_REFERER'])) : ?>
+    <a href="<?= $_SERVER['HTTP_REFERER'] ?>" class="back-button">戻る</a>
+   <?php endif; ?>
 
    <!--フォーム-->
-   
+ 
    <section class="form">
      <form action="./shop?action=update&id=<?= $shop->id; ?>" method="post" id="user-form">
        <table class="user-table">
